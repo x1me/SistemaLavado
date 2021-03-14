@@ -45,10 +45,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,6 +131,99 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Canton.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Distrito.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fabricante.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarcaVehiculo.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_CantonSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_ClienteSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_DistritoSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_fabricanteSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_FacturaDetalleSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_FacturaEncabezadoSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_ProvinciaSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_UsuariosSelect_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Provincia.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RetornaCantonesID_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServicioProducto.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Servicios_Facturados_Detalle.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Servicios_Facturados_Encabezado.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoVehiculo.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuarios.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vehiculo.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_2.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,8 +235,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ModeloEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloEntities.Context.cs</LastGenOutput>
+      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModeloEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+      <LastGenOutput>ModeloEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ModeloEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModeloEntities.edmx.diagram">
+      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -166,7 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Mantenimiento\" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +296,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
