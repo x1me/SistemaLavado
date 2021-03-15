@@ -7,7 +7,7 @@
 <br />
 <p>Esta lista abarca todos los paises con sus respectivos códigos</p>
 <br />  
-<a href="~/Mantenimiento/InsertarFabricante">Nuevo Fabricante</a>
+<a href="~/MantenimientoFabricante/InsertarFabricante">Nuevo Fabricante</a>
 <br />
 <table class="table">
     <tr>
@@ -21,6 +21,11 @@
             <tr>
                 <td>@PosicionModelo.codigo</td>
                 <td>@PosicionModelo.pais</td>
+                <td>
+                    <a href="~/MantenimientoFabricante/ModificaFabricante?codigo=@PosicionModelo.codigo">Modificar</a>
+                    <br />
+                    <a href="~/MantenimientoFabricante/EliminaFabricante?codigo=@PosicionModelo.codigo">Eliminar</a>
+                </td>
             </tr>
         }
     }

@@ -693,5 +693,27 @@ namespace SistemaLavado.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_RetornaFabricante_Result>("pa_RetornaFabricante");
         }
+    
+        public virtual ObjectResult<pa_RetornaFabricante_ID_Result> pa_RetornaFabricante_ID(Nullable<int> codigo)
+        {
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_RetornaFabricante_ID_Result>("pa_RetornaFabricante_ID", codigoParameter);
+        }
+    
+        public virtual int pa_FabricanteModifica(Nullable<int> codigo, string pais)
+        {
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            var paisParameter = pais != null ?
+                new ObjectParameter("pais", pais) :
+                new ObjectParameter("pais", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_FabricanteModifica", codigoParameter, paisParameter);
+        }
     }
 }

@@ -7,13 +7,13 @@ using SistemaLavado.Models;
 
 namespace SistemaLavado.Controllers
 {
-    public class MantenimientoController : Controller
+    public class MantenimientoFabricanteController : Controller
     {
         sistemadecontrolEntities ModeloBD = new sistemadecontrolEntities();
         // GET: Mantenimiento
         public ActionResult Index()
-        {
-            return View();
+        {                
+                return View();
         }
 
         public ActionResult ListaFabricante()
@@ -21,6 +21,7 @@ namespace SistemaLavado.Controllers
             List<pa_RetornaFabricante_Result> ModeloVista = this.ModeloBD.pa_RetornaFabricante().ToList();
             return View(ModeloVista);
         }
+
 
         public ActionResult InsertarFabricante()
         {
@@ -62,6 +63,49 @@ namespace SistemaLavado.Controllers
 
             Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
             return View();
+        }
+
+        public ActionResult ModificaFabricante(int codigo)
+        {
+            pa_RetornaFabricante_ID_Result ModeloVista = new pa_RetornaFabricante_ID_Result();
+            ModeloVista = this.ModeloBD.pa_RetornaFabricante_ID(codigo).FirstOrDefault();
+            return View(ModeloVista);
+        }
+
+        [HttpPost]
+        public ActionResult ModificaFabricante(pa_RetornaFabricante_ID_Result objModeloVista)
+        {
+            ///Variable que registra la cantidad de registros afectados
+            ///si un procedimiento que ejecuta insert, update o delete 
+            ///no afecta registros implica que hubo un error
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados =this.ModeloBD.pa_FabricanteModifica(
+                        objModeloVista.codigo,
+                        objModeloVista.pais);
+
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrió un error: " + error.Message;
+            }
+
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+                
+                    resultado = "Registro modificado";
+                
+                else
+                
+                    resultado += ".No se pudo insertar";
+                
+            }
+
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+            return View(objModeloVista);
         }
     }
 }
