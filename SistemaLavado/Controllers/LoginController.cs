@@ -15,10 +15,24 @@ namespace SistemaLavado.Controllers
         {
             return View();
         }
-        public ActionResult Login()           
+
+        public ActionResult Login()
         {
             var registro = BD_Login.pa_UsuariosSelect(null).ToList();
             return View(registro);
+
         }
+        [HttpPost]
+        public ActionResult Login(usuarios usuario)
+        {
+            int resultado = BD_Login.usuarios.Where(bd => bd.correo == usuario.correo && bd.contrasena == usuario.contrasena).Count();
+            if (resultado >0)
+            {
+                return Redirect);
+            }
+            return View();
+
+        }
+
     }
 }
