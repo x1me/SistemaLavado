@@ -1,11 +1,14 @@
-﻿@model  List<SistemaLavado.Models.pa_fabricanteSelect_Result>
+﻿@model  List<SistemaLavado.Models.pa_RetornaFabricante_Result>
 @{
     ViewBag.Title = "ListaFabricante";
 }
 
-<h2>ListaFabricante</h2>
-
-
+<h2>Lista De Los Fabricantes</h2>
+<br />
+<p>Esta lista abarca todos los paises con sus respectivos códigos</p>
+<br />  
+<a href="~/Mantenimiento/InsertarFabricante">Nuevo Fabricante</a>
+<br />
 <table class="table">
     <tr>
         <th>Código </th>
@@ -13,7 +16,7 @@
 
     </tr>
     @{
-        foreach (SistemaLavado.Models.pa_fabricanteSelect_Result PosicionModelo in this.Model)
+        foreach (SistemaLavado.Models.pa_RetornaFabricante_Result PosicionModelo in this.Model)
         {
             <tr>
                 <td>@PosicionModelo.codigo</td>

@@ -183,6 +183,9 @@
     <Compile Include="Models\pa_ProvinciaSelect_Result.cs">
       <DependentUpon>ModeloEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pa_RetornaFabricante_Result.cs">
+      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
       <DependentUpon>ModeloEntities.tt</DependentUpon>
     </Compile>
@@ -256,6 +259,7 @@
       <DependentUpon>ModeloEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Insertar\InsertarFabricante.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -266,6 +270,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -282,6 +287,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Mantenimiento\ListaFabricante.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Mantenimiento\InsertarFabricante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

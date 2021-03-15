@@ -28,7 +28,7 @@ namespace SistemaLavado.Controllers
             int resultado = BD_Login.usuarios.Where(bd => bd.correo == usuario.correo && bd.contrasena == usuario.contrasena).Count();
             if (resultado >0)
             {
-                return Redirect);
+             ///   return Redirect;
             }
             return View();
 

@@ -688,5 +688,10 @@ namespace SistemaLavado.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<pa_RetornaFabricante_Result> pa_RetornaFabricante()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_RetornaFabricante_Result>("pa_RetornaFabricante");
+        }
     }
 }
