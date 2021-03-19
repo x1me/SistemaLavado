@@ -13,7 +13,7 @@ namespace SistemaLavado.Models
     
     public partial class pa_FacturaEncabezadoSelect_Result
     {
-        public int id { get; set; }
+        public int id_SerFac_Enca { get; set; }
         public Nullable<int> cedula { get; set; }
         public string placa { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }

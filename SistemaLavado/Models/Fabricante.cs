@@ -14,14 +14,8 @@ namespace SistemaLavado.Models
     
     public partial class Fabricante
     {
-        public Fabricante()
-        {
-            this.MarcaVehiculo = new HashSet<MarcaVehiculo>();
-        }
-    
-        public short codigo { get; set; }
+        public int id_codfabricante { get; set; }
+        public Nullable<short> codigo { get; set; }
         public string pais { get; set; }
-    
-        public virtual ICollection<MarcaVehiculo> MarcaVehiculo { get; set; }
     }
 }

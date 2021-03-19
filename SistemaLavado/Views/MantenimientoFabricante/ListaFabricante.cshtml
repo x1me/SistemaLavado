@@ -1,4 +1,4 @@
-﻿@model  List<SistemaLavado.Models.pa_RetornaFabricante_Result>
+﻿@model List<SistemaLavado.Models.pa_FabricanteRetorna_Result>
 @{
     ViewBag.Title = "ListaFabricante";
 }
@@ -16,15 +16,15 @@
 
     </tr>
     @{
-        foreach (SistemaLavado.Models.pa_RetornaFabricante_Result PosicionModelo in this.Model)
+        foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
         {
             <tr>
                 <td>@PosicionModelo.codigo</td>
                 <td>@PosicionModelo.pais</td>
                 <td>
-                    <a href="~/MantenimientoFabricante/ModificaFabricante?codigo=@PosicionModelo.codigo">Modificar</a>
+                    <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
                     <br />
-                    <a href="~/MantenimientoFabricante/EliminaFabricante?codigo=@PosicionModelo.codigo">Eliminar</a>
+                    <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
                 </td>
             </tr>
         }

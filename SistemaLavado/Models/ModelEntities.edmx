@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="sistemadecontrolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sistemacontrolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="id_Canton" />
@@ -21,12 +21,13 @@
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
-            <PropertyRef Name="cedula" />
+            <PropertyRef Name="id_cliente" />
           </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cedula" Type="int" Nullable="false" />
           <Property Name="genero" Type="char" MaxLength="1" />
           <Property Name="nombre" Type="varchar" MaxLength="200" />
-          <Property Name="correo" Type="nvarchar" MaxLength="200" />
+          <Property Name="correo" Type="nvarchar" MaxLength="100" />
           <Property Name="provincia" Type="int" />
           <Property Name="canton" Type="int" />
           <Property Name="distrito" Type="int" />
@@ -47,18 +48,20 @@
         </EntityType>
         <EntityType Name="Fabricante">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codfabricante" />
           </Key>
-          <Property Name="codigo" Type="smallint" Nullable="false" />
+          <Property Name="id_codfabricante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="smallint" />
           <Property Name="pais" Type="varchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="MarcaVehiculo">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoMarcaV" />
           </Key>
-          <Property Name="codigo" Type="smallint" Nullable="false" />
+          <Property Name="id_codigoMarcaV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="smallint" />
           <Property Name="tipo" Type="varchar" MaxLength="60" />
-          <Property Name="fabricante" Type="smallint" />
+          <Property Name="fabricante" Type="varchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -74,8 +77,9 @@
         </EntityType>
         <EntityType Name="ServicioProducto">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoSP" />
           </Key>
+          <Property Name="id_codigoSP" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigo" Type="smallint" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="precio" Type="real" />
@@ -83,10 +87,10 @@
         </EntityType>
         <EntityType Name="Servicios_Facturados_Detalle">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_SerFac_Deta" />
             <PropertyRef Name="id_encabezado" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_SerFac_Deta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_encabezado" Type="int" Nullable="false" />
           <Property Name="tipo_servicio" Type="smallint" />
           <Property Name="cantidad_servicio" Type="decimal" Precision="18" Scale="0" />
@@ -94,9 +98,9 @@
         </EntityType>
         <EntityType Name="Servicios_Facturados_Encabezado">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_SerFac_Enca" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_SerFac_Enca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cedula" Type="int" />
           <Property Name="placa" Type="nvarchar" MaxLength="60" />
           <Property Name="fecha" Type="smalldatetime" />
@@ -115,26 +119,29 @@
         </EntityType>
         <EntityType Name="TipoVehiculo">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoTV" />
           </Key>
-          <Property Name="codigo" Type="smallint" Nullable="false" />
+          <Property Name="id_codigoTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="smallint" />
           <Property Name="tipo" Type="varchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_usuario" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
           <Property Name="correo" Type="nvarchar" MaxLength="100" />
           <Property Name="contrasena" Type="nvarchar" MaxLength="300" />
           <Property Name="tipo" Type="char" MaxLength="1" />
+          <Property Name="UltimaFecha" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
-            <PropertyRef Name="placa" />
+            <PropertyRef Name="id_vehiculo" />
           </Key>
+          <Property Name="id_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="placa" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="tipo" Type="smallint" />
+          <Property Name="tipo" Type="varchar" MaxLength="60" />
           <Property Name="marca" Type="smallint" />
           <Property Name="numeroPuertas" Type="tinyint" />
           <Property Name="numeroRuedas" Type="tinyint" />
@@ -146,42 +153,6 @@
           </Key>
           <Property Name="codigoCliente" Type="int" Nullable="false" />
           <Property Name="codigoVehiculo" Type="nvarchar" MaxLength="60" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="View_2">
-          <Key>
-            <PropertyRef Name="idcanton" />
-            <PropertyRef Name="cedula" />
-            <PropertyRef Name="id_Distrito" />
-            <PropertyRef Name="codigofabricante" />
-            <PropertyRef Name="codigovehiculo" />
-            <PropertyRef Name="idprovincia" />
-            <PropertyRef Name="codigoservicio" />
-            <PropertyRef Name="codigotipovehiculo" />
-            <PropertyRef Name="idusuario" />
-            <PropertyRef Name="placa" />
-            <PropertyRef Name="idser_fac" />
-            <PropertyRef Name="id_ser" />
-            <PropertyRef Name="id_fac" />
-            <PropertyRef Name="codcliente" />
-            <PropertyRef Name="codvecliente" />
-          </Key>
-          <Property Name="idcanton" Type="int" Nullable="false" />
-          <Property Name="cedula" Type="int" Nullable="false" />
-          <Property Name="id_Distrito" Type="int" Nullable="false" />
-          <Property Name="codigofabricante" Type="smallint" Nullable="false" />
-          <Property Name="codigovehiculo" Type="smallint" Nullable="false" />
-          <Property Name="idprovincia" Type="int" Nullable="false" />
-          <Property Name="codigoservicio" Type="smallint" Nullable="false" />
-          <Property Name="codigotipovehiculo" Type="smallint" Nullable="false" />
-          <Property Name="idusuario" Type="int" Nullable="false" />
-          <Property Name="placa" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="idser_fac" Type="int" Nullable="false" />
-          <Property Name="id_ser" Type="int" Nullable="false" />
-          <Property Name="id_fac" Type="int" Nullable="false" />
-          <Property Name="codcliente" Type="int" Nullable="false" />
-          <Property Name="codvecliente" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <Association Name="Canton_ref_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
@@ -207,31 +178,7 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Servicios__tipo___13F1F5EB">
-          <End Role="ServicioProducto" Type="Self.ServicioProducto" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServicioProducto">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Detalle">
-              <PropertyRef Name="tipo_servicio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Servicios__tipo___5E8A0973">
-          <End Role="ServicioProducto" Type="Self.ServicioProducto" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServicioProducto">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Detalle">
-              <PropertyRef Name="tipo_servicio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_canton">
+        <Association Name="FK_Cliente_Canton">
           <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,43 +190,7 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_cedula">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="VehiculoCliente" Type="Self.VehiculoCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="cedula" />
-            </Principal>
-            <Dependent Role="VehiculoCliente">
-              <PropertyRef Name="codigoCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_cedula_cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="cedula" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Encabezado">
-              <PropertyRef Name="cedula" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_codigoFabricante">
-          <End Role="Fabricante" Type="Self.Fabricante" Multiplicity="0..1" />
-          <End Role="MarcaVehiculo" Type="Self.MarcaVehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fabricante">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="MarcaVehiculo">
-              <PropertyRef Name="fabricante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_distrito">
+        <Association Name="FK_Cliente_Distrito">
           <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -291,31 +202,7 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_marcaVehiculo">
-          <End Role="MarcaVehiculo" Type="Self.MarcaVehiculo" Multiplicity="0..1" />
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MarcaVehiculo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="Vehiculo">
-              <PropertyRef Name="marca" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_placa_vehiculo">
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vehiculo">
-              <PropertyRef Name="placa" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Encabezado">
-              <PropertyRef Name="placa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_provincia">
+        <Association Name="FK_Cliente_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,30 +214,72 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_tipoVehiculo">
-          <End Role="TipoVehiculo" Type="Self.TipoVehiculo" Multiplicity="0..1" />
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_MarcaVehiculo_Fabricante' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_MarcaVehiculo_Fabricante" />-->
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_MarcaVehiculo_TipoVehiculo' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_MarcaVehiculo_TipoVehiculo" />-->
+        <Association Name="FK_Servicios_Facturados_Detalle_ServicioProducto">
+          <End Role="ServicioProducto" Type="Self.ServicioProducto" Multiplicity="0..1" />
+          <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TipoVehiculo">
-              <PropertyRef Name="codigo" />
+            <Principal Role="ServicioProducto">
+              <PropertyRef Name="id_codigoSP" />
             </Principal>
-            <Dependent Role="Vehiculo">
-              <PropertyRef Name="tipo" />
+            <Dependent Role="Servicios_Facturados_Detalle">
+              <PropertyRef Name="tipo_servicio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_vehiculo">
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+        <Association Name="FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado">
+          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="1" />
+          <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios_Facturados_Encabezado">
+              <PropertyRef Name="id_SerFac_Enca" />
+            </Principal>
+            <Dependent Role="Servicios_Facturados_Detalle">
+              <PropertyRef Name="id_encabezado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Servicios_Facturados_Encabezado_Cliente' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_Servicios_Facturados_Encabezado_Cliente" />-->
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Servicios_Facturados_Encabezado_Vehiculo' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_Servicios_Facturados_Encabezado_Vehiculo" />-->
+        <Association Name="FK_usuarios_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_Vehiculo_TipoVehiculo' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_Vehiculo_TipoVehiculo" />-->
+        <Association Name="FK_VehiculoCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="VehiculoCliente" Type="Self.VehiculoCliente" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vehiculo">
-              <PropertyRef Name="placa" />
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
             </Principal>
             <Dependent Role="VehiculoCliente">
-              <PropertyRef Name="codigoVehiculo" />
+              <PropertyRef Name="codigoCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_VehiculoCliente_Vehiculo" />-->
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="pa_CantonDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Canton" Type="int" Mode="In" />
@@ -371,9 +300,10 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="id_CantonInec" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ClienteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="cedula" Type="int" Mode="In" />
+          <Parameter Name="id_cliente" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ClienteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_cliente" Type="int" Mode="In" />
           <Parameter Name="cedula" Type="int" Mode="In" />
           <Parameter Name="genero" Type="char" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -383,9 +313,10 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="distrito" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ClienteSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="cedula" Type="int" Mode="In" />
+          <Parameter Name="id_cliente" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ClienteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_cliente" Type="int" Mode="In" />
           <Parameter Name="cedula" Type="int" Mode="In" />
           <Parameter Name="genero" Type="char" Mode="In" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -422,49 +353,38 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="vcEstado" Type="varchar" Mode="In" />
           <Parameter Name="id_DistritoInec" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_Fabricante_Retorna_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codfabricante" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_fabricanteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="id_codfabricante" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_fabricanteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigo" Type="int" Mode="In" />
           <Parameter Name="pais" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pa_FabricanteModifica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codfabricante" Type="int" Mode="In" />
           <Parameter Name="codigo" Type="int" Mode="In" />
           <Parameter Name="pais" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_FabricanteRetorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_fabricanteSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codfabricante" Type="int" Mode="In" />
           <Parameter Name="codigo" Type="int" Mode="In" />
           <Parameter Name="pais" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="pa_FacturaDetalleInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_encabezado" Type="int" Mode="In" />
-          <Parameter Name="tipo_servicio" Type="smallint" Mode="In" />
-          <Parameter Name="cantidad_servicio" Type="decimal" Mode="In" />
-          <Parameter Name="precio_servicio" Type="decimal" Mode="In" />
-        </Function>
-        <Function Name="pa_FacturaDetalleSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_FacturaDetalleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="id_SerFac_Deta" Type="int" Mode="In" />
           <Parameter Name="tipo_servicio" Type="smallint" Mode="In" />
           <Parameter Name="cantidad_servicio" Type="decimal" Mode="In" />
           <Parameter Name="precio_servicio" Type="decimal" Mode="In" />
         </Function>
-        <Function Name="pa_FacturaEncabezadoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="cedula" Type="int" Mode="In" />
-          <Parameter Name="placa" Type="nvarchar" Mode="In" />
-          <Parameter Name="fecha" Type="smalldatetime" Mode="In" />
-          <Parameter Name="monto_total" Type="decimal" Mode="In" />
-          <Parameter Name="estado" Type="char" Mode="In" />
-        </Function>
         <Function Name="pa_FacturaEncabezadoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="id_SerFac_Enca" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_FacturaEncabezadoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="id_SerFac_Enca" Type="int" Mode="In" />
           <Parameter Name="cedula" Type="int" Mode="In" />
           <Parameter Name="placa" Type="nvarchar" Mode="In" />
           <Parameter Name="fecha" Type="smalldatetime" Mode="In" />
@@ -491,12 +411,8 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="vcEstado" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="pa_RetornaFabricante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="pa_RetornaFabricante_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codigo" Type="int" Mode="In" />
-        </Function>
         <Function Name="pa_ServicioProductoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="id_codigoSP" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ServicioProductoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigo" Type="int" Mode="In" />
@@ -505,9 +421,10 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="tipo" Type="smallint" Mode="In" />
         </Function>
         <Function Name="pa_ServicioProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="id_codigoSP" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_ServicioProductoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codigoSP" Type="int" Mode="In" />
           <Parameter Name="codigo" Type="int" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
           <Parameter Name="precio" Type="real" Mode="In" />
@@ -516,8 +433,15 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
         <Function Name="pa_UsuariosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuarios" Type="int" Mode="In" />
         </Function>
+        <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="id_Provincia" Type="int" Mode="In" />
+        </Function>
         <Function Name="RetornaCantonesID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Canton" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RetornaProvincias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -535,6 +459,9 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_EliminaCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Canton" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -543,16 +470,24 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_InsertaCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Provincia" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="id_CantonInec" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ModificaCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Canton" Type="int" Mode="In" />
+          <Parameter Name="id_Provincia" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="id_CantonInec" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="udf_SiguienteLlave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="tabla" Type="varchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="sistemadecontrolModelStoreContainer">
+        <EntityContainer Name="sistemacontrolModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
@@ -567,25 +502,6 @@ advertencia 6002: La tabla o vista 'sistemadecontrol.dbo.View_2' no tiene defini
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoCliente" EntityType="Self.VehiculoCliente" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="View_2" EntityType="Self.View_2" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[View_2].[idcanton] AS [idcanton], 
-[View_2].[cedula] AS [cedula], 
-[View_2].[id_Distrito] AS [id_Distrito], 
-[View_2].[codigofabricante] AS [codigofabricante], 
-[View_2].[codigovehiculo] AS [codigovehiculo], 
-[View_2].[idprovincia] AS [idprovincia], 
-[View_2].[codigoservicio] AS [codigoservicio], 
-[View_2].[codigotipovehiculo] AS [codigotipovehiculo], 
-[View_2].[idusuario] AS [idusuario], 
-[View_2].[placa] AS [placa], 
-[View_2].[idser_fac] AS [idser_fac], 
-[View_2].[id_ser] AS [id_ser], 
-[View_2].[id_fac] AS [id_fac], 
-[View_2].[codcliente] AS [codcliente], 
-[View_2].[codvecliente] AS [codvecliente]
-FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="Canton_ref_Provincia" Association="Self.Canton_ref_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Canton" EntitySet="Canton" />
@@ -594,59 +510,39 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <End Role="Canton" EntitySet="Canton" />
             <End Role="Distrito" EntitySet="Distrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__Servicios__tipo___13F1F5EB" Association="Self.FK__Servicios__tipo___13F1F5EB">
-            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
-            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Servicios__tipo___5E8A0973" Association="Self.FK__Servicios__tipo___5E8A0973">
-            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
-            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="fk_canton" Association="Self.fk_canton">
+          <AssociationSet Name="FK_Cliente_Canton" Association="Self.FK_Cliente_Canton">
             <End Role="Canton" EntitySet="Canton" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_cedula" Association="Self.fk_cedula">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="VehiculoCliente" EntitySet="VehiculoCliente" />
-          </AssociationSet>
-          <AssociationSet Name="fk_cedula_cliente" Association="Self.fk_cedula_cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_codigoFabricante" Association="Self.fk_codigoFabricante">
-            <End Role="Fabricante" EntitySet="Fabricante" />
-            <End Role="MarcaVehiculo" EntitySet="MarcaVehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="fk_distrito" Association="Self.fk_distrito">
+          <AssociationSet Name="FK_Cliente_Distrito" Association="Self.FK_Cliente_Distrito">
             <End Role="Distrito" EntitySet="Distrito" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_marcaVehiculo" Association="Self.fk_marcaVehiculo">
-            <End Role="MarcaVehiculo" EntitySet="MarcaVehiculo" />
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="fk_placa_vehiculo" Association="Self.fk_placa_vehiculo">
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
-            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_provincia" Association="Self.fk_provincia">
+          <AssociationSet Name="FK_Cliente_Provincia" Association="Self.FK_Cliente_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_tipoVehiculo" Association="Self.fk_tipoVehiculo">
-            <End Role="TipoVehiculo" EntitySet="TipoVehiculo" />
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          <AssociationSet Name="FK_Servicios_Facturados_Detalle_ServicioProducto" Association="Self.FK_Servicios_Facturados_Detalle_ServicioProducto">
+            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
+            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
           </AssociationSet>
-          <AssociationSet Name="fk_vehiculo" Association="Self.fk_vehiculo">
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          <AssociationSet Name="FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado" Association="Self.FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado">
+            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
+            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuarios_Cliente" Association="Self.FK_usuarios_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehiculoCliente_Cliente" Association="Self.FK_VehiculoCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
             <End Role="VehiculoCliente" EntitySet="VehiculoCliente" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="sistemadecontrolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="sistemacontrolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="id_Canton" />
@@ -662,24 +558,25 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Name="id_CantonInec" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Provincia" Relationship="Self.Canton_ref_Provincia" FromRole="Canton" ToRole="Provincia" />
           <NavigationProperty Name="Distrito" Relationship="Self.Distrito_ref_Canton" FromRole="Canton" ToRole="Distrito" />
-          <NavigationProperty Name="Cliente" Relationship="Self.fk_canton" FromRole="Canton" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Canton" FromRole="Canton" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
-            <PropertyRef Name="cedula" />
+            <PropertyRef Name="id_cliente" />
           </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cedula" Type="Int32" Nullable="false" />
           <Property Name="genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="provincia" Type="Int32" />
           <Property Name="canton" Type="Int32" />
           <Property Name="distrito" Type="Int32" />
-          <NavigationProperty Name="Canton1" Relationship="Self.fk_canton" FromRole="Cliente" ToRole="Canton" />
-          <NavigationProperty Name="Servicios_Facturados_Encabezado" Relationship="Self.fk_cedula_cliente" FromRole="Cliente" ToRole="Servicios_Facturados_Encabezado" />
-          <NavigationProperty Name="Distrito1" Relationship="Self.fk_distrito" FromRole="Cliente" ToRole="Distrito" />
-          <NavigationProperty Name="Provincia1" Relationship="Self.fk_provincia" FromRole="Cliente" ToRole="Provincia" />
-          <NavigationProperty Name="Vehiculo" Relationship="Self.VehiculoCliente" FromRole="Cliente" ToRole="Vehiculo" />
+          <NavigationProperty Name="Canton1" Relationship="Self.FK_Cliente_Canton" FromRole="Cliente" ToRole="Canton" />
+          <NavigationProperty Name="Distrito1" Relationship="Self.FK_Cliente_Distrito" FromRole="Cliente" ToRole="Distrito" />
+          <NavigationProperty Name="Provincia1" Relationship="Self.FK_Cliente_Provincia" FromRole="Cliente" ToRole="Provincia" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK_usuarios_Cliente" FromRole="Cliente" ToRole="usuarios" />
+          <NavigationProperty Name="VehiculoCliente" Relationship="Self.FK_VehiculoCliente_Cliente" FromRole="Cliente" ToRole="VehiculoCliente" />
         </EntityType>
         <EntityType Name="Distrito">
           <Key>
@@ -695,25 +592,24 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Name="vc_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="id_DistritoInec" Type="Int32" />
           <NavigationProperty Name="Canton" Relationship="Self.Distrito_ref_Canton" FromRole="Distrito" ToRole="Canton" />
-          <NavigationProperty Name="Cliente" Relationship="Self.fk_distrito" FromRole="Distrito" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Distrito" FromRole="Distrito" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Fabricante">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codfabricante" />
           </Key>
-          <Property Name="codigo" Type="Int16" Nullable="false" />
+          <Property Name="id_codfabricante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="Int16" />
           <Property Name="pais" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MarcaVehiculo" Relationship="Self.fk_codigoFabricante" FromRole="Fabricante" ToRole="MarcaVehiculo" />
         </EntityType>
         <EntityType Name="MarcaVehiculo">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoMarcaV" />
           </Key>
-          <Property Name="codigo" Type="Int16" Nullable="false" />
+          <Property Name="id_codigoMarcaV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="Int16" />
           <Property Name="tipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="fabricante" Type="Int16" />
-          <NavigationProperty Name="Fabricante1" Relationship="Self.fk_codigoFabricante" FromRole="MarcaVehiculo" ToRole="Fabricante" />
-          <NavigationProperty Name="Vehiculo" Relationship="Self.fk_marcaVehiculo" FromRole="MarcaVehiculo" ToRole="Vehiculo" />
+          <Property Name="fabricante" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -727,44 +623,43 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Name="fechaModifica" Type="DateTime" Precision="3" />
           <Property Name="vc_Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Canton" Relationship="Self.Canton_ref_Provincia" FromRole="Provincia" ToRole="Canton" />
-          <NavigationProperty Name="Cliente" Relationship="Self.fk_provincia" FromRole="Provincia" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Provincia" FromRole="Provincia" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="ServicioProducto">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoSP" />
           </Key>
+          <Property Name="id_codigoSP" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigo" Type="Int16" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Single" />
           <Property Name="tipo" Type="Int16" />
-          <NavigationProperty Name="Servicios_Facturados_Detalle" Relationship="Self.FK__Servicios__tipo___13F1F5EB" FromRole="ServicioProducto" ToRole="Servicios_Facturados_Detalle" />
-          <NavigationProperty Name="Servicios_Facturados_Detalle1" Relationship="Self.FK__Servicios__tipo___5E8A0973" FromRole="ServicioProducto" ToRole="Servicios_Facturados_Detalle" />
+          <NavigationProperty Name="Servicios_Facturados_Detalle" Relationship="Self.FK_Servicios_Facturados_Detalle_ServicioProducto" FromRole="ServicioProducto" ToRole="Servicios_Facturados_Detalle" />
         </EntityType>
         <EntityType Name="Servicios_Facturados_Detalle">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_SerFac_Deta" />
             <PropertyRef Name="id_encabezado" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_SerFac_Deta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_encabezado" Type="Int32" Nullable="false" />
           <Property Name="tipo_servicio" Type="Int16" />
           <Property Name="cantidad_servicio" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="precio_servicio" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="ServicioProducto" Relationship="Self.FK__Servicios__tipo___13F1F5EB" FromRole="Servicios_Facturados_Detalle" ToRole="ServicioProducto" />
-          <NavigationProperty Name="ServicioProducto1" Relationship="Self.FK__Servicios__tipo___5E8A0973" FromRole="Servicios_Facturados_Detalle" ToRole="ServicioProducto" />
+          <NavigationProperty Name="ServicioProducto" Relationship="Self.FK_Servicios_Facturados_Detalle_ServicioProducto" FromRole="Servicios_Facturados_Detalle" ToRole="ServicioProducto" />
+          <NavigationProperty Name="Servicios_Facturados_Encabezado" Relationship="Self.FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado" FromRole="Servicios_Facturados_Detalle" ToRole="Servicios_Facturados_Encabezado" />
         </EntityType>
         <EntityType Name="Servicios_Facturados_Encabezado">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_SerFac_Enca" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_SerFac_Enca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cedula" Type="Int32" />
           <Property Name="placa" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="monto_total" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.fk_cedula_cliente" FromRole="Servicios_Facturados_Encabezado" ToRole="Cliente" />
-          <NavigationProperty Name="Vehiculo" Relationship="Self.fk_placa_vehiculo" FromRole="Servicios_Facturados_Encabezado" ToRole="Vehiculo" />
+          <NavigationProperty Name="Servicios_Facturados_Detalle" Relationship="Self.FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado" FromRole="Servicios_Facturados_Encabezado" ToRole="Servicios_Facturados_Detalle" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -778,68 +673,42 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
         </EntityType>
         <EntityType Name="TipoVehiculo">
           <Key>
-            <PropertyRef Name="codigo" />
+            <PropertyRef Name="id_codigoTV" />
           </Key>
-          <Property Name="codigo" Type="Int16" Nullable="false" />
+          <Property Name="id_codigoTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="Int16" />
           <Property Name="tipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Vehiculo" Relationship="Self.fk_tipoVehiculo" FromRole="TipoVehiculo" ToRole="Vehiculo" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_usuario" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="contrasena" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="UltimaFecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_usuarios_Cliente" FromRole="usuarios" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
-            <PropertyRef Name="placa" />
+            <PropertyRef Name="id_vehiculo" />
           </Key>
+          <Property Name="id_vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="placa" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tipo" Type="Int16" />
+          <Property Name="tipo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="marca" Type="Int16" />
           <Property Name="numeroPuertas" Type="Byte" />
           <Property Name="numeroRuedas" Type="Byte" />
-          <NavigationProperty Name="MarcaVehiculo" Relationship="Self.fk_marcaVehiculo" FromRole="Vehiculo" ToRole="MarcaVehiculo" />
-          <NavigationProperty Name="Servicios_Facturados_Encabezado" Relationship="Self.fk_placa_vehiculo" FromRole="Vehiculo" ToRole="Servicios_Facturados_Encabezado" />
-          <NavigationProperty Name="TipoVehiculo" Relationship="Self.fk_tipoVehiculo" FromRole="Vehiculo" ToRole="TipoVehiculo" />
-          <NavigationProperty Name="Cliente" Relationship="Self.VehiculoCliente" FromRole="Vehiculo" ToRole="Cliente" />
         </EntityType>
-        <EntityType Name="View_2">
+        <EntityType Name="VehiculoCliente">
           <Key>
-            <PropertyRef Name="idcanton" />
-            <PropertyRef Name="cedula" />
-            <PropertyRef Name="id_Distrito" />
-            <PropertyRef Name="codigofabricante" />
-            <PropertyRef Name="codigovehiculo" />
-            <PropertyRef Name="idprovincia" />
-            <PropertyRef Name="codigoservicio" />
-            <PropertyRef Name="codigotipovehiculo" />
-            <PropertyRef Name="idusuario" />
-            <PropertyRef Name="placa" />
-            <PropertyRef Name="idser_fac" />
-            <PropertyRef Name="id_ser" />
-            <PropertyRef Name="id_fac" />
-            <PropertyRef Name="codcliente" />
-            <PropertyRef Name="codvecliente" />
+            <PropertyRef Name="codigoCliente" />
+            <PropertyRef Name="codigoVehiculo" />
           </Key>
-          <Property Name="idcanton" Type="Int32" Nullable="false" />
-          <Property Name="cedula" Type="Int32" Nullable="false" />
-          <Property Name="id_Distrito" Type="Int32" Nullable="false" />
-          <Property Name="codigofabricante" Type="Int16" Nullable="false" />
-          <Property Name="codigovehiculo" Type="Int16" Nullable="false" />
-          <Property Name="idprovincia" Type="Int32" Nullable="false" />
-          <Property Name="codigoservicio" Type="Int16" Nullable="false" />
-          <Property Name="codigotipovehiculo" Type="Int16" Nullable="false" />
-          <Property Name="idusuario" Type="Int32" Nullable="false" />
-          <Property Name="placa" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idser_fac" Type="Int32" Nullable="false" />
-          <Property Name="id_ser" Type="Int32" Nullable="false" />
-          <Property Name="id_fac" Type="Int32" Nullable="false" />
-          <Property Name="codcliente" Type="Int32" Nullable="false" />
-          <Property Name="codvecliente" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigoCliente" Type="Int32" Nullable="false" />
+          <Property Name="codigoVehiculo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_VehiculoCliente_Cliente" FromRole="VehiculoCliente" ToRole="Cliente" />
         </EntityType>
         <Association Name="Canton_ref_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
@@ -865,7 +734,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_canton">
+        <Association Name="FK_Cliente_Canton">
           <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -877,19 +746,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_cedula_cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="cedula" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Encabezado">
-              <PropertyRef Name="cedula" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_distrito">
+        <Association Name="FK_Cliente_Distrito">
           <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -901,7 +758,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_provincia">
+        <Association Name="FK_Cliente_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="0..1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -913,83 +770,55 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_codigoFabricante">
-          <End Role="Fabricante" Type="Self.Fabricante" Multiplicity="0..1" />
-          <End Role="MarcaVehiculo" Type="Self.MarcaVehiculo" Multiplicity="*" />
+        <Association Name="FK_usuarios_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Fabricante">
-              <PropertyRef Name="codigo" />
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
             </Principal>
-            <Dependent Role="MarcaVehiculo">
-              <PropertyRef Name="fabricante" />
+            <Dependent Role="usuarios">
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_marcaVehiculo">
-          <End Role="MarcaVehiculo" Type="Self.MarcaVehiculo" Multiplicity="0..1" />
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+        <Association Name="FK_VehiculoCliente_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="VehiculoCliente" Type="Self.VehiculoCliente" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MarcaVehiculo">
-              <PropertyRef Name="codigo" />
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
             </Principal>
-            <Dependent Role="Vehiculo">
-              <PropertyRef Name="marca" />
+            <Dependent Role="VehiculoCliente">
+              <PropertyRef Name="codigoCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Servicios__tipo___13F1F5EB">
+        <Association Name="FK_Servicios_Facturados_Detalle_ServicioProducto">
           <End Role="ServicioProducto" Type="Self.ServicioProducto" Multiplicity="0..1" />
           <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServicioProducto">
-              <PropertyRef Name="codigo" />
+              <PropertyRef Name="id_codigoSP" />
             </Principal>
             <Dependent Role="Servicios_Facturados_Detalle">
               <PropertyRef Name="tipo_servicio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Servicios__tipo___5E8A0973">
-          <End Role="ServicioProducto" Type="Self.ServicioProducto" Multiplicity="0..1" />
+        <Association Name="FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado">
+          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="1" />
           <End Role="Servicios_Facturados_Detalle" Type="Self.Servicios_Facturados_Detalle" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ServicioProducto">
-              <PropertyRef Name="codigo" />
+            <Principal Role="Servicios_Facturados_Encabezado">
+              <PropertyRef Name="id_SerFac_Enca" />
             </Principal>
             <Dependent Role="Servicios_Facturados_Detalle">
-              <PropertyRef Name="tipo_servicio" />
+              <PropertyRef Name="id_encabezado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_placa_vehiculo">
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="0..1" />
-          <End Role="Servicios_Facturados_Encabezado" Type="Self.Servicios_Facturados_Encabezado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vehiculo">
-              <PropertyRef Name="placa" />
-            </Principal>
-            <Dependent Role="Servicios_Facturados_Encabezado">
-              <PropertyRef Name="placa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tipoVehiculo">
-          <End Role="TipoVehiculo" Type="Self.TipoVehiculo" Multiplicity="0..1" />
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoVehiculo">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="Vehiculo">
-              <PropertyRef Name="tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VehiculoCliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
-          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="sistemadecontrolEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="sistemacontrolEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Canton" EntityType="Self.Canton" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Distrito" EntityType="Self.Distrito" />
@@ -1003,7 +832,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <EntitySet Name="TipoVehiculo" EntityType="Self.TipoVehiculo" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
           <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" />
-          <EntitySet Name="View_2" EntityType="Self.View_2" />
+          <EntitySet Name="VehiculoCliente" EntityType="Self.VehiculoCliente" />
           <AssociationSet Name="Canton_ref_Provincia" Association="Self.Canton_ref_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Canton" EntitySet="Canton" />
@@ -1012,49 +841,33 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <End Role="Canton" EntitySet="Canton" />
             <End Role="Distrito" EntitySet="Distrito" />
           </AssociationSet>
-          <AssociationSet Name="fk_canton" Association="Self.fk_canton">
+          <AssociationSet Name="FK_Cliente_Canton" Association="Self.FK_Cliente_Canton">
             <End Role="Canton" EntitySet="Canton" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_cedula_cliente" Association="Self.fk_cedula_cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_distrito" Association="Self.fk_distrito">
+          <AssociationSet Name="FK_Cliente_Distrito" Association="Self.FK_Cliente_Distrito">
             <End Role="Distrito" EntitySet="Distrito" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_provincia" Association="Self.fk_provincia">
+          <AssociationSet Name="FK_Cliente_Provincia" Association="Self.FK_Cliente_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="fk_codigoFabricante" Association="Self.fk_codigoFabricante">
-            <End Role="Fabricante" EntitySet="Fabricante" />
-            <End Role="MarcaVehiculo" EntitySet="MarcaVehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="fk_marcaVehiculo" Association="Self.fk_marcaVehiculo">
-            <End Role="MarcaVehiculo" EntitySet="MarcaVehiculo" />
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Servicios__tipo___13F1F5EB" Association="Self.FK__Servicios__tipo___13F1F5EB">
-            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
-            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Servicios__tipo___5E8A0973" Association="Self.FK__Servicios__tipo___5E8A0973">
-            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
-            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
-          </AssociationSet>
-          <AssociationSet Name="fk_placa_vehiculo" Association="Self.fk_placa_vehiculo">
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
-            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
-          </AssociationSet>
-          <AssociationSet Name="fk_tipoVehiculo" Association="Self.fk_tipoVehiculo">
-            <End Role="TipoVehiculo" EntitySet="TipoVehiculo" />
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="VehiculoCliente" Association="Self.VehiculoCliente">
+          <AssociationSet Name="FK_usuarios_Cliente" Association="Self.FK_usuarios_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehiculoCliente_Cliente" Association="Self.FK_VehiculoCliente_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="VehiculoCliente" EntitySet="VehiculoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicios_Facturados_Detalle_ServicioProducto" Association="Self.FK_Servicios_Facturados_Detalle_ServicioProducto">
+            <End Role="ServicioProducto" EntitySet="ServicioProducto" />
+            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado" Association="Self.FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado">
+            <End Role="Servicios_Facturados_Encabezado" EntitySet="Servicios_Facturados_Encabezado" />
+            <End Role="Servicios_Facturados_Detalle" EntitySet="Servicios_Facturados_Detalle" />
           </AssociationSet>
           <FunctionImport Name="pa_CantonDelete">
           <Parameter Name="id_Canton" Mode="In" Type="Int32" />
@@ -1064,7 +877,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_CantonInec" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_CantonSelect" ReturnType="Collection(sistemadecontrolModel.pa_CantonSelect_Result)">
+          <FunctionImport Name="pa_CantonSelect" ReturnType="Collection(sistemacontrolModel.pa_CantonSelect_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1075,9 +888,10 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="id_CantonInec" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ClienteDelete">
-          <Parameter Name="cedula" Mode="In" Type="Int32" />
+          <Parameter Name="id_cliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ClienteInsert">
+            <Parameter Name="id_cliente" Mode="In" Type="Int32" />
             <Parameter Name="cedula" Mode="In" Type="Int32" />
             <Parameter Name="genero" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -1086,10 +900,11 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="canton" Mode="In" Type="Int32" />
             <Parameter Name="distrito" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_ClienteSelect" ReturnType="Collection(sistemadecontrolModel.pa_ClienteSelect_Result)">
-          <Parameter Name="cedula" Mode="In" Type="Int32" />
+          <FunctionImport Name="pa_ClienteSelect" ReturnType="Collection(sistemacontrolModel.pa_ClienteSelect_Result)">
+          <Parameter Name="id_cliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ClienteUpdate">
+            <Parameter Name="id_cliente" Mode="In" Type="Int32" />
             <Parameter Name="cedula" Mode="In" Type="Int32" />
             <Parameter Name="genero" Mode="In" Type="String" />
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -1112,7 +927,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="vcEstado" Mode="In" Type="String" />
             <Parameter Name="idDistritoInec" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_DistritoSelect" ReturnType="Collection(sistemadecontrolModel.pa_DistritoSelect_Result)">
+          <FunctionImport Name="pa_DistritoSelect" ReturnType="Collection(sistemacontrolModel.pa_DistritoSelect_Result)">
           <Parameter Name="idDistrito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_DistritoUpdate">
@@ -1126,45 +941,38 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="vcEstado" Mode="In" Type="String" />
             <Parameter Name="id_DistritoInec" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_Fabricante_Retorna_ID" ReturnType="Collection(sistemacontrolModel.pa_Fabricante_Retorna_ID_Result)">
+          <Parameter Name="id_codfabricante" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_fabricanteDelete">
-          <Parameter Name="codigo" Mode="In" Type="Int32" />
+          <Parameter Name="id_codfabricante" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_fabricanteInsert">
             <Parameter Name="codigo" Mode="In" Type="Int32" />
             <Parameter Name="pais" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pa_fabricanteSelect" ReturnType="Collection(sistemadecontrolModel.pa_fabricanteSelect_Result)">
+          <FunctionImport Name="pa_FabricanteModifica">
+            <Parameter Name="id_codfabricante" Mode="In" Type="Int32" />
             <Parameter Name="codigo" Mode="In" Type="Int32" />
             <Parameter Name="pais" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pa_FacturaDetalleInsert">
-            <Parameter Name="id_encabezado" Mode="In" Type="Int32" />
-            <Parameter Name="tipo_servicio" Mode="In" Type="Int16" />
-            <Parameter Name="cantidad_servicio" Mode="In" Type="Decimal" />
-            <Parameter Name="precio_servicio" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="pa_FacturaDetalleSelect" ReturnType="Collection(sistemadecontrolModel.pa_FacturaDetalleSelect_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+          <FunctionImport Name="pa_FabricanteRetorna" ReturnType="Collection(sistemacontrolModel.pa_FabricanteRetorna_Result)" />
+          <FunctionImport Name="pa_fabricanteSelect" ReturnType="Collection(sistemacontrolModel.pa_fabricanteSelect_Result)">
+            <Parameter Name="id_codfabricante" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="Int32" />
+            <Parameter Name="pais" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_FacturaDetalleUpdate">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id_SerFac_Deta" Mode="In" Type="Int32" />
             <Parameter Name="tipo_servicio" Mode="In" Type="Int16" />
             <Parameter Name="cantidad_servicio" Mode="In" Type="Decimal" />
             <Parameter Name="precio_servicio" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="pa_FacturaEncabezadoInsert">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="cedula" Mode="In" Type="Int32" />
-            <Parameter Name="placa" Mode="In" Type="String" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="monto_total" Mode="In" Type="Decimal" />
-            <Parameter Name="estado" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_FacturaEncabezadoSelect" ReturnType="Collection(sistemadecontrolModel.pa_FacturaEncabezadoSelect_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+          <FunctionImport Name="pa_FacturaEncabezadoSelect" ReturnType="Collection(sistemacontrolModel.pa_FacturaEncabezadoSelect_Result)">
+          <Parameter Name="id_SerFac_Enca" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_FacturaEncabezadoUpdate">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id_SerFac_Enca" Mode="In" Type="Int32" />
             <Parameter Name="cedula" Mode="In" Type="Int32" />
             <Parameter Name="placa" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -1182,7 +990,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="fechaModifica" Mode="In" Type="DateTime" />
             <Parameter Name="vcEstado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pa_ProvinciaSelect" ReturnType="Collection(sistemadecontrolModel.pa_ProvinciaSelect_Result)">
+          <FunctionImport Name="pa_ProvinciaSelect" ReturnType="Collection(sistemacontrolModel.pa_ProvinciaSelect_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="idProvincia" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1192,7 +1000,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="vcEstado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_ServicioProductoDelete">
-          <Parameter Name="codigo" Mode="In" Type="Int32" />
+          <Parameter Name="id_codigoSP" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ServicioProductoInsert">
             <Parameter Name="codigo" Mode="In" Type="Int32" />
@@ -1200,20 +1008,28 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="precio" Mode="In" Type="Single" />
             <Parameter Name="tipo" Mode="In" Type="Int16" />
           </FunctionImport>
-          <FunctionImport Name="pa_ServicioProductoSelect" ReturnType="Collection(sistemadecontrolModel.pa_ServicioProductoSelect_Result)">
-          <Parameter Name="codigo" Mode="In" Type="Int32" />
+          <FunctionImport Name="pa_ServicioProductoSelect" ReturnType="Collection(sistemacontrolModel.pa_ServicioProductoSelect_Result)">
+          <Parameter Name="id_codigoSP" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ServicioProductoUpdate">
+            <Parameter Name="id_codigoSP" Mode="In" Type="Int32" />
             <Parameter Name="codigo" Mode="In" Type="Int32" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
             <Parameter Name="precio" Mode="In" Type="Single" />
             <Parameter Name="tipo" Mode="In" Type="Int16" />
           </FunctionImport>
-          <FunctionImport Name="pa_UsuariosSelect" ReturnType="Collection(sistemadecontrolModel.pa_UsuariosSelect_Result)">
+          <FunctionImport Name="pa_UsuariosSelect" ReturnType="Collection(sistemacontrolModel.pa_UsuariosSelect_Result)">
           <Parameter Name="idUsuarios" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="RetornaCantonesID" ReturnType="Collection(sistemadecontrolModel.RetornaCantonesID_Result)">
+          <FunctionImport Name="RetornaCantones" ReturnType="Collection(sistemacontrolModel.RetornaCantones_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RetornaCantonesID" ReturnType="Collection(sistemacontrolModel.RetornaCantonesID_Result)">
           <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RetornaProvincias" ReturnType="Collection(sistemacontrolModel.RetornaProvincias_Result)">
+          <Parameter Name="nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1231,13 +1047,27 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(sistemadecontrolModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_EliminaCanton">
+          <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(sistemacontrolModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(sistemadecontrolModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(sistemacontrolModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertaCanton">
+            <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="id_CantonInec" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ModificaCanton">
+            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+            <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="id_CantonInec" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1245,14 +1075,6 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="pa_RetornaFabricante" ReturnType="Collection(sistemadecontrolModel.pa_RetornaFabricante_Result)" />
-          <FunctionImport Name="pa_RetornaFabricante_ID" ReturnType="Collection(sistemadecontrolModel.pa_RetornaFabricante_ID_Result)">
-          <Parameter Name="codigo" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_FabricanteModifica">
-            <Parameter Name="codigo" Mode="In" Type="Int32" />
-            <Parameter Name="pais" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="pa_CantonSelect_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1267,10 +1089,11 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Type="Int32" Name="id_CantonInec" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_ClienteSelect_Result">
+          <Property Type="Int32" Name="id_cliente" Nullable="false" />
           <Property Type="Int32" Name="cedula" Nullable="false" />
           <Property Type="String" Name="genero" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="correo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="correo" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="provincia" Nullable="true" />
           <Property Type="Int32" Name="canton" Nullable="true" />
           <Property Type="Int32" Name="distrito" Nullable="true" />
@@ -1286,19 +1109,23 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="pa_fabricanteSelect_Result">
-          <Property Type="Int16" Name="codigo" Nullable="false" />
+        <ComplexType Name="pa_Fabricante_Retorna_ID_Result">
+          <Property Type="Int32" Name="id_codfabricante" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
           <Property Type="String" Name="pais" Nullable="true" MaxLength="60" />
         </ComplexType>
-        <ComplexType Name="pa_FacturaDetalleSelect_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="id_encabezado" Nullable="false" />
-          <Property Type="Int16" Name="tipo_servicio" Nullable="true" />
-          <Property Type="Decimal" Name="cantidad_servicio" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="precio_servicio" Nullable="true" Precision="18" Scale="0" />
+        <ComplexType Name="pa_FabricanteRetorna_Result">
+          <Property Type="Int32" Name="id_codfabricante" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="pa_fabricanteSelect_Result">
+          <Property Type="Int32" Name="id_codfabricante" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="pa_FacturaEncabezadoSelect_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_SerFac_Enca" Nullable="false" />
           <Property Type="Int32" Name="cedula" Nullable="true" />
           <Property Type="String" Name="placa" Nullable="true" MaxLength="60" />
           <Property Type="DateTime" Name="fecha" Nullable="true" Precision="16" />
@@ -1315,16 +1142,30 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
         </ComplexType>
         <ComplexType Name="pa_ServicioProductoSelect_Result">
+          <Property Type="Int16" Name="id_codigoSP" Nullable="false" />
           <Property Type="Int16" Name="codigo" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Single" Name="precio" Nullable="true" />
           <Property Type="Int16" Name="tipo" Nullable="true" />
         </ComplexType>
         <ComplexType Name="pa_UsuariosSelect_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_usuario" Nullable="false" />
           <Property Type="String" Name="correo" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="contrasena" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="tipo" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="UltimaFecha" Nullable="true" Precision="16" />
+        </ComplexType>
+        <ComplexType Name="RetornaCantones_Result">
+          <Property Type="Int32" Name="id_Canton" Nullable="false" />
+          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Provincia" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="usuarioCrea" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCrea" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioModifica" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaModifica" Nullable="true" Precision="23" />
+          <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="id_CantonInec" Nullable="false" />
         </ComplexType>
         <ComplexType Name="RetornaCantonesID_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1338,6 +1179,15 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_CantonInec" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="RetornaProvincias_Result">
+          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="usuarioCrea" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCrea" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioModifica" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaModifica" Nullable="true" Precision="23" />
+          <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
+        </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -1349,22 +1199,14 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="pa_RetornaFabricante_Result">
-          <Property Type="Int16" Name="codigo" Nullable="false" />
-          <Property Type="String" Name="pais" Nullable="true" MaxLength="60" />
-        </ComplexType>
-        <ComplexType Name="pa_RetornaFabricante_ID_Result">
-          <Property Type="Int16" Name="codigo" Nullable="false" />
-          <Property Type="String" Name="pais" Nullable="true" MaxLength="60" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="sistemadecontrolModelStoreContainer" CdmEntityContainer="sistemadecontrolEntities">
+        <EntityContainerMapping StorageEntityContainer="sistemacontrolModelStoreContainer" CdmEntityContainer="sistemacontrolEntities">
           <EntitySetMapping Name="Canton">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Canton">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Canton">
               <MappingFragment StoreEntitySet="Canton">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
@@ -1379,8 +1221,9 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Cliente">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="genero" ColumnName="genero" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1392,7 +1235,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Distrito">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Distrito">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Distrito">
               <MappingFragment StoreEntitySet="Distrito">
                 <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
@@ -1407,16 +1250,18 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fabricante">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Fabricante">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Fabricante">
               <MappingFragment StoreEntitySet="Fabricante">
+                <ScalarProperty Name="id_codfabricante" ColumnName="id_codfabricante" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="pais" ColumnName="pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MarcaVehiculo">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.MarcaVehiculo">
+            <EntityTypeMapping TypeName="sistemacontrolModel.MarcaVehiculo">
               <MappingFragment StoreEntitySet="MarcaVehiculo">
+                <ScalarProperty Name="id_codigoMarcaV" ColumnName="id_codigoMarcaV" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="fabricante" ColumnName="fabricante" />
@@ -1424,7 +1269,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provincia">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Provincia">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Provincia">
               <MappingFragment StoreEntitySet="Provincia">
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1437,8 +1282,9 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServicioProducto">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.ServicioProducto">
+            <EntityTypeMapping TypeName="sistemacontrolModel.ServicioProducto">
               <MappingFragment StoreEntitySet="ServicioProducto">
+                <ScalarProperty Name="id_codigoSP" ColumnName="id_codigoSP" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
@@ -1447,9 +1293,9 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Servicios_Facturados_Detalle">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Servicios_Facturados_Detalle">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Servicios_Facturados_Detalle">
               <MappingFragment StoreEntitySet="Servicios_Facturados_Detalle">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_SerFac_Deta" ColumnName="id_SerFac_Deta" />
                 <ScalarProperty Name="id_encabezado" ColumnName="id_encabezado" />
                 <ScalarProperty Name="tipo_servicio" ColumnName="tipo_servicio" />
                 <ScalarProperty Name="cantidad_servicio" ColumnName="cantidad_servicio" />
@@ -1458,9 +1304,9 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Servicios_Facturados_Encabezado">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Servicios_Facturados_Encabezado">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Servicios_Facturados_Encabezado">
               <MappingFragment StoreEntitySet="Servicios_Facturados_Encabezado">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_SerFac_Enca" ColumnName="id_SerFac_Enca" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="placa" ColumnName="placa" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -1470,7 +1316,7 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.sysdiagrams">
+            <EntityTypeMapping TypeName="sistemacontrolModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1481,26 +1327,29 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoVehiculo">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.TipoVehiculo">
+            <EntityTypeMapping TypeName="sistemacontrolModel.TipoVehiculo">
               <MappingFragment StoreEntitySet="TipoVehiculo">
+                <ScalarProperty Name="id_codigoTV" ColumnName="id_codigoTV" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.usuarios">
+            <EntityTypeMapping TypeName="sistemacontrolModel.usuarios">
               <MappingFragment StoreEntitySet="usuarios">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="UltimaFecha" ColumnName="UltimaFecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vehiculo">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.Vehiculo">
+            <EntityTypeMapping TypeName="sistemacontrolModel.Vehiculo">
               <MappingFragment StoreEntitySet="Vehiculo">
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
                 <ScalarProperty Name="placa" ColumnName="placa" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="marca" ColumnName="marca" />
@@ -1509,40 +1358,19 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_2">
-            <EntityTypeMapping TypeName="sistemadecontrolModel.View_2">
-              <MappingFragment StoreEntitySet="View_2">
-                <ScalarProperty Name="idcanton" ColumnName="idcanton" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
-                <ScalarProperty Name="codigofabricante" ColumnName="codigofabricante" />
-                <ScalarProperty Name="codigovehiculo" ColumnName="codigovehiculo" />
-                <ScalarProperty Name="idprovincia" ColumnName="idprovincia" />
-                <ScalarProperty Name="codigoservicio" ColumnName="codigoservicio" />
-                <ScalarProperty Name="codigotipovehiculo" ColumnName="codigotipovehiculo" />
-                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-                <ScalarProperty Name="placa" ColumnName="placa" />
-                <ScalarProperty Name="idser_fac" ColumnName="idser_fac" />
-                <ScalarProperty Name="id_ser" ColumnName="id_ser" />
-                <ScalarProperty Name="id_fac" ColumnName="id_fac" />
-                <ScalarProperty Name="codcliente" ColumnName="codcliente" />
-                <ScalarProperty Name="codvecliente" ColumnName="codvecliente" />
+          <EntitySetMapping Name="VehiculoCliente">
+            <EntityTypeMapping TypeName="sistemacontrolModel.VehiculoCliente">
+              <MappingFragment StoreEntitySet="VehiculoCliente">
+                <ScalarProperty Name="codigoCliente" ColumnName="codigoCliente" />
+                <ScalarProperty Name="codigoVehiculo" ColumnName="codigoVehiculo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="VehiculoCliente" TypeName="sistemadecontrolModel.VehiculoCliente" StoreEntitySet="VehiculoCliente">
-            <EndProperty Name="Cliente">
-              <ScalarProperty Name="cedula" ColumnName="codigoCliente" />
-            </EndProperty>
-            <EndProperty Name="Vehiculo">
-              <ScalarProperty Name="placa" ColumnName="codigoVehiculo" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="pa_CantonDelete" FunctionName="sistemadecontrolModel.Store.pa_CantonDelete" />
-          <FunctionImportMapping FunctionImportName="pa_CantonInsert" FunctionName="sistemadecontrolModel.Store.pa_CantonInsert" />
-          <FunctionImportMapping FunctionImportName="pa_CantonSelect" FunctionName="sistemadecontrolModel.Store.pa_CantonSelect">
+          <FunctionImportMapping FunctionImportName="pa_CantonDelete" FunctionName="sistemacontrolModel.Store.pa_CantonDelete" />
+          <FunctionImportMapping FunctionImportName="pa_CantonInsert" FunctionName="sistemacontrolModel.Store.pa_CantonInsert" />
+          <FunctionImportMapping FunctionImportName="pa_CantonSelect" FunctionName="sistemacontrolModel.Store.pa_CantonSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_CantonSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_CantonSelect_Result">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1556,12 +1384,13 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_CantonUpdate" FunctionName="sistemadecontrolModel.Store.pa_CantonUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_ClienteDelete" FunctionName="sistemadecontrolModel.Store.pa_ClienteDelete" />
-          <FunctionImportMapping FunctionImportName="pa_ClienteInsert" FunctionName="sistemadecontrolModel.Store.pa_ClienteInsert" />
-          <FunctionImportMapping FunctionImportName="pa_ClienteSelect" FunctionName="sistemadecontrolModel.Store.pa_ClienteSelect">
+          <FunctionImportMapping FunctionImportName="pa_CantonUpdate" FunctionName="sistemacontrolModel.Store.pa_CantonUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_ClienteDelete" FunctionName="sistemacontrolModel.Store.pa_ClienteDelete" />
+          <FunctionImportMapping FunctionImportName="pa_ClienteInsert" FunctionName="sistemacontrolModel.Store.pa_ClienteInsert" />
+          <FunctionImportMapping FunctionImportName="pa_ClienteSelect" FunctionName="sistemacontrolModel.Store.pa_ClienteSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_ClienteSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_ClienteSelect_Result">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="genero" ColumnName="genero" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1572,12 +1401,12 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_ClienteUpdate" FunctionName="sistemadecontrolModel.Store.pa_ClienteUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_DistritoDelete" FunctionName="sistemadecontrolModel.Store.pa_DistritoDelete" />
-          <FunctionImportMapping FunctionImportName="pa_DistritoInsert" FunctionName="sistemadecontrolModel.Store.pa_DistritoInsert" />
-          <FunctionImportMapping FunctionImportName="pa_DistritoSelect" FunctionName="sistemadecontrolModel.Store.pa_DistritoSelect">
+          <FunctionImportMapping FunctionImportName="pa_ClienteUpdate" FunctionName="sistemacontrolModel.Store.pa_ClienteUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_DistritoDelete" FunctionName="sistemacontrolModel.Store.pa_DistritoDelete" />
+          <FunctionImportMapping FunctionImportName="pa_DistritoInsert" FunctionName="sistemacontrolModel.Store.pa_DistritoInsert" />
+          <FunctionImportMapping FunctionImportName="pa_DistritoSelect" FunctionName="sistemacontrolModel.Store.pa_DistritoSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_DistritoSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_DistritoSelect_Result">
                 <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1590,35 +1419,42 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_DistritoUpdate" FunctionName="sistemadecontrolModel.Store.pa_DistritoUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_fabricanteDelete" FunctionName="sistemadecontrolModel.Store.pa_fabricanteDelete" />
-          <FunctionImportMapping FunctionImportName="pa_fabricanteInsert" FunctionName="sistemadecontrolModel.Store.pa_fabricanteInsert" />
-          <FunctionImportMapping FunctionImportName="pa_fabricanteSelect" FunctionName="sistemadecontrolModel.Store.pa_fabricanteSelect">
+          <FunctionImportMapping FunctionImportName="pa_DistritoUpdate" FunctionName="sistemacontrolModel.Store.pa_DistritoUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_Fabricante_Retorna_ID" FunctionName="sistemacontrolModel.Store.pa_Fabricante_Retorna_ID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_fabricanteSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_Fabricante_Retorna_ID_Result">
+                <ScalarProperty Name="id_codfabricante" ColumnName="id_codfabricante" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="pais" ColumnName="pais" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_FacturaDetalleInsert" FunctionName="sistemadecontrolModel.Store.pa_FacturaDetalleInsert" />
-          <FunctionImportMapping FunctionImportName="pa_FacturaDetalleSelect" FunctionName="sistemadecontrolModel.Store.pa_FacturaDetalleSelect">
+          <FunctionImportMapping FunctionImportName="pa_fabricanteDelete" FunctionName="sistemacontrolModel.Store.pa_fabricanteDelete" />
+          <FunctionImportMapping FunctionImportName="pa_fabricanteInsert" FunctionName="sistemacontrolModel.Store.pa_fabricanteInsert" />
+          <FunctionImportMapping FunctionImportName="pa_FabricanteModifica" FunctionName="sistemacontrolModel.Store.pa_FabricanteModifica" />
+          <FunctionImportMapping FunctionImportName="pa_FabricanteRetorna" FunctionName="sistemacontrolModel.Store.pa_FabricanteRetorna">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_FacturaDetalleSelect_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_encabezado" ColumnName="id_encabezado" />
-                <ScalarProperty Name="tipo_servicio" ColumnName="tipo_servicio" />
-                <ScalarProperty Name="cantidad_servicio" ColumnName="cantidad_servicio" />
-                <ScalarProperty Name="precio_servicio" ColumnName="precio_servicio" />
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_FabricanteRetorna_Result">
+                <ScalarProperty Name="id_codfabricante" ColumnName="id_codfabricante" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_FacturaDetalleUpdate" FunctionName="sistemadecontrolModel.Store.pa_FacturaDetalleUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_FacturaEncabezadoInsert" FunctionName="sistemadecontrolModel.Store.pa_FacturaEncabezadoInsert" />
-          <FunctionImportMapping FunctionImportName="pa_FacturaEncabezadoSelect" FunctionName="sistemadecontrolModel.Store.pa_FacturaEncabezadoSelect">
+          <FunctionImportMapping FunctionImportName="pa_fabricanteSelect" FunctionName="sistemacontrolModel.Store.pa_fabricanteSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_FacturaEncabezadoSelect_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_fabricanteSelect_Result">
+                <ScalarProperty Name="id_codfabricante" ColumnName="id_codfabricante" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_FacturaDetalleUpdate" FunctionName="sistemacontrolModel.Store.pa_FacturaDetalleUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_FacturaEncabezadoSelect" FunctionName="sistemacontrolModel.Store.pa_FacturaEncabezadoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_FacturaEncabezadoSelect_Result">
+                <ScalarProperty Name="id_SerFac_Enca" ColumnName="id_SerFac_Enca" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="placa" ColumnName="placa" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -1627,12 +1463,12 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_FacturaEncabezadoUpdate" FunctionName="sistemadecontrolModel.Store.pa_FacturaEncabezadoUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_ProvinciaDelete" FunctionName="sistemadecontrolModel.Store.pa_ProvinciaDelete" />
-          <FunctionImportMapping FunctionImportName="pa_ProvinciaInsert" FunctionName="sistemadecontrolModel.Store.pa_ProvinciaInsert" />
-          <FunctionImportMapping FunctionImportName="pa_ProvinciaSelect" FunctionName="sistemadecontrolModel.Store.pa_ProvinciaSelect">
+          <FunctionImportMapping FunctionImportName="pa_FacturaEncabezadoUpdate" FunctionName="sistemacontrolModel.Store.pa_FacturaEncabezadoUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_ProvinciaDelete" FunctionName="sistemacontrolModel.Store.pa_ProvinciaDelete" />
+          <FunctionImportMapping FunctionImportName="pa_ProvinciaInsert" FunctionName="sistemacontrolModel.Store.pa_ProvinciaInsert" />
+          <FunctionImportMapping FunctionImportName="pa_ProvinciaSelect" FunctionName="sistemacontrolModel.Store.pa_ProvinciaSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_ProvinciaSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_ProvinciaSelect_Result">
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
@@ -1643,12 +1479,13 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_ProvinciaUpdate" FunctionName="sistemadecontrolModel.Store.pa_ProvinciaUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_ServicioProductoDelete" FunctionName="sistemadecontrolModel.Store.pa_ServicioProductoDelete" />
-          <FunctionImportMapping FunctionImportName="pa_ServicioProductoInsert" FunctionName="sistemadecontrolModel.Store.pa_ServicioProductoInsert" />
-          <FunctionImportMapping FunctionImportName="pa_ServicioProductoSelect" FunctionName="sistemadecontrolModel.Store.pa_ServicioProductoSelect">
+          <FunctionImportMapping FunctionImportName="pa_ProvinciaUpdate" FunctionName="sistemacontrolModel.Store.pa_ProvinciaUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_ServicioProductoDelete" FunctionName="sistemacontrolModel.Store.pa_ServicioProductoDelete" />
+          <FunctionImportMapping FunctionImportName="pa_ServicioProductoInsert" FunctionName="sistemacontrolModel.Store.pa_ServicioProductoInsert" />
+          <FunctionImportMapping FunctionImportName="pa_ServicioProductoSelect" FunctionName="sistemacontrolModel.Store.pa_ServicioProductoSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_ServicioProductoSelect_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_ServicioProductoSelect_Result">
+                <ScalarProperty Name="id_codigoSP" ColumnName="id_codigoSP" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
@@ -1656,20 +1493,21 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_ServicioProductoUpdate" FunctionName="sistemadecontrolModel.Store.pa_ServicioProductoUpdate" />
-          <FunctionImportMapping FunctionImportName="pa_UsuariosSelect" FunctionName="sistemadecontrolModel.Store.pa_UsuariosSelect">
+          <FunctionImportMapping FunctionImportName="pa_ServicioProductoUpdate" FunctionName="sistemacontrolModel.Store.pa_ServicioProductoUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_UsuariosSelect" FunctionName="sistemacontrolModel.Store.pa_UsuariosSelect">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_UsuariosSelect_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_UsuariosSelect_Result">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="UltimaFecha" ColumnName="UltimaFecha" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RetornaCantonesID" FunctionName="sistemadecontrolModel.Store.RetornaCantonesID">
+          <FunctionImportMapping FunctionImportName="RetornaCantones" FunctionName="sistemacontrolModel.Store.RetornaCantones">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.RetornaCantonesID_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.RetornaCantones_Result">
                 <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
                 <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1683,20 +1521,50 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="sistemadecontrolModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="sistemadecontrolModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="sistemadecontrolModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="sistemadecontrolModel.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="RetornaCantonesID" FunctionName="sistemacontrolModel.Store.RetornaCantonesID">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.RetornaCantonesID_Result">
+                <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
+                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaCrea" ColumnName="fechaCrea" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="vc_Estado" ColumnName="vc_Estado" />
+                <ScalarProperty Name="id_CantonInec" ColumnName="id_CantonInec" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RetornaProvincias" FunctionName="sistemacontrolModel.Store.RetornaProvincias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.RetornaProvincias_Result">
+                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaCrea" ColumnName="fechaCrea" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="vc_Estado" ColumnName="vc_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="sistemacontrolModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="sistemacontrolModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="sistemacontrolModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_EliminaCanton" FunctionName="sistemacontrolModel.Store.sp_EliminaCanton" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="sistemacontrolModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="sistemadecontrolModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="sistemacontrolModel.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="sistemacontrolModel.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1705,25 +1573,10 @@ FROM [dbo].[View_2] AS [View_2]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sistemadecontrolModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sistemadecontrolModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="pa_RetornaFabricante" FunctionName="sistemadecontrolModel.Store.pa_RetornaFabricante">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_RetornaFabricante_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="pais" ColumnName="pais" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_RetornaFabricante_ID" FunctionName="sistemadecontrolModel.Store.pa_RetornaFabricante_ID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemadecontrolModel.pa_RetornaFabricante_ID_Result">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="pais" ColumnName="pais" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_FabricanteModifica" FunctionName="sistemadecontrolModel.Store.pa_FabricanteModifica" />
+          <FunctionImportMapping FunctionImportName="sp_InsertaCanton" FunctionName="sistemacontrolModel.Store.sp_InsertaCanton" />
+          <FunctionImportMapping FunctionImportName="sp_ModificaCanton" FunctionName="sistemacontrolModel.Store.sp_ModificaCanton" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sistemacontrolModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sistemacontrolModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -14,21 +14,11 @@ namespace SistemaLavado.Models
     
     public partial class Vehiculo
     {
-        public Vehiculo()
-        {
-            this.Servicios_Facturados_Encabezado = new HashSet<Servicios_Facturados_Encabezado>();
-            this.Cliente = new HashSet<Cliente>();
-        }
-    
+        public int id_vehiculo { get; set; }
         public string placa { get; set; }
-        public Nullable<short> tipo { get; set; }
+        public string tipo { get; set; }
         public Nullable<short> marca { get; set; }
         public Nullable<byte> numeroPuertas { get; set; }
         public Nullable<byte> numeroRuedas { get; set; }
-    
-        public virtual MarcaVehiculo MarcaVehiculo { get; set; }
-        public virtual ICollection<Servicios_Facturados_Encabezado> Servicios_Facturados_Encabezado { get; set; }
-        public virtual TipoVehiculo TipoVehiculo { get; set; }
-        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }

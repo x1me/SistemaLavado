@@ -17,15 +17,14 @@ namespace SistemaLavado.Models
         public ServicioProducto()
         {
             this.Servicios_Facturados_Detalle = new HashSet<Servicios_Facturados_Detalle>();
-            this.Servicios_Facturados_Detalle1 = new HashSet<Servicios_Facturados_Detalle>();
         }
     
+        public short id_codigoSP { get; set; }
         public short codigo { get; set; }
         public string descripcion { get; set; }
         public Nullable<float> precio { get; set; }
         public Nullable<short> tipo { get; set; }
     
         public virtual ICollection<Servicios_Facturados_Detalle> Servicios_Facturados_Detalle { get; set; }
-        public virtual ICollection<Servicios_Facturados_Detalle> Servicios_Facturados_Detalle1 { get; set; }
     }
 }

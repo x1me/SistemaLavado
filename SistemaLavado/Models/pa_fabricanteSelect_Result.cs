@@ -13,7 +13,8 @@ namespace SistemaLavado.Models
     
     public partial class pa_fabricanteSelect_Result
     {
-        public short codigo { get; set; }
+        public int id_codfabricante { get; set; }
+        public Nullable<short> codigo { get; set; }
         public string pais { get; set; }
     }
 }

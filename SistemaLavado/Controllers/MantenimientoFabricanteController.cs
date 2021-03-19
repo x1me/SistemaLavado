@@ -9,7 +9,7 @@ namespace SistemaLavado.Controllers
 {
     public class MantenimientoFabricanteController : Controller
     {
-        sistemadecontrolEntities ModeloBD = new sistemadecontrolEntities();
+        sistemacontrolEntities ModeloBD = new sistemacontrolEntities();
         // GET: Mantenimiento
         public ActionResult Index()
         {                
@@ -18,19 +18,19 @@ namespace SistemaLavado.Controllers
 
         public ActionResult ListaFabricante()
         {
-            List<pa_RetornaFabricante_Result> ModeloVista = this.ModeloBD.pa_RetornaFabricante().ToList();
+            List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
             return View(ModeloVista);
         }
 
 
         public ActionResult InsertarFabricante()
         {
-            List<pa_RetornaFabricante_Result> ModeloVista = this.ModeloBD.pa_RetornaFabricante().ToList();
+            List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
             return View();
         }
 
         [HttpPost]
-        public ActionResult InsertarFabricante(pa_RetornaFabricante_Result objModeloVista)
+        public ActionResult InsertarFabricante(pa_FabricanteRetorna_Result objModeloVista)
         {
             ///Variable que registra la cantidad de registros afectados
             ///si un procedimiento que ejecuta insert, update o delete 
@@ -65,15 +65,15 @@ namespace SistemaLavado.Controllers
             return View();
         }
 
-        public ActionResult ModificaFabricante(int codigo)
+        public ActionResult ModificaFabricante(int id_codfabricante)
         {
-            pa_RetornaFabricante_ID_Result ModeloVista = new pa_RetornaFabricante_ID_Result();
-            ModeloVista = this.ModeloBD.pa_RetornaFabricante_ID(codigo).FirstOrDefault();
+            pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
+            ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
             return View(ModeloVista);
         }
 
         [HttpPost]
-        public ActionResult ModificaFabricante(pa_RetornaFabricante_ID_Result objModeloVista)
+        public ActionResult ModificaFabricante(pa_Fabricante_Retorna_ID_Result objModeloVista)
         {
             ///Variable que registra la cantidad de registros afectados
             ///si un procedimiento que ejecuta insert, update o delete 
@@ -83,6 +83,7 @@ namespace SistemaLavado.Controllers
             try
             {
                 cantRegistrosAfectados =this.ModeloBD.pa_FabricanteModifica(
+                        objModeloVista.id_codfabricante,
                         objModeloVista.codigo,
                         objModeloVista.pais);
 

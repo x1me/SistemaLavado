@@ -11,9 +11,10 @@ namespace SistemaLavado.Models
 {
     using System;
     
-    public partial class pa_RetornaFabricante_Result
+    public partial class pa_FabricanteRetorna_Result
     {
-        public short codigo { get; set; }
+        public int id_codfabricante { get; set; }
+        public Nullable<short> codigo { get; set; }
         public string pais { get; set; }
     }
 }

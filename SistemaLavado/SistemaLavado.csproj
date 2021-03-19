@@ -133,103 +133,106 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Canton.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Distrito.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fabricante.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MarcaVehiculo.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModeloEntities.Context.cs">
+    <Compile Include="Models\ModelEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloEntities.Context.tt</DependentUpon>
+      <DependentUpon>ModelEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModeloEntities.cs">
+    <Compile Include="Models\ModelEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModeloEntities.Designer.cs">
+    <Compile Include="Models\ModelEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_CantonSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ClienteSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_DistritoSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_FabricanteRetorna_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_fabricanteSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pa_FacturaDetalleSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    <Compile Include="Models\pa_Fabricante_Retorna_ID_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_FacturaEncabezadoSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ProvinciaSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\pa_RetornaFabricante_ID_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\pa_RetornaFabricante_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Provincia.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaCantonesID_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RetornaCantones_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RetornaProvincias_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicioProducto.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Detalle.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Encabezado.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoVehiculo.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuarios.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vehiculo.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\View_2.cs">
-      <DependentUpon>ModeloEntities.tt</DependentUpon>
+    <Compile Include="Models\VehiculoCliente.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -242,24 +245,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ModeloEntities.Context.tt">
+    <Content Include="Models\ModelEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloEntities.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+      <LastGenOutput>ModelEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModeloEntities.tt">
+    <Content Include="Models\ModelEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloEntities.edmx</DependentUpon>
-      <LastGenOutput>ModeloEntities.cs</LastGenOutput>
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
+      <LastGenOutput>ModelEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ModeloEntities.edmx">
+    <EntityDeploy Include="Models\ModelEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModeloEntities.edmx.diagram">
-      <DependentUpon>ModeloEntities.edmx</DependentUpon>
+    <Content Include="Models\ModelEntities.edmx.diagram">
+      <DependentUpon>ModelEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Insertar\InsertarFabricante.js" />

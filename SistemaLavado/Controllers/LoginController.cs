@@ -9,7 +9,7 @@ namespace SistemaLavado.Controllers
 {
     public class LoginController : Controller
     {
-        sistemadecontrolEntities BD_Login = new sistemadecontrolEntities();
+        sistemacontrolEntities BD_Login = new sistemacontrolEntities();
         // GET: Login
         public ActionResult Index()
         {

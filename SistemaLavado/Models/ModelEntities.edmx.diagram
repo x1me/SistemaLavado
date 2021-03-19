@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce243bb521624c73967241d4d4a8af4f" Name="Diagram1">
+        <EntityTypeShape EntityType="sistemacontrolModel.Canton" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Cliente" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Distrito" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Fabricante" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.MarcaVehiculo" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Provincia" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.ServicioProducto" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Servicios_Facturados_Detalle" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Servicios_Facturados_Encabezado" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.sysdiagrams" Width="1.5" PointX="9.625" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.TipoVehiculo" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.usuarios" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.Vehiculo" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemacontrolModel.VehiculoCliente" Width="1.5" PointX="9.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="sistemacontrolModel.Canton_ref_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.Distrito_ref_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_Cliente_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_Cliente_Distrito" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_Cliente_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_usuarios_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_VehiculoCliente_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_Servicios_Facturados_Detalle_ServicioProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="sistemacontrolModel.FK_Servicios_Facturados_Detalle_Servicios_Facturados_Encabezado" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

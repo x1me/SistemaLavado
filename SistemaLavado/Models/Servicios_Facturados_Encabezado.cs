@@ -14,14 +14,18 @@ namespace SistemaLavado.Models
     
     public partial class Servicios_Facturados_Encabezado
     {
-        public int id { get; set; }
+        public Servicios_Facturados_Encabezado()
+        {
+            this.Servicios_Facturados_Detalle = new HashSet<Servicios_Facturados_Detalle>();
+        }
+    
+        public int id_SerFac_Enca { get; set; }
         public Nullable<int> cedula { get; set; }
         public string placa { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<decimal> monto_total { get; set; }
         public string estado { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
-        public virtual Vehiculo Vehiculo { get; set; }
+        public virtual ICollection<Servicios_Facturados_Detalle> Servicios_Facturados_Detalle { get; set; }
     }
 }

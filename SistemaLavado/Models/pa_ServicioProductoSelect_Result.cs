@@ -13,6 +13,7 @@ namespace SistemaLavado.Models
     
     public partial class pa_ServicioProductoSelect_Result
     {
+        public short id_codigoSP { get; set; }
         public short codigo { get; set; }
         public string descripcion { get; set; }
         public Nullable<float> precio { get; set; }

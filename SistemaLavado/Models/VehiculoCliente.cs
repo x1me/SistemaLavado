@@ -10,13 +10,13 @@
 namespace SistemaLavado.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class pa_FacturaDetalleSelect_Result
+    public partial class VehiculoCliente
     {
-        public int id { get; set; }
-        public int id_encabezado { get; set; }
-        public Nullable<short> tipo_servicio { get; set; }
-        public Nullable<decimal> cantidad_servicio { get; set; }
-        public Nullable<decimal> precio_servicio { get; set; }
+        public int codigoCliente { get; set; }
+        public string codigoVehiculo { get; set; }
+    
+        public virtual Cliente Cliente { get; set; }
     }
 }

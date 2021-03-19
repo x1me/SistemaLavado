@@ -16,10 +16,10 @@ namespace SistemaLavado.Models
     {
         public Cliente()
         {
-            this.Servicios_Facturados_Encabezado = new HashSet<Servicios_Facturados_Encabezado>();
-            this.Vehiculo = new HashSet<Vehiculo>();
+            this.VehiculoCliente = new HashSet<VehiculoCliente>();
         }
     
+        public int id_cliente { get; set; }
         public int cedula { get; set; }
         public string genero { get; set; }
         public string nombre { get; set; }
@@ -29,9 +29,9 @@ namespace SistemaLavado.Models
         public Nullable<int> distrito { get; set; }
     
         public virtual Canton Canton1 { get; set; }
-        public virtual ICollection<Servicios_Facturados_Encabezado> Servicios_Facturados_Encabezado { get; set; }
         public virtual Distrito Distrito1 { get; set; }
         public virtual Provincia Provincia1 { get; set; }
-        public virtual ICollection<Vehiculo> Vehiculo { get; set; }
+        public virtual usuarios usuarios { get; set; }
+        public virtual ICollection<VehiculoCliente> VehiculoCliente { get; set; }
     }
 }

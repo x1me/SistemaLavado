@@ -14,13 +14,13 @@ namespace SistemaLavado.Models
     
     public partial class Servicios_Facturados_Detalle
     {
-        public int id { get; set; }
+        public int id_SerFac_Deta { get; set; }
         public int id_encabezado { get; set; }
         public Nullable<short> tipo_servicio { get; set; }
         public Nullable<decimal> cantidad_servicio { get; set; }
         public Nullable<decimal> precio_servicio { get; set; }
     
         public virtual ServicioProducto ServicioProducto { get; set; }
-        public virtual ServicioProducto ServicioProducto1 { get; set; }
+        public virtual Servicios_Facturados_Encabezado Servicios_Facturados_Encabezado { get; set; }
     }
 }

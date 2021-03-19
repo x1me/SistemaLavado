@@ -13,9 +13,10 @@ namespace SistemaLavado.Models
     
     public partial class pa_UsuariosSelect_Result
     {
-        public int id { get; set; }
+        public int id_usuario { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
         public string tipo { get; set; }
+        public Nullable<System.DateTime> UltimaFecha { get; set; }
     }
 }
