@@ -5,17 +5,17 @@ $(function () {
 
 ///crea las validaciones para el formulario
 function creaValidaciones() {
-    $("#frmInsertarFabricante").validate({
+    $("#frmTipoVehiculo").validate({
         ///objeto que contiene "las condiciones" que el formulario
         ///debe cumplir para ser considerado válido
         rules: {
             codigo: {
                 required: true,
-                number:true,
+                number: true,
                 min: 1,
                 max: 600
             },
-            pais: {
+            tipo: {
                 required: true
             },
         }

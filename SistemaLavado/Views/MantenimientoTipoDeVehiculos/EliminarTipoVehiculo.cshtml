@@ -1,0 +1,38 @@
+﻿@model SistemaLavado.Models.pa_TipoVehiculo_Retorna_ID_Result
+@{
+    ViewBag.Title = "EliminarTipoVehiculo";
+}
+
+
+
+<h2>Eliminar Tipo De Vehículo</h2>
+<form id="frmTipoVehiculo" method="post">
+    <input type="hidden" name="id_codigoTV" id="id_codigoTV" value="@Model.id_codigoTV" />
+    <label class="control-label col-md-2">Código:</label>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="codigo" id="codigo" class="form-control" value="@Model.codigo" readonly/>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <label class="control-label col-md-2">Tipo:</label>
+        <div class="col-md-10">
+            <input type="text" name="tipo" id="tipo" class="form-control" value="@Model.tipo" readonly/>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Eliminar" id="btnAceptar" />
+    </div>
+    <a href="~/MantenimientoTipoDeVehiculos/ListaTipoVehiculo">Regresar a la lista</a>
+</form>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/Validaciones/TipoVehiculo.js")
+    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+}
+

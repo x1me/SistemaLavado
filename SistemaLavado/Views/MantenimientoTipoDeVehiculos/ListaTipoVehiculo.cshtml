@@ -1,0 +1,33 @@
+﻿@model List<SistemaLavado.Models.pa_TipoVehiculoRetorna_Result>
+@{
+    ViewBag.Title = "ListaTipoVehiculo";
+}
+
+
+<h2>Lista De Los Tipos De Vehículos</h2>
+<br />
+<p>Esta lista abarca todos los tipos de vehículos con sus respectivos códigos</p>
+<br />
+<a href="~/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Tipo De Vehículo</a>
+<br />
+<table class="table">
+    <tr>
+        <th>Código </th>
+        <th>Tipo</th>
+
+    </tr>
+    @{
+        foreach (SistemaLavado.Models.pa_TipoVehiculoRetorna_Result PosicionModelo in this.Model)
+        {
+            <tr>
+                <td>@PosicionModelo.codigo</td>
+                <td>@PosicionModelo.tipo</td>
+                <td>
+                    <a href="~/MantenimientoTipoDeVehiculos/ModificarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Modificar</a>
+                    <br />
+                    <a href="~/MantenimientoTipoDeVehiculos/EliminarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Eliminar</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -129,6 +129,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoFabricanteController.cs" />
+    <Compile Include="Controllers\MantenimientoTipoDeVehiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +188,12 @@
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_TipoVehiculoRetorna_Result.cs">
+      <DependentUpon>ModelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_TipoVehiculo_Retorna_ID_Result.cs">
       <DependentUpon>ModelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
@@ -265,7 +272,7 @@
       <DependentUpon>ModelEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\Insertar\InsertarFabricante.js" />
+    <Content Include="Scripts\Validaciones\Fabricante.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -277,6 +284,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Scripts\Validaciones\TipoVehiculo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -296,6 +304,10 @@
     <Content Include="Views\MantenimientoFabricante\InsertarFabricante.cshtml" />
     <Content Include="Views\MantenimientoFabricante\ModificaFabricante.cshtml" />
     <Content Include="Views\MantenimientoFabricante\EliminaFabricante.cshtml" />
+    <Content Include="Views\MantenimientoTipoDeVehiculos\ListaTipoVehiculo.cshtml" />
+    <Content Include="Views\MantenimientoTipoDeVehiculos\InsertarTipoVehiculo.cshtml" />
+    <Content Include="Views\MantenimientoTipoDeVehiculos\ModificarTipoVehiculo.cshtml" />
+    <Content Include="Views\MantenimientoTipoDeVehiculos\EliminarTipoVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

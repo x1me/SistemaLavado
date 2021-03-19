@@ -5,7 +5,7 @@
 
 
 <h2>Elimina Un Fabricante</h2>
-<form id="frmInsertarFabricante" method="post">
+<form id="frmFabricante" method="post">
     <input type="hidden" name="id_codfabricante" id="id_codfabricante" value="@Model.id_codfabricante" />
     <label class="control-label col-md-2">Código:</label>
     <div class="form-group">
@@ -32,6 +32,6 @@
 @section scripts
     {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/scripts/Insertar/InsertarFabricante.js")
+    @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
     @Scripts.Render("~/scripts/ValidacionesGenericas.js")
 }	

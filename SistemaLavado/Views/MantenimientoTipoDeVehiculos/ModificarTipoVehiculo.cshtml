@@ -1,9 +1,9 @@
-﻿@model SistemaLavado.Models.pa_Fabricante_Retorna_ID_Result
+﻿@model SistemaLavado.Models.pa_TipoVehiculo_Retorna_ID_Result
 @{
-    ViewBag.Title = "ModificaFabricante";
+    ViewBag.Title = "ModificarTipoVehiculo";
 }
-<h2>Modificar Un Fabricante</h2>
-<form id="frmFabricante" method="post">
+<h2>Modificar Tipo De Vehículo</h2>
+<form id="frmTipoVehiculo" method="post">
     <label class="control-label col-md-2">Código:</label>
     <div class="form-group">
         <div class="col-md-10">
@@ -13,22 +13,21 @@
     <br />
     <br />
     <div class="form-group">
-        <label class="control-label col-md-2">País:</label>
+        <label class="control-label col-md-2">Tipo:</label>
         <div class="col-md-10">
-            <input type="text" name="pais" id="pais" class="form-control" value="@Model.pais" />
+            <input type="text" name="tipo" id="tipo" class="form-control" value="@Model.tipo" />
         </div>
     </div>
     <br />
     <div class="form-group">
         <input type="submit" value="Guardar" id="btnAceptar" />
     </div>
-    <a href="~/MantenimientoFabricante/ListaFabricante">Regresar a la lista</a>
-
+    <a href="~/MantenimientoTipoDeVehiculos/ListaTipoVehiculo">Regresar a la lista</a>
 </form>
 
 @section scripts
     {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
+    @Scripts.Render("~/scripts/Validaciones/TipoVehiculo.js")
     @Scripts.Render("~/scripts/ValidacionesGenericas.js")
-}	
+}
