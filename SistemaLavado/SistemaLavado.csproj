@@ -295,6 +295,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MantenimientoFabricante\InsertarFabricante.cshtml" />
     <Content Include="Views\MantenimientoFabricante\ModificaFabricante.cshtml" />
+    <Content Include="Views\MantenimientoFabricante\EliminaFabricante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

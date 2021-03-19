@@ -1,0 +1,37 @@
+﻿@model SistemaLavado.Models.pa_Fabricante_Retorna_ID_Result
+@{
+    ViewBag.Title = "EliminaFabricante";
+}
+
+
+<h2>Elimina Un Fabricante</h2>
+<form id="frmInsertarFabricante" method="post">
+    <input type="hidden" name="id_codfabricante" id="id_codfabricante" value="@Model.id_codfabricante" />
+    <label class="control-label col-md-2">Código:</label>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="text" name="codigo" id="codigo" class="form-control" value="@Model.codigo" readonly />
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <label class="control-label col-md-2">País:</label>
+        <div class="col-md-10">
+            <input type="text" name="pais" id="pais" class="form-control" value="@Model.pais" readonly />
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Elimiar" id="btnAceptar" />
+    </div>
+    <a href="~/MantenimientoFabricante/ListaFabricante">Regresar a la lista</a>
+
+</form>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/Insertar/InsertarFabricante.js")
+    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+}	

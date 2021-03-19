@@ -108,5 +108,49 @@ namespace SistemaLavado.Controllers
             Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
             return View(objModeloVista);
         }
+        public ActionResult EliminaFabricante(int id_codfabricante)
+        {
+            pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
+            ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
+            return View(ModeloVista);
+        }
+
+        [HttpPost]
+        public ActionResult EliminaFabricante(pa_Fabricante_Retorna_ID_Result objModeloVista)
+        {
+            ///Variable que registra la cantidad de registros afectados
+            ///si un procedimiento que ejecuta insert, update o delete 
+            ///no afecta registros implica que hubo un error
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                cantRegistrosAfectados = this.ModeloBD.pa_fabricanteDelete(
+                        objModeloVista.id_codfabricante
+                        );
+
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrió un error: " + error.Message;
+            }
+
+            finally
+            {
+                if (cantRegistrosAfectados > 0)
+
+                    resultado = "Registro modificado";
+
+                else
+
+                    resultado += ".No se pudo insertar";
+
+            }
+
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+            return View(objModeloVista);
+        }
+
+    
     }
 }
