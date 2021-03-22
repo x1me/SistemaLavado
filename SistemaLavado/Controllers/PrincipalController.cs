@@ -11,6 +11,7 @@ namespace SistemaLavado.Controllers
         // GET: Principal
         public ActionResult PaginaPrincipal()
         {
+            ViewBag.tipo = Session["role"] as string;
             return View();
         }
     }

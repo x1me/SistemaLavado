@@ -33,11 +33,30 @@ namespace SistemaLavado.Controllers
                             bd.contrasena == usuario.contrasena).Count();
                 if (resultado > 0)
                 {
-                    var _usuario = BD_Login.usuarios.Where(e => e.correo == usuario.correo).Select(e => e.id_usuario).FirstOrDefault();
-                    var user = BD_Login.Cliente.Where((e) => e.id_cliente == _usuario).FirstOrDefault();
-                    Session["nombre"] = user.nombre;
-                    Session["role"] = usuario.tipo;
-                    Session["ultima"] = usuario.UltimaFecha;
+                    // Busca usuario por su correo y retorna su id, tipo, ultima sesión.
+                    var _usuario = BD_Login.usuarios
+                                .Where(e => e.correo == usuario.correo)
+                                .Select(e => new
+                                {
+                                    id = e.id_usuario,
+                                    tipo = e.tipo,
+                                    ultima = e.UltimaFecha
+                                }).FirstOrDefault();
+                    // Obtiene datos del cliente
+                    var cliente = BD_Login.Cliente.Where((e) => e.id_cliente == _usuario.id).FirstOrDefault();
+                    if (Session.Count > 0)
+                    {
+                        Session.RemoveAll();
+                        Session["nombre"] = cliente.nombre;
+                        Session["role"] = _usuario.tipo;
+                        Session["ultima"] = _usuario.ultima;
+                    }
+                    else
+                    {
+                        Session["nombre"] = cliente.nombre;
+                        Session["role"] = _usuario.tipo;
+                        Session["ultima"] = _usuario.ultima;
+                    }
                     return RedirectToAction("PaginaPrincipal", "Principal");
                 }
                 else
