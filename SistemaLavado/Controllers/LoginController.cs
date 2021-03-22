@@ -16,23 +16,43 @@ namespace SistemaLavado.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
-            var registro = BD_Login.pa_UsuariosSelect(null).ToList();
-            return View(registro);
+            return View();
 
         }
         [HttpPost]
         public ActionResult Login(usuarios usuario)
         {
-            int resultado = BD_Login.usuarios.Where(bd => bd.correo == usuario.correo && bd.contrasena == usuario.contrasena).Count();
-            if (resultado >0)
+            string clase = "alert-danger";
+            try
             {
-             ///   return Redirect;
+                int resultado = BD_Login.usuarios
+                .Where(bd => bd.correo == usuario.correo &&
+                            bd.contrasena == usuario.contrasena).Count();
+                if (resultado > 0)
+                {
+                    var _usuario = BD_Login.usuarios.Where(e => e.correo == usuario.correo).Select(e => e.id_usuario).FirstOrDefault();
+                    var user = BD_Login.Cliente.Where((e) => e.id_cliente == _usuario).FirstOrDefault();
+                    Session["nombre"] = user.nombre;
+                    Session["role"] = usuario.tipo;
+                    Session["ultima"] = usuario.UltimaFecha;
+                    return RedirectToAction("PaginaPrincipal", "Principal");
+                }
+                else
+                {
+                    ViewBag.mensaje = "Usuario o Contraseña Incorrecta!";
+                    ViewBag.clase = clase;
+                }
+
             }
-            return View();
-
+            catch (Exception error)
+            {
+                throw;
+            }
+            return View(usuario);
         }
-
     }
+
 }

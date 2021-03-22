@@ -130,6 +130,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoFabricanteController.cs" />
     <Compile Include="Controllers\MantenimientoTipoDeVehiculosController.cs" />
+    <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -308,6 +309,8 @@
     <Content Include="Views\MantenimientoTipoDeVehiculos\InsertarTipoVehiculo.cshtml" />
     <Content Include="Views\MantenimientoTipoDeVehiculos\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\MantenimientoTipoDeVehiculos\EliminarTipoVehiculo.cshtml" />
+    <Content Include="Views\ParaBorrarAdmin.cshtml" />
+    <Content Include="Views\Principal\PaginaPrincipal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
