@@ -68,7 +68,7 @@ namespace SistemaLavado.Controllers
             }
             catch (Exception error)
             {
-                throw;
+                throw error;
             }
             return View(usuario);
         }

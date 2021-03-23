@@ -12,12 +12,13 @@ namespace SistemaLavado.Controllers
         sistemacontrolEntities ModeloBD = new sistemacontrolEntities();
         // GET: Mantenimiento
         public ActionResult Index()
-        {                
-                return View();
+        {
+            return View();
         }
 
         public ActionResult ListaFabricante()
         {
+            ViewBag.tipo = Session["role"] as string;
             List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
             return View(ModeloVista);
         }
@@ -82,7 +83,7 @@ namespace SistemaLavado.Controllers
             string resultado = "";
             try
             {
-                cantRegistrosAfectados =this.ModeloBD.pa_FabricanteModifica(
+                cantRegistrosAfectados = this.ModeloBD.pa_FabricanteModifica(
                         objModeloVista.id_codfabricante,
                         objModeloVista.codigo,
                         objModeloVista.pais);
@@ -96,13 +97,13 @@ namespace SistemaLavado.Controllers
             finally
             {
                 if (cantRegistrosAfectados > 0)
-                
+
                     resultado = "Registro modificado";
-                
+
                 else
-                
+
                     resultado += ".No se pudo insertar";
-                
+
             }
 
             Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
@@ -151,6 +152,6 @@ namespace SistemaLavado.Controllers
             return View(objModeloVista);
         }
 
-    
+
     }
 }

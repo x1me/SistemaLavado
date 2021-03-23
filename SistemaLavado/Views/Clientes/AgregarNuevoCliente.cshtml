@@ -1,0 +1,57 @@
+﻿@model SistemaLavado.Models.Cliente
+@{
+    ViewBag.Title = "AgregarNuevoCliente";
+}
+
+<form method="post" action="@Url.Action("agregar")">
+    <input type="hidden" value="@Model.id_cliente" name="id_cliente" />
+    <div class="form-group">
+        <label>Cedula</label>
+        <input type="text" value="@Model.cedula" name="cedula" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" value="@Model.nombre" name="nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Correo Electrónico</label>
+        <input type="email" value="@Model.correo" name="correo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Porvincia</label>
+        <select class="form-control" name="provincia">
+            @foreach (var provincia in ViewBag.provincias)
+            {
+                <option value="@provincia.id_Provincia">@provincia.nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Cantón</label>
+        <select class="form-control" name="canton">
+            @foreach (var canton in ViewBag.cantones)
+            {
+                <option value="@canton.id_Canton">@canton.nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Distrito</label>
+        <select class="form-control" name="distrito">
+            @foreach (var distrito in ViewBag.distritos)
+            {
+                <option value="@distrito.id_Distrito">@distrito.nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Género</label>
+        <select class="form-control" name="genero">
+            <option value="h">Masculino</option>
+            <option value="m">Femenino</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Agregar</button>
+    </div>
+</form>
