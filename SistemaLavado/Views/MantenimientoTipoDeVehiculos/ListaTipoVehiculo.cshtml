@@ -2,32 +2,85 @@
 @{
     ViewBag.Title = "ListaTipoVehiculo";
 }
+<div>
 
-
-<h2>Lista De Los Tipos De Vehículos</h2>
-<br />
-<p>Esta lista abarca todos los tipos de vehículos con sus respectivos códigos</p>
-<br />
-<a href="~/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Tipo De Vehículo</a>
-<br />
-<table class="table">
-    <tr>
-        <th>Código </th>
-        <th>Tipo</th>
-
-    </tr>
-    @{
-        foreach (SistemaLavado.Models.pa_TipoVehiculoRetorna_Result PosicionModelo in this.Model)
-        {
+    @*<h2>Lista De Los Tipos De Vehículos</h2>
+        <br />
+        <p>Esta lista abarca todos los tipos de vehículos con sus respectivos códigos</p>
+        <br />
+        <a href="~/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Tipo De Vehículo</a>
+        <br />
+        <table class="table">
             <tr>
-                <td>@PosicionModelo.codigo</td>
-                <td>@PosicionModelo.tipo</td>
-                <td>
-                    <a href="~/MantenimientoTipoDeVehiculos/ModificarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Modificar</a>
-                    <br />
-                    <a href="~/MantenimientoTipoDeVehiculos/EliminarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Eliminar</a>
-                </td>
+                <th>Código </th>
+                <th>Tipo</th>
+
             </tr>
+            @{
+                foreach (SistemaLavado.Models.pa_TipoVehiculoRetorna_Result PosicionModelo in this.Model)
+                {
+                    <tr>
+                        <td>@PosicionModelo.codigo</td>
+                        <td>@PosicionModelo.tipo</td>
+                        <td>
+                            <a href="~/MantenimientoTipoDeVehiculos/ModificarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Modificar</a>
+                            <br />
+                            <a href="~/MantenimientoTipoDeVehiculos/EliminarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+    *@
+</div> @*Div oculto codigo anterior*@
+
+<div class="table-container">
+    <h2>Lista De Los Tipos De Vehículos</h2>
+    <br />
+    <p>Esta lista abarca todos los tipos de vehículos con sus respectivos códigos</p>
+    <br />
+    @{
+        if ((TempData["respuesta"] as object) != null)
+        {
+            var respuesta = TempData["respuesta"];
+            @*if (respuesta.existe)
+                                {
+                        <div class="alert alert-success">@respuesta.mensaje</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">@respuesta.mensaje</div>
+
+                }*@
         }
     }
-</table>
+    <div class="table">
+        <div class="container-header">
+            <a href="~/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo" class="btn btn-success">Nuevo Tipo De Vehículo</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código </th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (SistemaLavado.Models.pa_TipoVehiculoRetorna_Result PosicionModelo in this.Model)
+                {
+                <tr>
+                    <td>@PosicionModelo.codigo</td>
+                    <td>@PosicionModelo.tipo</td>
+                    <td>
+                        <a href="~/MantenimientoTipoDeVehiculos/ModificarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Modificar</a>
+                        <br />
+                        <a href="~/MantenimientoTipoDeVehiculos/EliminarTipoVehiculo?id_codigoTV=@PosicionModelo.id_codigoTV">Eliminar</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

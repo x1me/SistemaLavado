@@ -14,14 +14,17 @@ namespace SistemaLavado.Controllers
         [HttpGet, ActionName("index")]
         public ActionResult ListaClientes()
         {
+            ViewBag.tipo = Session["role"] as string;
             var cliente = db.pa_ClienteSelect(null).ToList();
             return View("ListaClientes", cliente);
+            
         }
 
         [ActionName("agregar")]
         [HttpGet]
         public ActionResult AgregarNuevoCliente(int? id)
         {
+            ViewBag.tipo = Session["role"] as string;
             Cliente cliente = new Cliente();
             ViewBag.provincias = db.pa_ProvinciaSelect(null, null).ToList();
             ViewBag.cantones = db.pa_CantonSelect(null, null).ToList();
@@ -33,7 +36,7 @@ namespace SistemaLavado.Controllers
             return View("AgregarNuevoCliente", cliente);
         }
 
-        [ActionName("agregar")]
+        [ActionName("modificar")]
         [HttpPost]
         public ActionResult AgregarNuevoCliente(Cliente model)
         {

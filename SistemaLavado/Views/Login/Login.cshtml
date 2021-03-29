@@ -16,20 +16,21 @@
 
     }
     <div class="login-form col-8">
-        <h2 class="text-white">Registro</h2>
+        <h2 >Registro</h2>
         <hr />
         <form method="post" action='@Url.Action("Login", "Login")'>
             <div class="form-group">
-                <label class="text-white">Usuario</label>
+                <label >Usuario</label>
                 <input type="text" name="correo" id="Usuario" class="form-control" />
             </div>
             <div class="form-group">
-                <label class="text-white">Contraseña</label>
+                <label >Contraseña</label>
                 <input type="password" name="contrasena" id="Password" class="form-control" />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success" id="btnAceptar">Aceptar</button>
-                <button type="reset" class="btn btn-danger ml-2" id="btnLimpiar">Cancelar</button>
+            
+                <button type="reset" class="btn btn-danger " id="btnLimpiar">Cancelar</button>
             </div>
         </form>
     </div>

@@ -17,11 +17,13 @@ namespace SistemaLavado.Controllers
         }
         public ActionResult ListaTipoVehiculo()
         {
+            ViewBag.tipo = Session["role"] as string;
             List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.ModeloBD.pa_TipoVehiculoRetorna().ToList();
             return View(ModeloVista);
         }
         public ActionResult InsertarTipoVehiculo()
         {
+            ViewBag.tipo = Session["role"] as string;
             List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.ModeloBD.pa_TipoVehiculoRetorna().ToList();
             return View();
         }

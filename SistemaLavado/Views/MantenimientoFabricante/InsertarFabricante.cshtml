@@ -1,35 +1,59 @@
-﻿
+﻿<div>
+    
+        @{
+            ViewBag.Title = "InsertarFabricante";
+        }
+
+        <h2>Inserta Un Nuevo Fabricante</h2>
+        <form id="frmFabricante" method="post">
+            <label class="control-label col-md-2">Código:</label>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="text" name="codigo" id="codigo" class="form-control" value="" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label class="control-label col-md-2">País:</label>
+                <div class="col-md-10">
+                    <input type="text" name="pais" id="pais" class="form-control" value="" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Guardar" id="btnAceptar" />
+            </div>
+            <a href="~/MantenimientoFabricante/ListaFabricante">Regresar a la lista</a>
+
+        </form>
+
+        @section scripts
+            {
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
+            @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+        }
+    
+</div>@*Codigo viejo*@
+
+@*
+@model SistemaLavado.Models.Fabricante
 @{
     ViewBag.Title = "InsertarFabricante";
 }
-
-<h2>Inserta Un Nuevo Fabricante</h2>
-<form id="frmFabricante" method="post">
-    <label class="control-label col-md-2">Código:</label>
+<form method="post" action="@Url.Action("agregar")">
+    
     <div class="form-group">
-        <div class="col-md-10">
-            <input type="text" name="codigo" id="codigo" class="form-control" value="" />
-        </div>
+        <label>Código</label>
+        <input type="text" value="@Model.codigo" name="cedula" class="form-control" />
     </div>
-    <br />
-    <br />
     <div class="form-group">
-        <label class="control-label col-md-2">País:</label>
-        <div class="col-md-10">
-            <input type="text" name="pais" id="pais" class="form-control" value="" />
-        </div>
+        <label>Pais</label>
+        <input type="text" value="@Model.pais" name="nombre" class="form-control" />
     </div>
-    <br />
     <div class="form-group">
-        <input type="submit" value="Guardar" id="btnAceptar" />
+        <button type="submit" class="btn btn-success">Agregar</button>
     </div>
-    <a href="~/MantenimientoFabricante/ListaFabricante">Regresar a la lista</a>
-
 </form>
-
-@section scripts
-    {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
-    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
-}	
+    *@

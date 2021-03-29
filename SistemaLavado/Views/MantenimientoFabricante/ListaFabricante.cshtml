@@ -2,31 +2,82 @@
 @{
     ViewBag.Title = "ListaFabricante";
 }
-
-<h2>Lista De Los Fabricantes</h2>
-<br />
-<p>Esta lista abarca todos los paises con sus respectivos códigos</p>
-<br />  
-<a href="~/MantenimientoFabricante/InsertarFabricante">Nuevo Fabricante</a>
-<br />
-<table class="table">
-    <tr>
-        <th>Código </th>
-        <th>Pais</th>
-
-    </tr>
-    @{
-        foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
-        {
+<div>
+    @*<h2>Lista De Los Fabricantes</h2>
+        <br />
+        <p>Esta lista abarca todos los paises con sus respectivos códigos</p>
+        <br />
+        <a href="~/MantenimientoFabricante/InsertarFabricante">Nuevo Fabricante</a>
+        <br />
+        <table class="table">
             <tr>
-                <td>@PosicionModelo.codigo</td>
-                <td>@PosicionModelo.pais</td>
-                <td>
-                    <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
-                    <br />
-                    <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
-                </td>
+                <th>Código </th>
+                <th>Pais</th>
+
             </tr>
+            @{
+                foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
+                {
+                    <tr>
+                        <td>@PosicionModelo.codigo</td>
+                        <td>@PosicionModelo.pais</td>
+                        <td>
+                            <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
+                            <br />
+                            <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>*@
+</div> @*Div oculto codigo anterior*@
+
+<div class="table-container">
+    <h2>Lista De Los Fabricantes</h2>
+    <br />
+    <p>Esta lista abarca todos los paises con sus respectivos códigos</p>
+    <br />
+    @{
+        if ((TempData["respuesta"] as object) != null)
+        {
+            var respuesta = TempData["respuesta"];
+            @*if (respuesta.existe)
+                                {
+                        <div class="alert alert-success">@respuesta.mensaje</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">@respuesta.mensaje</div>
+
+                }*@
         }
     }
-</table>
+    <div class="table">
+        <div class="container-header">
+            <a href="~/MantenimientoFabricante/InsertarFabricante" class="btn btn-success">Nuevo Fabricante</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código </th>
+                    <th>Pais</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
+                {
+                    <tr>
+                        <td>@PosicionModelo.codigo</td>
+                        <td>@PosicionModelo.pais</td>
+                        <td>
+                            <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
+                            <br />
+                            <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

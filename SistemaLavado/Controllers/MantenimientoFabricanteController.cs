@@ -11,11 +11,7 @@ namespace SistemaLavado.Controllers
     {
         sistemacontrolEntities ModeloBD = new sistemacontrolEntities();
         // GET: Mantenimiento
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        
         public ActionResult ListaFabricante()
         {
             ViewBag.tipo = Session["role"] as string;
@@ -26,6 +22,7 @@ namespace SistemaLavado.Controllers
 
         public ActionResult InsertarFabricante()
         {
+            ViewBag.tipo = Session["role"] as string;
             List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
             return View();
         }
@@ -33,6 +30,7 @@ namespace SistemaLavado.Controllers
         [HttpPost]
         public ActionResult InsertarFabricante(pa_FabricanteRetorna_Result objModeloVista)
         {
+            ViewBag.tipo = Session["role"] as string;
             ///Variable que registra la cantidad de registros afectados
             ///si un procedimiento que ejecuta insert, update o delete 
             ///no afecta registros implica que hubo un error
@@ -68,6 +66,7 @@ namespace SistemaLavado.Controllers
 
         public ActionResult ModificaFabricante(int id_codfabricante)
         {
+            ViewBag.tipo = Session["role"] as string;
             pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
             ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
             return View(ModeloVista);
@@ -111,6 +110,7 @@ namespace SistemaLavado.Controllers
         }
         public ActionResult EliminaFabricante(int id_codfabricante)
         {
+            ViewBag.tipo = Session["role"] as string;
             pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
             ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
             return View(ModeloVista);

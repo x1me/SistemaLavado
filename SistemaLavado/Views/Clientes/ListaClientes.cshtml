@@ -4,24 +4,28 @@
 }
 
 <div class="table-container">
+    <h2>Lista De Clientes</h2>
+    <br />
+    <p>Esta lista abarca todos los clientes con sus datos personales</p>
+    <br />
     @{
-                    if ((TempData["respuesta"] as object) != null)
+        if ((TempData["respuesta"] as object) != null)
+        {
+            var respuesta = TempData["respuesta"];
+            @*if (respuesta.existe)
+                                {
+                        <div class="alert alert-success">@respuesta.mensaje</div>
+                    }
+                    else
                     {
-                        var respuesta = TempData["respuesta"];
-                        @*if (respuesta.existe)
-                        {
-                <div class="alert alert-success">@respuesta.mensaje</div>
-            }
-            else
-            {
-                <div class="alert alert-success">@respuesta.mensaje</div>
+                        <div class="alert alert-success">@respuesta.mensaje</div>
 
-        }*@
+                }*@
         }
     }
     <div class="table">
         <div class="container-header">
-            <a href="/Clientes/agregar" class="btn btn-success">Añadir</a>
+            <a href="/Clientes/agregar" class="btn btn-success">Nuevo Cliente</a>
         </div>
         <table class="table table-bordered">
             <thead>
