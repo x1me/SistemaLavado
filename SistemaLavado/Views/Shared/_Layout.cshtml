@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema de Lavado</title>
     @Styles.Render("~/Content/css")
-
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 </head>
 <body>
 
@@ -20,59 +22,59 @@
                 if (ViewBag.tipo != null)
 
                 {
-                        <ul class="navbar-nav">
-                            @{
-                                if (ViewBag.tipo == "a")
-                                {
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Clientes
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="/Clientes/index">Listar Clientes</a>
-                                            <a class="dropdown-item" href="/Clientes/agregar">Nuevo Cliente</a>
-                                        </div>
-                                    </li>
+                    <ul class="navbar-nav">
+                        @{
+                            if (ViewBag.tipo == "a")
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Clientes
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/Clientes/index">Listar Clientes</a>
+                                        <a class="dropdown-item" href="/Clientes/agregar">Nuevo Cliente</a>
+                                    </div>
+                                </li>
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Pais Fabricante
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="@Url.Action("ListaFabricante", "MantenimientoFabricante")">Listar Fabricantes</a>
-                                            <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoFabricante")">Nuevo Fabricante</a>
-                                        </div>
-                                    </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Pais Fabricante
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="@Url.Action("ListaFabricante", "MantenimientoFabricante")">Listar Fabricantes</a>
+                                        <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoFabricante")">Nuevo Fabricante</a>
+                                    </div>
+                                </li>
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Tipo de Vehiculo
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="/MantenimientoTipoDeVehiculos/ListaTipoVehiculo">Listar Vehiculos</a>
-                                            <a class="dropdown-item" href="/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Vehiculo</a>
-                                        </div>
-                                    </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Tipo de Vehiculo
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/MantenimientoTipoDeVehiculos/ListaTipoVehiculo">Listar Vehiculos</a>
+                                        <a class="dropdown-item" href="/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Vehiculo</a>
+                                    </div>
+                                </li>
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Marcas de vehiculo
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href='@Url.Action("ListaMarcas", "MarcasDeVehiculo")'>ListarMarcas</a>
-                                            <a class="dropdown-item" href='@Url.Action("agregar", "MarcasDeVehiculo")'>Nueva Marca</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Marcas de vehiculo
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href='@Url.Action("ListaMarcas", "MarcasDeVehiculo")'>ListarMarcas</a>
+                                        <a class="dropdown-item" href='@Url.Action("agregar", "MarcasDeVehiculo")'>Nueva Marca</a>
 
-                                        </div>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <a class="navbar-brand" href="/Clientes/index">Datos Personales</a>
-                                 
-
-                                }
+                                    </div>
+                                </li>
                             }
-                        </ul>
+                            else
+                            {
+                                <a class="navbar-brand" href="/Clientes/index">Datos Personales</a>
+
+
+                            }
+                        }
+                    </ul>
                 }
             }
             <a href='@Url.Action("Login", "Login")' class="ml-auto">Cerrar Sesión</a>
@@ -88,7 +90,11 @@
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
-
+    <script src="~/Scripts/Validaciones/cliente.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    >
     @RenderSection("scripts", required: false)
 </body>
 </html>

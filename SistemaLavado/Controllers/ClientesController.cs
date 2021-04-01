@@ -12,7 +12,12 @@ namespace SistemaLavado.Controllers
     {
 
         sistemacontrolEntities db = new sistemacontrolEntities();
-        [HttpGet, ActionName("index")]
+        public ActionResult Index()
+        {
+            return View("ListaClientes");
+        }
+
+        [HttpGet, ActionName("listar")]
         public ActionResult ListaClientes()
         {
             string tipoUsuario = Session["role"] as string;
@@ -31,7 +36,7 @@ namespace SistemaLavado.Controllers
                               nombre = i.nombre,
                               apellido1 = i.apellido1,
                               apellido2 = i.apellido2,
-                              fecha_nacimiento = (DateTime)i.fecha_nacimiento,
+                              fecha_nacimiento = i.fecha_nacimiento.ToString(),
                               genero = i.genero,
                               correo = i.correo,
                               provincia = (from pt in db.Provincia where pt.id_Provincia == i.provincia select pt.nombre).FirstOrDefault(),
@@ -39,7 +44,8 @@ namespace SistemaLavado.Controllers
                               distrito = (from ds in db.Distrito where ds.id_Distrito == i.distrito select ds.nombre).FirstOrDefault(),
                           }
                           ).ToList();
-            return View("ListaClientes", modelo);
+
+            return Json(modelo, JsonRequestBehavior.AllowGet);
 
         }
 

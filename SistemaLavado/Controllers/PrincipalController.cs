@@ -29,7 +29,7 @@ namespace SistemaLavado.Controllers
                               nombre = i.nombre,
                               apellido1 = i.apellido1,
                               apellido2 = i.apellido2,
-                              fecha_nacimiento = (DateTime)i.fecha_nacimiento,
+                              fecha_nacimiento = i.fecha_nacimiento.ToString(),
                           }
                           ).ToList();
             return View( modelo);
