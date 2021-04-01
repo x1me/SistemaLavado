@@ -9,26 +9,42 @@ namespace SistemaLavado.Controllers
 {
     public class MantenimientoFabricanteController : Controller
     {
-        sistemacontrolEntities ModeloBD = new sistemacontrolEntities();
+        sistemacontrolEntities bd = new sistemacontrolEntities();
         // GET: Mantenimiento
-        
+
         public ActionResult ListaFabricante()
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
+            List<pa_FabricanteRetorna_Result> ModeloVista = this.bd.pa_FabricanteRetorna().ToList();
             return View(ModeloVista);
         }
 
-
-        public ActionResult InsertarFabricante()
+        [ActionName("agregaroeditar")]
+        [HttpGet]
+        public ActionResult InsertarAgregarFabricante(int? id)
         {
-            ViewBag.tipo = Session["role"] as string;
-            List<pa_FabricanteRetorna_Result> ModeloVista = this.ModeloBD.pa_FabricanteRetorna().ToList();
-            return View();
+            try
+            {
+                Fabricante model = new Fabricante();
+                List<pa_FabricanteRetorna_Result> ModeloVista = this.bd.pa_FabricanteRetorna().ToList();
+                if (id != null)
+                {
+                    var fabricante = bd.pa_fabricanteSelect(id, "").FirstOrDefault();
+                    model.codigo = fabricante.codigo;
+                    model.pais = fabricante.pais;
+                    model.id_codfabricante = fabricante.id_codfabricante;
+                }
+                return View("InsertarFabricante", model);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
+        [ActionName("agregaroeditar")]
         [HttpPost]
-        public ActionResult InsertarFabricante(pa_FabricanteRetorna_Result objModeloVista)
+        public ActionResult InsertarAgregarFabricante(Fabricante fabricante)
         {
             ViewBag.tipo = Session["role"] as string;
             ///Variable que registra la cantidad de registros afectados
@@ -38,56 +54,18 @@ namespace SistemaLavado.Controllers
             string resultado = "";
             try
             {
-                cantRegistrosAfectados =
-                    this.ModeloBD.pa_fabricanteInsert(
-                        objModeloVista.codigo,
-                        objModeloVista.pais);
-            }
-            catch (Exception error)
-            {
-                resultado = "Ocurrió un error: " + error.Message;
-            }
-
-            finally
-            {
-                if (cantRegistrosAfectados > 0)
+                if (fabricante.id_codfabricante > 0)
                 {
-                    resultado = "Registro insertado";
+                    cantRegistrosAfectados = bd.pa_FabricanteModifica(fabricante.id_codfabricante,
+                                                                        fabricante.codigo, fabricante.pais);
+                    resultado = "Registro modificado correctamente";
                 }
                 else
                 {
-                    resultado += ".No se pudo insertar";
+                    cantRegistrosAfectados = this.bd.pa_fabricanteInsert(fabricante.codigo, fabricante.pais);
+                    resultado = "Registro insertado correctamente";
                 }
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View();
-        }
-
-        public ActionResult ModificaFabricante(int id_codfabricante)
-        {
-            ViewBag.tipo = Session["role"] as string;
-            pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
-            ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
-            return View(ModeloVista);
-        }
-
-        [HttpPost]
-        public ActionResult ModificaFabricante(pa_Fabricante_Retorna_ID_Result objModeloVista)
-        {
-            ///Variable que registra la cantidad de registros afectados
-            ///si un procedimiento que ejecuta insert, update o delete 
-            ///no afecta registros implica que hubo un error
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
-            try
-            {
-                cantRegistrosAfectados = this.ModeloBD.pa_FabricanteModifica(
-                        objModeloVista.id_codfabricante,
-                        objModeloVista.codigo,
-                        objModeloVista.pais);
-
-            }
             catch (Exception error)
             {
                 resultado = "Ocurrió un error: " + error.Message;
@@ -95,62 +73,42 @@ namespace SistemaLavado.Controllers
 
             finally
             {
-                if (cantRegistrosAfectados > 0)
-
-                    resultado = "Registro modificado";
-
-                else
-
-                    resultado += ".No se pudo insertar";
+                resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = cantRegistrosAfectados > 0;
 
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View(objModeloVista);
+            return RedirectToAction("ListaFabricante");
         }
-        public ActionResult EliminaFabricante(int id_codfabricante)
+
+        [HttpGet]
+        public ActionResult EliminaFabricante(int id)
         {
             ViewBag.tipo = Session["role"] as string;
-            pa_Fabricante_Retorna_ID_Result ModeloVista = new pa_Fabricante_Retorna_ID_Result();
-            ModeloVista = this.ModeloBD.pa_Fabricante_Retorna_ID(id_codfabricante).FirstOrDefault();
-            return View(ModeloVista);
-        }
+            string resultado = "Error al eliminar el registro!";
+            int registroAfectado = 0;
 
-        [HttpPost]
-        public ActionResult EliminaFabricante(pa_Fabricante_Retorna_ID_Result objModeloVista)
-        {
-            ///Variable que registra la cantidad de registros afectados
-            ///si un procedimiento que ejecuta insert, update o delete 
-            ///no afecta registros implica que hubo un error
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
             try
             {
-                cantRegistrosAfectados = this.ModeloBD.pa_fabricanteDelete(
-                        objModeloVista.id_codfabricante
-                        );
-
+                registroAfectado = bd.pa_fabricanteDelete(id);
+                if (registroAfectado > 0)
+                {
+                    resultado = "Registro eliminado correctamente.";
+                }
+                return RedirectToAction("ListaFabricante");
             }
-            catch (Exception error)
+            catch (Exception e)
             {
-                resultado = "Ocurrió un error: " + error.Message;
+                throw;
             }
-
             finally
             {
-                if (cantRegistrosAfectados > 0)
-
-                    resultado = "Registro modificado";
-
-                else
-
-                    resultado += ".No se pudo insertar";
-
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = registroAfectado > 0;
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View(objModeloVista);
         }
+
+
 
 
     }

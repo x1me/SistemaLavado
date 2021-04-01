@@ -42,18 +42,19 @@
 @{
     ViewBag.Title = "ModeloVista";
 }
-<form method="post" action="@Url.Action("agregar")">
+<form method="post" action="@Url.Action("agregaroeditar")">
+    <input type="hidden" value="@Model.id_codfabricante" name="id_codfabricante" />
     <h2>Agregar Pais Fabricante</h2>
     <br />
     <p>Agrega un pais con su respectivo código</p>
     <br />
     <div class="form-group">
         <label>Código</label>
-        <input type="text" value="" name="cedula" class="form-control" />
+        <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
     </div>
     <div class="form-group">
         <label>Pais</label>
-        <input type="text" value="" name="nombre" class="form-control" />
+        <input type="text" value="@Model.pais" name="pais" class="form-control" />
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success">Agregar</button>

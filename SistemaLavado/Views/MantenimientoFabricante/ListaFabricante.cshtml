@@ -32,32 +32,28 @@
         </table>*@
 </div> @*Div oculto codigo anterior*@
 
-<div class="table-container">
-    <h2>Lista De Los Fabricantes</h2>
-    <br />
-    <p>Esta lista abarca todos los paises con sus respectivos códigos</p>
-    <br />
-    @{
-        if ((TempData["respuesta"] as object) != null)
-        {
-            var respuesta = TempData["respuesta"];
-            @*if (respuesta.existe)
-                                {
-                        <div class="alert alert-success">@respuesta.mensaje</div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-success">@respuesta.mensaje</div>
+<div class="contenedor-tabla" style="width: 90%; margin: 2rem auto 0 auto">
+    @if (TempData["mensaje"] != null)
+    {
+        string mensaje = (string)TempData["mensaje"];
+        bool estado = (bool)TempData["estado"];
 
-                }*@
-        }
-    }
-    <div class="table">
-        <div class="container-header">
-            <a href="~/MantenimientoFabricante/InsertarFabricante" class="btn btn-success">Nuevo Fabricante</a>
+        <div class="alert  @(estado?"alert-success":"alert-danger") alert-dismissible fade show">
+            <strong>@mensaje</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <table class="table table-bordered">
-            <thead>
+    }
+
+    <div class="cuerpo-tabla">
+        <a href="/MantenimientoFabricante/agregaroeditar" class="btn btn-success mb-3">Nuevo Fabricante</a>
+        @*<div class="encabezado-tabla p-0">
+            <h3 class="text-black-50">Lista De Los Fabricantes</h3>
+        </div>*@
+        <table class="table table-bordered mt-3">
+            <caption>Esta lista abarca todos los paises con sus respectivos códigos</caption>
+            <thead class="thead-dark">
                 <tr>
                     <th>Código </th>
                     <th>Pais</th>
@@ -71,9 +67,11 @@
                         <td>@PosicionModelo.codigo</td>
                         <td>@PosicionModelo.pais</td>
                         <td>
-                            <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
-                            <br />
-                            <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
+                            <div class="d-flex">
+                                <a class="mr-3" href="/MantenimientoFabricante/agregaroeditar?id=@PosicionModelo.id_codfabricante">Modificar</a>
+                                |
+                                <a class="ml-3" href="/MantenimientoFabricante/EliminaFabricante?id=@PosicionModelo.id_codfabricante">Eliminar</a>
+                            </div>
                         </td>
                     </tr>
                 }
