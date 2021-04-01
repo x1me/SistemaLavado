@@ -1,4 +1,6 @@
 ﻿@model SistemaLavado.Models.Cliente
+
+
 @{
     ViewBag.Title = "AgregarNuevoCliente";
 }
@@ -23,7 +25,7 @@
     </div>
     <div class="form-group">
         <label>Fecha de Nacimiento</label>
-        <input type="date" value="@Model.fecha_nacimiento" name="fecha_nacimiento" class="form-control" />
+        <input type="@(Model.id_cliente > 0?"text":"date")" value="@Model.fecha_nacimiento" name="fecha_nacimiento" class="form-control" />
     </div>
     <div class="form-group">
         <label>Correo Electrónico</label>
@@ -40,21 +42,11 @@
     </div>
     <div class="form-group">
         <label>Cantón</label>
-        <select class="form-control" name="canton">
-            @foreach (var canton in ViewBag.cantones)
-            {
-                <option value="@canton.id_Canton">@canton.nombre</option>
-            }
-        </select>
+        <select class="form-control" name="canton"></select>
     </div>
     <div class="form-group">
         <label>Distrito</label>
-        <select class="form-control" name="distrito">
-            @foreach (var distrito in ViewBag.distritos)
-            {
-                <option value="@distrito.id_Distrito">@distrito.nombre</option>
-            }
-        </select>
+        <select class="form-control" name="distrito"></select>
     </div>
     <div class="form-group">
         <label>Género</label>
@@ -69,7 +61,7 @@
         validar contraseña y cedula que no sean iguales
         mantener la informacion almacenada de la persona
         validar fecha en blanco
-        *@
+    *@
     <div class="form-group">
 
     </div>
@@ -77,3 +69,53 @@
         <button type="submit" class="btn btn-success">Agregar</button>
     </div>
 </form>
+@section scripts{
+    <script type="text/javascript">
+        let select, seleccionado, valor;
+
+        $("[name='canton']").on("change", function () {
+            select = $(this)[0];
+            seleccionado = select.selectedIndex;
+            valor = select.options[seleccionado].value;
+
+            // Petición
+            $.get({
+                url: `/Clientes/ObtenerInfo?canton=${valor}`,
+                dataType: "json",
+                success: function (respuesta) {
+                    //console.log(respuesta)
+                    $("[name='distrito']").html("");
+                    for (let distrito of respuesta.distrito) {
+                        //console.log(canton);
+                        $("[name='distrito']").append(new Option(distrito.nombre, distrito.id_distrito));
+                    }
+                }
+            });
+
+        });
+
+        $("[name='provincia']").on("change", function () {
+            select = $(this)[0];
+            seleccionado = select.selectedIndex;
+            valor = select.options[seleccionado].value;
+
+            //console.log(select, seleccionado, valor);
+
+
+            // Petición
+            $.get({
+                url: `/Clientes/ObtenerInfo?provincia=${valor}`,
+                dataType: "json",
+                success: function (respuesta) {
+                    //console.log(respuesta)
+                    $("[name='canton']").html("");
+                    for (let canton of respuesta.canton) {
+                        //console.log(canton);
+                        $("[name='canton']").append(new Option(canton.nombre, canton.id_Canton));
+                    }
+                }
+            });
+
+        });
+    </script>
+}

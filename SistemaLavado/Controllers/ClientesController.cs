@@ -128,5 +128,33 @@ namespace SistemaLavado.Controllers
             }
             return RedirectToAction("index");
         }
+        [HttpGet]
+        public ActionResult ObtenerInfo(int? provincia, int? canton)
+        {
+            try
+            {
+                List<pa_CantonSelect_Result> cantones = new List<pa_CantonSelect_Result>();
+                object distritos = new object();
+                if (provincia != null)
+                {
+                    cantones = db.pa_CantonSelect("", provincia).ToList();
+                }
+                else if (canton != null)
+                {
+                    distritos = (from dis in db.Distrito
+                                 where dis.id_Canton == canton
+                                 select new { 
+                                     id_distrito = dis.id_Distrito,
+                                     nombre = dis.nombre
+                                 }
+                                 ).ToList();
+                }
+                return Json(new { canton = cantones, distrito = distritos}, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -1,9 +1,24 @@
-﻿
+﻿@model List<SistemaLavado.Models.ClientePersonalizado>
 @{
     ViewBag.Title = "PaginaPrincipal";
 }
 
-@* Landing Page *@
-<h2>Pagina Principal</h2>
+
+<div class="table-container">
+    <h2>Pagina Principal</h2>
 
 
+
+
+    @foreach (var cl in Model)
+    {
+        <tr>
+
+            <td><p>Bienvenido @cl.nombre &nbsp; @cl.apellido1 &nbsp; @cl.apellido2</p></td>
+            <td><p>Usted ingresó por última vez @cl.fecha_nacimiento</p></td>
+
+
+        </tr>
+
+    }
+</div>

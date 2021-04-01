@@ -23,6 +23,7 @@ namespace SistemaLavado.Controllers
         [HttpGet]
         public ActionResult InsertarAgregarFabricante(int? id)
         {
+            ViewBag.tipo = Session["role"] as string;
             try
             {
                 Fabricante model = new Fabricante();
