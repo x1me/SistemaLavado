@@ -37,7 +37,6 @@ namespace SistemaLavado.Models
         public DbSet<ServicioProducto> ServicioProducto { get; set; }
         public DbSet<Servicios_Facturados_Detalle> Servicios_Facturados_Detalle { get; set; }
         public DbSet<Servicios_Facturados_Encabezado> Servicios_Facturados_Encabezado { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<TipoVehiculo> TipoVehiculo { get; set; }
         public DbSet<usuarios> usuarios { get; set; }
         public DbSet<Vehiculo> Vehiculo { get; set; }
@@ -82,7 +81,7 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CantonSelect_Result>("pa_CantonSelect", nombreParameter, id_ProvinciaParameter);
         }
     
-        public virtual int pa_CantonUpdate(Nullable<int> id_Canton, Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
+        public virtual int pa_CantonUpdate(Nullable<int> id_Canton, Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec, Nullable<System.DateTime> fecha_nacimiento, string apellido1, string apellido2)
         {
             var id_CantonParameter = id_Canton.HasValue ?
                 new ObjectParameter("id_Canton", id_Canton) :
@@ -100,7 +99,19 @@ namespace SistemaLavado.Models
                 new ObjectParameter("id_CantonInec", id_CantonInec) :
                 new ObjectParameter("id_CantonInec", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CantonUpdate", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
+    
+            var apellido1Parameter = apellido1 != null ?
+                new ObjectParameter("apellido1", apellido1) :
+                new ObjectParameter("apellido1", typeof(string));
+    
+            var apellido2Parameter = apellido2 != null ?
+                new ObjectParameter("apellido2", apellido2) :
+                new ObjectParameter("apellido2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CantonUpdate", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter, fecha_nacimientoParameter, apellido1Parameter, apellido2Parameter);
         }
     
         public virtual int pa_ClienteDelete(Nullable<int> id_cliente)
@@ -112,12 +123,8 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteDelete", id_clienteParameter);
         }
     
-        public virtual int pa_ClienteInsert(Nullable<int> id_cliente, Nullable<int> cedula, string genero, string nombre, string correo, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito)
+        public virtual int pa_ClienteInsert(Nullable<int> cedula, string genero, string nombre, string correo, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito, Nullable<System.DateTime> fecha_nacimiento, string apellido1, string apellido2)
         {
-            var id_clienteParameter = id_cliente.HasValue ?
-                new ObjectParameter("id_cliente", id_cliente) :
-                new ObjectParameter("id_cliente", typeof(int));
-    
             var cedulaParameter = cedula.HasValue ?
                 new ObjectParameter("cedula", cedula) :
                 new ObjectParameter("cedula", typeof(int));
@@ -146,19 +153,22 @@ namespace SistemaLavado.Models
                 new ObjectParameter("distrito", distrito) :
                 new ObjectParameter("distrito", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteInsert", id_clienteParameter, cedulaParameter, generoParameter, nombreParameter, correoParameter, provinciaParameter, cantonParameter, distritoParameter);
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
+    
+            var apellido1Parameter = apellido1 != null ?
+                new ObjectParameter("apellido1", apellido1) :
+                new ObjectParameter("apellido1", typeof(string));
+    
+            var apellido2Parameter = apellido2 != null ?
+                new ObjectParameter("apellido2", apellido2) :
+                new ObjectParameter("apellido2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteInsert", cedulaParameter, generoParameter, nombreParameter, correoParameter, provinciaParameter, cantonParameter, distritoParameter, fecha_nacimientoParameter, apellido1Parameter, apellido2Parameter);
         }
     
-        public virtual ObjectResult<pa_ClienteSelect_Result> pa_ClienteSelect(Nullable<int> id_cliente)
-        {
-            var id_clienteParameter = id_cliente.HasValue ?
-                new ObjectParameter("id_cliente", id_cliente) :
-                new ObjectParameter("id_cliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ClienteSelect_Result>("pa_ClienteSelect", id_clienteParameter);
-        }
-    
-        public virtual int pa_ClienteUpdate(Nullable<int> id_cliente, Nullable<int> cedula, string genero, string nombre, string correo, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito)
+        public virtual int pa_ClienteUpdate(Nullable<int> id_cliente, Nullable<int> cedula, string genero, Nullable<System.DateTime> fecha_nacimiento, string nombre, string apellido1, string apellido2, string correo, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito)
         {
             var id_clienteParameter = id_cliente.HasValue ?
                 new ObjectParameter("id_cliente", id_cliente) :
@@ -172,9 +182,21 @@ namespace SistemaLavado.Models
                 new ObjectParameter("genero", genero) :
                 new ObjectParameter("genero", typeof(string));
     
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
+    
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
+    
+            var apellido1Parameter = apellido1 != null ?
+                new ObjectParameter("apellido1", apellido1) :
+                new ObjectParameter("apellido1", typeof(string));
+    
+            var apellido2Parameter = apellido2 != null ?
+                new ObjectParameter("apellido2", apellido2) :
+                new ObjectParameter("apellido2", typeof(string));
     
             var correoParameter = correo != null ?
                 new ObjectParameter("correo", correo) :
@@ -192,7 +214,7 @@ namespace SistemaLavado.Models
                 new ObjectParameter("distrito", distrito) :
                 new ObjectParameter("distrito", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteUpdate", id_clienteParameter, cedulaParameter, generoParameter, nombreParameter, correoParameter, provinciaParameter, cantonParameter, distritoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteUpdate", id_clienteParameter, cedulaParameter, generoParameter, fecha_nacimientoParameter, nombreParameter, apellido1Parameter, apellido2Parameter, correoParameter, provinciaParameter, cantonParameter, distritoParameter);
         }
     
         public virtual int pa_DistritoDelete(Nullable<int> idDistrito, Nullable<int> idCanton)
@@ -348,21 +370,17 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FabricanteRetorna_Result>("pa_FabricanteRetorna");
         }
     
-        public virtual ObjectResult<pa_fabricanteSelect_Result> pa_fabricanteSelect(Nullable<int> id_codfabricante, Nullable<int> codigo, string pais)
+        public virtual ObjectResult<pa_fabricanteSelect_Result> pa_fabricanteSelect(Nullable<int> id, string pais)
         {
-            var id_codfabricanteParameter = id_codfabricante.HasValue ?
-                new ObjectParameter("id_codfabricante", id_codfabricante) :
-                new ObjectParameter("id_codfabricante", typeof(int));
-    
-            var codigoParameter = codigo.HasValue ?
-                new ObjectParameter("codigo", codigo) :
-                new ObjectParameter("codigo", typeof(int));
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
     
             var paisParameter = pais != null ?
                 new ObjectParameter("pais", pais) :
                 new ObjectParameter("pais", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_fabricanteSelect_Result>("pa_fabricanteSelect", id_codfabricanteParameter, codigoParameter, paisParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_fabricanteSelect_Result>("pa_fabricanteSelect", idParameter, paisParameter);
         }
     
         public virtual int pa_FacturaDetalleUpdate(Nullable<int> id_SerFac_Deta, Nullable<short> tipo_servicio, Nullable<decimal> cantidad_servicio, Nullable<decimal> precio_servicio)
@@ -422,6 +440,11 @@ namespace SistemaLavado.Models
                 new ObjectParameter("estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_FacturaEncabezadoUpdate", id_SerFac_EncaParameter, cedulaParameter, placaParameter, fechaParameter, monto_totalParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<pa_Marca_Vehiculo_Retorna_Result> pa_Marca_Vehiculo_Retorna()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Marca_Vehiculo_Retorna_Result>("pa_Marca_Vehiculo_Retorna");
         }
     
         public virtual int pa_ProvinciaDelete(Nullable<int> idProvincia)
@@ -556,196 +579,6 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ServicioProductoUpdate", id_codigoSPParameter, codigoParameter, descripcionParameter, precioParameter, tipoParameter);
         }
     
-        public virtual ObjectResult<pa_UsuariosSelect_Result> pa_UsuariosSelect(Nullable<int> idUsuarios)
-        {
-            var idUsuariosParameter = idUsuarios.HasValue ?
-                new ObjectParameter("idUsuarios", idUsuarios) :
-                new ObjectParameter("idUsuarios", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_UsuariosSelect_Result>("pa_UsuariosSelect", idUsuariosParameter);
-        }
-    
-        public virtual ObjectResult<RetornaCantones_Result> RetornaCantones(string nombre, Nullable<int> id_Provincia)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var id_ProvinciaParameter = id_Provincia.HasValue ?
-                new ObjectParameter("id_Provincia", id_Provincia) :
-                new ObjectParameter("id_Provincia", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaCantones_Result>("RetornaCantones", nombreParameter, id_ProvinciaParameter);
-        }
-    
-        public virtual ObjectResult<RetornaCantonesID_Result> RetornaCantonesID(Nullable<int> id_Canton)
-        {
-            var id_CantonParameter = id_Canton.HasValue ?
-                new ObjectParameter("id_Canton", id_Canton) :
-                new ObjectParameter("id_Canton", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaCantonesID_Result>("RetornaCantonesID", id_CantonParameter);
-        }
-    
-        public virtual ObjectResult<RetornaProvincias_Result> RetornaProvincias(string nombre)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaProvincias_Result>("RetornaProvincias", nombreParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_EliminaCanton(Nullable<int> id_Canton)
-        {
-            var id_CantonParameter = id_Canton.HasValue ?
-                new ObjectParameter("id_Canton", id_Canton) :
-                new ObjectParameter("id_Canton", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaCanton", id_CantonParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_InsertaCanton(Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
-        {
-            var id_ProvinciaParameter = id_Provincia.HasValue ?
-                new ObjectParameter("id_Provincia", id_Provincia) :
-                new ObjectParameter("id_Provincia", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var id_CantonInecParameter = id_CantonInec.HasValue ?
-                new ObjectParameter("id_CantonInec", id_CantonInec) :
-                new ObjectParameter("id_CantonInec", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCanton", id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
-        }
-    
-        public virtual int sp_ModificaCanton(Nullable<int> id_Canton, Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
-        {
-            var id_CantonParameter = id_Canton.HasValue ?
-                new ObjectParameter("id_Canton", id_Canton) :
-                new ObjectParameter("id_Canton", typeof(int));
-    
-            var id_ProvinciaParameter = id_Provincia.HasValue ?
-                new ObjectParameter("id_Provincia", id_Provincia) :
-                new ObjectParameter("id_Provincia", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var id_CantonInecParameter = id_CantonInec.HasValue ?
-                new ObjectParameter("id_CantonInec", id_CantonInec) :
-                new ObjectParameter("id_CantonInec", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCanton", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
         public virtual ObjectResult<pa_TipoVehiculo_Retorna_ID_Result> pa_TipoVehiculo_Retorna_ID(Nullable<int> id_codigoTV)
         {
             var id_codigoTVParameter = id_codigoTV.HasValue ?
@@ -794,9 +627,138 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_TipoVehiculoModifica", id_codigoTVParameter, codigoParameter, tipoParameter);
         }
     
-        public virtual ObjectResult<pa_TipoVehiculoRetorna_Result> pa_TipoVehiculoRetorna()
+        public virtual ObjectResult<pa_TipoVehiculoRetorna_Result> pa_TipoVehiculoRetorna(Nullable<int> id, string tipo)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoRetorna_Result>("pa_TipoVehiculoRetorna");
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoRetorna_Result>("pa_TipoVehiculoRetorna", idParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_UsuariosSelect_Result> pa_UsuariosSelect(Nullable<int> idUsuarios)
+        {
+            var idUsuariosParameter = idUsuarios.HasValue ?
+                new ObjectParameter("idUsuarios", idUsuarios) :
+                new ObjectParameter("idUsuarios", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_UsuariosSelect_Result>("pa_UsuariosSelect", idUsuariosParameter);
+        }
+    
+        public virtual ObjectResult<RetornaCantones_Result> RetornaCantones(string nombre, Nullable<int> id_Provincia)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var id_ProvinciaParameter = id_Provincia.HasValue ?
+                new ObjectParameter("id_Provincia", id_Provincia) :
+                new ObjectParameter("id_Provincia", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaCantones_Result>("RetornaCantones", nombreParameter, id_ProvinciaParameter);
+        }
+    
+        public virtual ObjectResult<RetornaCantonesID_Result> RetornaCantonesID(Nullable<int> id_Canton)
+        {
+            var id_CantonParameter = id_Canton.HasValue ?
+                new ObjectParameter("id_Canton", id_Canton) :
+                new ObjectParameter("id_Canton", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaCantonesID_Result>("RetornaCantonesID", id_CantonParameter);
+        }
+    
+        public virtual ObjectResult<RetornaProvincias_Result> RetornaProvincias(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaProvincias_Result>("RetornaProvincias", nombreParameter);
+        }
+    
+        public virtual int sp_EliminaCanton(Nullable<int> id_Canton)
+        {
+            var id_CantonParameter = id_Canton.HasValue ?
+                new ObjectParameter("id_Canton", id_Canton) :
+                new ObjectParameter("id_Canton", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaCanton", id_CantonParameter);
+        }
+    
+        public virtual int sp_InsertaCanton(Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
+        {
+            var id_ProvinciaParameter = id_Provincia.HasValue ?
+                new ObjectParameter("id_Provincia", id_Provincia) :
+                new ObjectParameter("id_Provincia", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var id_CantonInecParameter = id_CantonInec.HasValue ?
+                new ObjectParameter("id_CantonInec", id_CantonInec) :
+                new ObjectParameter("id_CantonInec", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertaCanton", id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
+        }
+    
+        public virtual int sp_ModificaCanton(Nullable<int> id_Canton, Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
+        {
+            var id_CantonParameter = id_Canton.HasValue ?
+                new ObjectParameter("id_Canton", id_Canton) :
+                new ObjectParameter("id_Canton", typeof(int));
+    
+            var id_ProvinciaParameter = id_Provincia.HasValue ?
+                new ObjectParameter("id_Provincia", id_Provincia) :
+                new ObjectParameter("id_Provincia", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var id_CantonInecParameter = id_CantonInec.HasValue ?
+                new ObjectParameter("id_CantonInec", id_CantonInec) :
+                new ObjectParameter("id_CantonInec", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCanton", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
+        }
+    
+        public virtual ObjectResult<pa_ClienteSelect_Result> pa_ClienteSelect(Nullable<int> id_cliente)
+        {
+            var id_clienteParameter = id_cliente.HasValue ?
+                new ObjectParameter("id_cliente", id_cliente) :
+                new ObjectParameter("id_cliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ClienteSelect_Result>("pa_ClienteSelect", id_clienteParameter);
+        }
+    
+        public virtual int pa_UsuarioInsert(Nullable<int> id_usuario, string correo, string contrasena, string tipo, Nullable<System.DateTime> ultimaFecha)
+        {
+            var id_usuarioParameter = id_usuario.HasValue ?
+                new ObjectParameter("id_usuario", id_usuario) :
+                new ObjectParameter("id_usuario", typeof(int));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("correo", correo) :
+                new ObjectParameter("correo", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(string));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(string));
+    
+            var ultimaFechaParameter = ultimaFecha.HasValue ?
+                new ObjectParameter("ultimaFecha", ultimaFecha) :
+                new ObjectParameter("ultimaFecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_UsuarioInsert", id_usuarioParameter, correoParameter, contrasenaParameter, tipoParameter, ultimaFechaParameter);
         }
     }
 }

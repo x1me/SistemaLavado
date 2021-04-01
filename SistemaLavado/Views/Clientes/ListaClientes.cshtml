@@ -1,4 +1,4 @@
-﻿@model List<SistemaLavado.Models.pa_ClienteSelect_Result>
+﻿@model List<SistemaLavado.Models.ClientePersonalizado>
 @{
     ViewBag.Title = "ListaClientes";
 }
@@ -24,14 +24,23 @@
         }
     }
     <div class="table">
-        <div class="container-header">
-            <a href="/Clientes/agregar" class="btn btn-success">Nuevo Cliente</a>
-        </div>
+        @{
+            string tipo = Session["role"] as string;
+
+            if (tipo == "a")
+            {
+                <div class="container-header">
+                    <a href="/Clientes/agregar" class="btn btn-success">Nuevo Cliente</a>
+                </div>
+            }
+        }
+
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Cedula</th>
                     <th>Nombre</th>
+                    <th>Fecha Nacimiento</th>
                     <th>Género</th>
                     <th>Provincia</th>
                     <th>Cantón</th>
@@ -40,18 +49,26 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach (var cl in Model)
                 {
                     <tr>
                         <td>@cl.cedula</td>
-                        <td>@cl.nombre</td>
+                        <td>@cl.nombre &nbsp; @cl.apellido1 &nbsp; @cl.apellido2</td>
+                        <td>@cl.fecha_nacimiento</td>
                         <td>@cl.genero</td>
                         <td>@cl.provincia</td>
                         <td>@cl.canton</td>
                         <td>@cl.distrito</td>
+
                         <td>
-                            <a class="btn btn-link" href="/Clientes/agregar?id=@cl.id_cliente">Editar</a>
-                            <a class="btn btn-link" href="/Clientes/eliminar?id=@cl.id_cliente">Eliminar</a>
+                            <a class="btn btn-link" href="/Clientes/agregar?id=@cl.id">Editar</a>
+                            @{
+                                if (tipo == "a")
+                                {
+                                    <a class="btn btn-link" href="/Clientes/eliminar?id=@cl.id">Eliminar</a>
+                                }
+                            }
                         </td>
                     </tr>
                 }

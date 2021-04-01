@@ -16,7 +16,10 @@ namespace SistemaLavado.Models
     {
         public int id_codigoMarcaV { get; set; }
         public Nullable<short> codigo { get; set; }
-        public string tipo { get; set; }
-        public string fabricante { get; set; }
+        public Nullable<int> fabricante { get; set; }
+        public Nullable<int> tipo { get; set; }
+    
+        public virtual Fabricante Fabricante1 { get; set; }
+        public virtual TipoVehiculo TipoVehiculo { get; set; }
     }
 }

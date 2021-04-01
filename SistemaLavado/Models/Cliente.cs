@@ -27,6 +27,9 @@ namespace SistemaLavado.Models
         public Nullable<int> provincia { get; set; }
         public Nullable<int> canton { get; set; }
         public Nullable<int> distrito { get; set; }
+        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+        public string apellido1 { get; set; }
+        public string apellido2 { get; set; }
     
         public virtual Canton Canton1 { get; set; }
         public virtual Distrito Distrito1 { get; set; }

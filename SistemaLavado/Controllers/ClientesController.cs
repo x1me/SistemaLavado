@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SistemaLavado.Models;
+using SistemaLavado.Clases;
 
 namespace SistemaLavado.Controllers
 {
@@ -14,10 +15,32 @@ namespace SistemaLavado.Controllers
         [HttpGet, ActionName("index")]
         public ActionResult ListaClientes()
         {
-            ViewBag.tipo = Session["role"] as string;
+            string tipoUsuario = Session["role"] as string;
+            int? idCliente = Session["idCliente"] as Nullable<int>;
+            ViewBag.tipo = tipoUsuario;
             var cliente = db.pa_ClienteSelect(null).ToList();
-            return View("ListaClientes", cliente);
-            
+            if (tipoUsuario != "a")
+            {
+                cliente = db.pa_ClienteSelect(idCliente).ToList();
+            }
+            var modelo = (from i in cliente
+                          select new ClientePersonalizado()
+                          {
+                              id = i.id_cliente,
+                              cedula = i.cedula,
+                              nombre = i.nombre,
+                              apellido1 = i.apellido1,
+                              apellido2 = i.apellido2,
+                              fecha_nacimiento = (DateTime)i.fecha_nacimiento,
+                              genero = i.genero,
+                              correo = i.correo,
+                              provincia = (from pt in db.Provincia where pt.id_Provincia == i.provincia select pt.nombre).FirstOrDefault(),
+                              canton = (from ct in db.Canton where ct.id_Canton == i.canton select ct.nombre).FirstOrDefault(),
+                              distrito = (from ds in db.Distrito where ds.id_Distrito == i.distrito select ds.nombre).FirstOrDefault(),
+                          }
+                          ).ToList();
+            return View("ListaClientes", modelo);
+
         }
 
         [ActionName("agregar")]
@@ -36,7 +59,7 @@ namespace SistemaLavado.Controllers
             return View("AgregarNuevoCliente", cliente);
         }
 
-        [ActionName("modificar")]
+        [ActionName("agregar")]
         [HttpPost]
         public ActionResult AgregarNuevoCliente(Cliente model)
         {
@@ -47,8 +70,10 @@ namespace SistemaLavado.Controllers
                 if (model.id_cliente > 0)
                 {
                     resultado = db.pa_ClienteUpdate(model.id_cliente, model.cedula,
-                                                    model.genero, model.nombre, model.correo,
-                                                    model.provincia, model.canton, model.distrito);
+                                                        model.genero, model.fecha_nacimiento,
+                                                        model.nombre, model.apellido1, model.apellido2,
+                                                        model.correo, model.provincia, model.canton,
+                                                        model.distrito);
                     mensaje = "Registro modificado";
                 }
                 else
@@ -57,15 +82,30 @@ namespace SistemaLavado.Controllers
                     existe = db.Cliente.Where(e => e.cedula == model.cedula).Count();
                     if (existe == 0)
                     { // Si no existe se inserta
-                        resultado = db.pa_ClienteInsert(null, model.cedula, model.genero,
-                                                        model.nombre, model.correo, model.provincia,
-                                                        model.canton, model.distrito);
+                        resultado = db.pa_ClienteInsert(model.cedula, model.genero,
+                                                        model.nombre, model.correo,
+                                                        model.provincia, model.canton,
+                                                        model.distrito, model.fecha_nacimiento,
+                                                        model.apellido1, model.apellido2);
+                        if (resultado > 0)
+                        {
+                            new Correo(model.correo).EnviaCorreo(model.nombre, model.apellido1, model.apellido2);
+                            var idCliente = db.Cliente.Where(e => e.cedula == model.cedula).Select(e => e.id_cliente).FirstOrDefault();
+                            db.pa_UsuarioInsert(idCliente, model.correo, model.cedula.ToString(), "u", DateTime.Now);
+                        }
                     }
                     mensaje = "El registro ya existe!";
 
                 }
-                TempData["respuesta"] = new { existe = (existe > 0), mensaje };
-                return RedirectToAction("index");
+                ViewData["respuesta"] = new { existe = (existe > 0), mensaje };
+                if (resultado > 0)
+                {
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    return View(model.id_cliente);
+                }
             }
             catch (Exception error)
             {

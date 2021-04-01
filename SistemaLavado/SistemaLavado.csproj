@@ -47,6 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -128,122 +129,121 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Clases\Correo.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoFabricanteController.cs" />
     <Compile Include="Controllers\MantenimientoTipoDeVehiculosController.cs" />
+    <Compile Include="Controllers\MarcasDeVehiculoController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
+    <Compile Include="Controllers\Servicios_ProductosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Canton.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClientePersonalizado.cs" />
     <Compile Include="Models\Distrito.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fabricante.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MarcaVehiculo.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEntities.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Mensaje.cs" />
     <Compile Include="Models\pa_CantonSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ClienteSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_DistritoSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_FabricanteRetorna_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_fabricanteSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_Fabricante_Retorna_ID_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_FacturaEncabezadoSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_Marca_Vehiculo_Retorna_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ProvinciaSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_TipoVehiculoRetorna_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_TipoVehiculo_Retorna_ID_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Provincia.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaCantonesID_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaCantones_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaProvincias_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicioProducto.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Detalle.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Encabezado.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+    <Compile Include="Models\Sistema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sistema.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+    <Compile Include="Models\Sistema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+    <Compile Include="Models\Sistema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sistema.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoVehiculo.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuarios.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vehiculo.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VehiculoCliente.cs">
-      <DependentUpon>ModelEntities.tt</DependentUpon>
+      <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -252,22 +252,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ModelEntities.Context.tt">
+    <Content Include="Models\Sistema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEntities.edmx</DependentUpon>
-      <LastGenOutput>ModelEntities.Context.cs</LastGenOutput>
+      <DependentUpon>Sistema.edmx</DependentUpon>
+      <LastGenOutput>Sistema.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelEntities.tt">
+    <Content Include="Models\Sistema.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelEntities.edmx</DependentUpon>
-      <LastGenOutput>ModelEntities.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\ModelEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelEntities.edmx.diagram">
-      <DependentUpon>ModelEntities.edmx</DependentUpon>
+      <DependentUpon>Sistema.edmx</DependentUpon>
+      <LastGenOutput>Sistema.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -280,6 +273,13 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="FaltantesMantenimiento.docx" />
+    <EntityDeploy Include="Models\Sistema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Sistema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Sistema.edmx.diagram">
+      <DependentUpon>Sistema.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -405,10 +405,14 @@
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Views\Clientes\ListaClientes.cshtml" />
     <Content Include="Views\Clientes\AgregarNuevoCliente.cshtml" />
+    <Content Include="Views\MarcasDeVehiculo\ListaMarcas.cshtml" />
+    <Content Include="Views\MarcasDeVehiculo\EditarAgregar.cshtml" />
+    <Content Include="Views\Login\AgregarNuevoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faltante\" />
+    <Folder Include="Views\Servicios_Productos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

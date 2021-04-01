@@ -33,6 +33,7 @@
                                             <a class="dropdown-item" href="/Clientes/agregar">Nuevo Cliente</a>
                                         </div>
                                     </li>
+
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Pais Fabricante
@@ -42,6 +43,7 @@
                                             <a class="dropdown-item" href="@Url.Action("InsertarFabricante", "MantenimientoFabricante")">Nuevo Fabricante</a>
                                         </div>
                                     </li>
+
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Tipo de Vehiculo
@@ -51,35 +53,22 @@
                                             <a class="dropdown-item" href="/MantenimientoTipoDeVehiculos/InsertarTipoVehiculo">Nuevo Vehiculo</a>
                                         </div>
                                     </li>
+
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Mantenimientos
+                                            Marcas de vehiculo
                                         </a>
-
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <a class="dropdown-item" href='@Url.Action("ListaMarcas", "MarcasDeVehiculo")'>ListarMarcas</a>
+                                            <a class="dropdown-item" href='@Url.Action("agregar", "MarcasDeVehiculo")'>Nueva Marca</a>
+
                                         </div>
-                                    </li>
-
-
-                                    <li class="btn btn-dark">
-                                        <a href="/Clientes/index" >prueba para hacerbotones</a>
                                     </li>
                                 }
                                 else
                                 {
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Mantenimientos
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </li>
+                                    <a class="navbar-brand" href="/Clientes/index">Datos Personales</a>
+                                 
 
                                 }
                             }

@@ -1,6 +1,6 @@
 ﻿<div>
-    
-        @{
+@*
+    @{
             ViewBag.Title = "InsertarFabricante";
         }
 
@@ -34,26 +34,29 @@
             @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
             @Scripts.Render("~/scripts/ValidacionesGenericas.js")
         }
-    
+    *@
 </div>@*Codigo viejo*@
 
-@*
+
 @model SistemaLavado.Models.Fabricante
 @{
-    ViewBag.Title = "InsertarFabricante";
+    ViewBag.Title = "ModeloVista";
 }
 <form method="post" action="@Url.Action("agregar")">
-    
+    <h2>Agregar Pais Fabricante</h2>
+    <br />
+    <p>Agrega un pais con su respectivo código</p>
+    <br />
     <div class="form-group">
         <label>Código</label>
-        <input type="text" value="@Model.codigo" name="cedula" class="form-control" />
+        <input type="text" value="" name="cedula" class="form-control" />
     </div>
     <div class="form-group">
         <label>Pais</label>
-        <input type="text" value="@Model.pais" name="nombre" class="form-control" />
+        <input type="text" value="" name="nombre" class="form-control" />
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success">Agregar</button>
     </div>
 </form>
-    *@
+    

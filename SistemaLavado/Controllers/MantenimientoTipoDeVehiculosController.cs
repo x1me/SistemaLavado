@@ -9,7 +9,7 @@ namespace SistemaLavado.Controllers
 {
     public class MantenimientoTipoDeVehiculosController : Controller
     {
-        sistemacontrolEntities ModeloBD = new sistemacontrolEntities();
+        sistemacontrolEntities bd = new sistemacontrolEntities();
         // GET: MantenimientoTipoDeVehiculos
         public ActionResult Index()
         {
@@ -17,14 +17,14 @@ namespace SistemaLavado.Controllers
         }
         public ActionResult ListaTipoVehiculo()
         {
-            ViewBag.tipo = Session["role"] as string;
-            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.ModeloBD.pa_TipoVehiculoRetorna().ToList();
-            return View(ModeloVista);
+            ViewBag.tipo = Session["role"] as string;            
+           var TipoVehiculo = bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();/*nuevo*/
+            return View();
         }
         public ActionResult InsertarTipoVehiculo()
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.ModeloBD.pa_TipoVehiculoRetorna().ToList();
+            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();
             return View();
         }
 
@@ -39,7 +39,7 @@ namespace SistemaLavado.Controllers
             try
             {
                 cantRegistrosAfectados =
-                    this.ModeloBD.pa_TipoVehiculoInsert(
+                    this.bd.pa_TipoVehiculoInsert(
                         objModeloVista.codigo,
                         objModeloVista.tipo);
             }
@@ -69,7 +69,7 @@ namespace SistemaLavado.Controllers
         public ActionResult ModificarTipoVehiculo(int id_codigoTV)
         {
             pa_TipoVehiculo_Retorna_ID_Result ModeloVista = new pa_TipoVehiculo_Retorna_ID_Result();
-            ModeloVista = this.ModeloBD.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
+            ModeloVista = this.bd.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
             return View(ModeloVista);
         }
 
@@ -84,7 +84,7 @@ namespace SistemaLavado.Controllers
             try
             {
                 cantRegistrosAfectados =
-                    this.ModeloBD.pa_TipoVehiculoModifica(
+                    this.bd.pa_TipoVehiculoModifica(
                         objModeloVista.id_codigoTV,
                         objModeloVista.codigo,
                         objModeloVista.tipo);
@@ -112,7 +112,7 @@ namespace SistemaLavado.Controllers
         public ActionResult EliminarTipoVehiculo(int id_codigoTV)
         {
             pa_TipoVehiculo_Retorna_ID_Result ModeloVista = new pa_TipoVehiculo_Retorna_ID_Result();
-            ModeloVista = this.ModeloBD.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
+            ModeloVista = this.bd.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
             return View(ModeloVista);
         }
 
@@ -127,7 +127,7 @@ namespace SistemaLavado.Controllers
             try
             {
                 cantRegistrosAfectados =
-                    this.ModeloBD.pa_TipoVehiculoDelete(
+                    this.bd.pa_TipoVehiculoDelete(
                         objModeloVista.id_codigoTV
                                 );
             }

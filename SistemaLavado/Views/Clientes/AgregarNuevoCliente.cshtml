@@ -14,11 +14,23 @@
         <input type="text" value="@Model.nombre" name="nombre" class="form-control" />
     </div>
     <div class="form-group">
+        <label>Primer Apellido</label>
+        <input type="text" value="@Model.apellido1" name="apellido1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Segundo Apellido</label>
+        <input type="text" value="@Model.apellido2" name="apellido2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Fecha de Nacimiento</label>
+        <input type="date" value="@Model.fecha_nacimiento" name="fecha_nacimiento" class="form-control" />
+    </div>
+    <div class="form-group">
         <label>Correo Electrónico</label>
         <input type="email" value="@Model.correo" name="correo" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Porvincia</label>
+        <label>Provincia</label>
         <select class="form-control" name="provincia">
             @foreach (var provincia in ViewBag.provincias)
             {
@@ -50,6 +62,16 @@
             <option value="h">Masculino</option>
             <option value="m">Femenino</option>
         </select>
+    </div>
+    @*  contraseña
+        tipo
+        correo
+        validar contraseña y cedula que no sean iguales
+        mantener la informacion almacenada de la persona
+        validar fecha en blanco
+        *@
+    <div class="form-group">
+
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success">Agregar</button>

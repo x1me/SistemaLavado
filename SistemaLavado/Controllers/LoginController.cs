@@ -10,11 +10,6 @@ namespace SistemaLavado.Controllers
     public class LoginController : Controller
     {
         sistemacontrolEntities BD_Login = new sistemacontrolEntities();
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ActionResult Login()
@@ -22,6 +17,7 @@ namespace SistemaLavado.Controllers
             return View();
 
         }
+
         [HttpPost]
         public ActionResult Login(usuarios usuario)
         {
@@ -50,12 +46,15 @@ namespace SistemaLavado.Controllers
                         Session["nombre"] = cliente.nombre;
                         Session["role"] = _usuario.tipo;
                         Session["ultima"] = _usuario.ultima;
+                        Session["idCliente"] = cliente.id_cliente;
                     }
                     else
                     {
                         Session["nombre"] = cliente.nombre;
                         Session["role"] = _usuario.tipo;
                         Session["ultima"] = _usuario.ultima;
+                        Session["idCliente"] = cliente.id_cliente;
+
                     }
                     return RedirectToAction("PaginaPrincipal", "Principal");
                 }
@@ -72,6 +71,24 @@ namespace SistemaLavado.Controllers
             }
             return View(usuario);
         }
+        [HttpGet]
+        public ActionResult AgregarNuevoUsuario(int? id)
+        {
+            ViewBag.tipo = Session["role"] as string;
+            Cliente cliente = new Cliente();
+            ViewBag.provincias = BD_Login.pa_ProvinciaSelect(null, null).ToList();
+            ViewBag.cantones = BD_Login.pa_CantonSelect(null, null).ToList();
+            ViewBag.distritos = BD_Login.pa_DistritoSelect(null).ToList();
+            if (id > 0)
+            {
+                cliente = BD_Login.Cliente.Where(e => e.id_cliente == id).FirstOrDefault();
+            }
+            return View();
+        }
+       
+        
+
     }
+    
 
 }

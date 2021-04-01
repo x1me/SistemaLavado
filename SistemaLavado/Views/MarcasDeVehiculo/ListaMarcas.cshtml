@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ListaMarcas";
+}
+
+<h2>ListaMarcas</h2>
+
+<div class="table-container">
+    <h2>Lista De Los Fabricantes</h2>
+    <br />
+    <p>Esta lista abarca las marcas de los vehiculos</p>
+    <br />
+    @{
+        if (ViewData["mensaje"] != null)
+        {
+            var mensaje = (SistemaLavado.Models.Mensaje)ViewData["mensaje"];
+
+            <div class="alert @(mensaje.estado?"alert-success":"alert-danger")">
+                @(mensaje.estado?mensaje.confirmacion:mensaje.error)
+            </div>
+        }
+    }
+    <div class="table">
+        <div class="container-header">
+            <a href="~/MarcasDeVehiculo/ListaMarcas" class="btn btn-success">Marca de Vehiculo</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código </th>
+                    <th>Tipo </th>
+                    <th>Pais</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var MarcaVehiculo in this.Model)
+                {
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
