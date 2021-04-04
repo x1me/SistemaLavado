@@ -35,7 +35,6 @@ function crearTabla(datos) {
             pageSizes: true,
             buttonCount: 5,
         },
-        window.open($(e.item).find("a.k-link").first().attr("href"), e.item.getAttribute("target"));
         columns: [
             {
                 field: "nombre",
@@ -74,44 +73,7 @@ function crearTabla(datos) {
             {
                 field: "distrito",
                 title: "Distrito",
-            },
-            {
-                
-                command: "edit",
-                title: "Action",
-
-
-             ///   url: "/Clientes/agregar?id=@Model.id_cliente",
-               /// title: "Editar/View", ,
             }
-        ],
-        schema: {
-            model: {
-                id: "id_cliente",
-                fields: {
-                    nombre: { type: "text" },
-                    age: { type: "number" },
-                    age: { type: "number" },
-
-                }
-            }
-        }
-       
+        ]
     });
-}/*
-(function CrearDialog() {
-    const abrir = function (res) {
-        $("#dialog").html(res);
-        $("#dialog").dialog({ autoOpen: false });
-        $("#dialog").dialog("open");
-
-        peticion("/Clientes/listar");
-        creaEventos();
-    }
-    $("#btndialog").on("click", function () {
-        peticion("/Clientes/agregar?id=@Model.id_cliente", abrir, "get", "html");
-    });
-})();*/
-      
-   
-   
+}

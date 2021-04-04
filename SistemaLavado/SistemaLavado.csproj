@@ -252,13 +252,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagenes\car1.jpg" />
-    <Content Include="Imagenes\car2.jpg" />
-    <Content Include="Imagenes\car3.jpg" />
-    <Content Include="Imagenes\car4.jpg" />
-    <Content Include="Imagenes\car5.png" />
-    <Content Include="Imagenes\car6.png" />
-    <Content Include="Imagenes\car7.jpg" />
     <Content Include="Models\Sistema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Sistema.edmx</DependentUpon>
@@ -269,7 +262,6 @@
       <DependentUpon>Sistema.edmx</DependentUpon>
       <LastGenOutput>Sistema.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\DiseñoPagina\PaginaPrincipal.css" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
