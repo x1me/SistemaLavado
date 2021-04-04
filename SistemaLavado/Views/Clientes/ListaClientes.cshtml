@@ -5,54 +5,60 @@
 
 <div class="table-container">
     <h2>Lista De Clientes</h2>
+    <div ckass="jumbotron">
 
+
+    </div>
     <div id="ListaKendo"></div>
-
+    <button id="btndialog"></button>
+    
     <div class="table-container">
         @{ if ((TempData["respuesta"] as object) != null)
             {
                 var respuesta = TempData["respuesta"]; @*if (respuesta.existe)
-                                {
-                        <div class="alert alert-success">@respuesta.mensaje</div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-success">@respuesta.mensaje</div>
+                                    {
+                            <div class="alert alert-success">@respuesta.mensaje</div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-success">@respuesta.mensaje</div>
 
-                }*@ } }
+                    }*@ } }
         @*  <div class="table">
-            <div class="container-header">
-                <a href="/Clientes/agregar" class="btn btn-success">Añadir</a>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Cedula</th>
-                        <th>Nombre</th>
-                        <th>Género</th>
-                        <th>Provincia</th>
-                        <th>Cantón</th>
-                        <th>Distrito</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var cl in Model)
-                    {
-        <tr>
-            <td>@cl.cedula</td>
-            <td>@cl.nombre</td>
-            <td>@cl.genero</td>
-            <td>@cl.provincia</td>
-            <td>@cl.canton</td>
-            <td>@cl.distrito</td>
-            <td>
+                <div class="container-header">
+                    <a href="/Clientes/agregar" class="btn btn-success">Añadir</a>
                 <a class="btn btn-link" href="/Clientes/agregar?id=@cl.id_cliente">Editar</a>
-                <a class="btn btn-link" href="/Clientes/eliminar?id=@cl.id_cliente">Eliminar</a>
-            </td>
-        </tr>}
-                </tbody>
-            </table>
-        </div>*@
+                    <a class="btn btn-link" href="/Clientes/eliminar?id=@cl.id_cliente">Eliminar</a>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Cedula</th>
+                            <th>Nombre</th>
+                            <th>Género</th>
+                            <th>Provincia</th>
+                            <th>Cantón</th>
+                            <th>Distrito</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cl in Model)
+                        {
+            <tr>
+                <td>@cl.cedula</td>
+                <td>@cl.nombre</td>
+                <td>@cl.genero</td>
+                <td>@cl.provincia</td>
+                <td>@cl.canton</td>
+                <td>@cl.distrito</td>
+                <td>
+                    <a class="btn btn-link" href="/Clientes/agregar?id=@cl.id_cliente">Editar</a>
+                    <a class="btn btn-link" href="/Clientes/eliminar?id=@cl.id_cliente">Eliminar</a>
+                </td>
+            </tr>}
+                    </tbody>
+                </table>
+            </div>*@
     </div>
-    </div>
+</div>
