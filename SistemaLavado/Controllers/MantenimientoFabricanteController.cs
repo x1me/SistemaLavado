@@ -10,13 +10,17 @@ namespace SistemaLavado.Controllers
     public class MantenimientoFabricanteController : Controller
     {
         sistemacontrolEntities bd = new sistemacontrolEntities();
-        // GET: Mantenimiento
+        public ActionResult Index()
+        {
+            return View("ListaFabricante");
+        }
 
+        [HttpGet, ActionName("listar")]
         public ActionResult ListaFabricante()
         {
             ViewBag.tipo = Session["role"] as string;
             List<pa_FabricanteRetorna_Result> ModeloVista = this.bd.pa_FabricanteRetorna().ToList();
-            return View(ModeloVista);
+            return Json(ModeloVista, JsonRequestBehavior.AllowGet);
         }
 
         [ActionName("agregaroeditar")]

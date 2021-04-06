@@ -19,7 +19,7 @@ namespace SistemaLavado.Controllers
 
         [HttpGet, ActionName("listar")]
         public ActionResult ListaClientes()
-        {
+        {   
             string tipoUsuario = Session["role"] as string;
             int? idCliente = Session["idCliente"] as Nullable<int>;
             ViewBag.tipo = tipoUsuario;

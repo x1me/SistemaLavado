@@ -1,6 +1,5 @@
 ﻿$(function () {
     peticion("/Clientes/listar", crearTabla);
-
 })
 
 function peticion(url, callback = null, metodo = "get", dataType = "json", datos = null) {
