@@ -38,6 +38,7 @@ function crearTabla(datos) {
             {
                 field: "codigo",
                 title: "Codigo "
+                   
             },
             {
                 field: "pais",
@@ -46,7 +47,7 @@ function crearTabla(datos) {
             {
                 field:"Editar",
                 title: "Editar",
-                template: "<button class='btn btn- lg btn - primary' <button onclick='modificar()'>Editar</button>"
+                template: "<button class='btn btn- lg btn - primary' <button onclick='modificar(codigo)'>Editar</button>"
             },
             {
                 field: "Eliminar",
@@ -54,5 +55,16 @@ function crearTabla(datos) {
                 template: "<button class='btn btn- lg btn - primary' <button onclick='eliminar()'>Eliminar</button>"
             },
         ]
+        
     });
+}
+function modificar(codigo) {
+    var codigo = $(this).data('codigo');
+    if (codigo != undefined && codigo != null) {
+        window.location.href = "/MantenimientoFabricante/agregaroeditar?id=" + codigo;
+    }    
+    var grid = $("#ListaFabricante").data(datos);
+    var selectedItem = grid.dataItem(grid.select());
+    $("#codigo").val(selectedItem.codigo);
+    $("#pais").val(selectedItem.pais);
 }
