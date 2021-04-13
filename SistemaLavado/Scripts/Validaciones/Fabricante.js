@@ -49,7 +49,8 @@ function crearTabla(datos) {
                 field: "pais",
                 title: " País"
             },
-            { command:"edit", title: "Editar", width: "250px" }
+            { command: "edit", title: "Editar", width: "250px" },
+            { command: "destroy", title: "Eliminar", width: "250px" }
         ],
         dataSource: {
             transport: {
@@ -59,6 +60,10 @@ function crearTabla(datos) {
                 update: {
                     url: "/MantenimientoFabricante/agregaroeditar",
                     type: "POST",
+                },
+                destroy: {
+                    url: "/MantenimientoFabricante/EliminaFabricante",
+                    
                 },
             },/*
             parameterMap: function (options, operation) {
