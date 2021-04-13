@@ -13,13 +13,15 @@ namespace SistemaLavado.Controllers
         // GET: MantenimientoTipoDeVehiculos
         public ActionResult Index()
         {
-            return View();
+            return View("ListaTipoVehiculo");
         }
+        [HttpGet, ActionName("listar")]
         public ActionResult ListaTipoVehiculo()
         {
-            ViewBag.tipo = Session["role"] as string;            
-           var TipoVehiculo = bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();/*nuevo*/
-            return View();
+            ViewBag.tipo = Session["role"] as string;
+            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(null, null).ToList();
+           ///var TipoVehiculo = bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();/*nuevo*/
+            return Json(ModeloVista, JsonRequestBehavior.AllowGet);
         }
         public ActionResult InsertarTipoVehiculo()
         {

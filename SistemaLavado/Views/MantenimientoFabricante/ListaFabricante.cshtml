@@ -4,39 +4,9 @@
 }
 
 
-<div class="table-container">
+<body>
     <h2>Lista De Los Fabricantes</h2>
     <div id="ListaFabricante"></div>
-
-        @*
-            <br />
-            <p>Esta lista abarca todos los paises con sus respectivos códigos</p>
-            <br />
-            <a href="~/MantenimientoFabricante/InsertarFabricante">Nuevo Fabricante</a>
-            <br />
-            <table class="table">
-                <tr>
-                    <th>Código </th>
-                    <th>Pais</th>
-
-                </tr>
-                @{
-                    foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
-                    {
-                        <tr>
-                            <td>@PosicionModelo.codigo</td>
-                            <td>@PosicionModelo.pais</td>
-                            <td>
-                                <a href="~/MantenimientoFabricante/ModificaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Modificar</a>
-                                <br />
-                                <a href="~/MantenimientoFabricante/EliminaFabricante?id_codfabricante=@PosicionModelo.id_codfabricante">Eliminar</a>
-                            </td>
-                        </tr>
-                    }
-                }
-            </table>*@
-    </div> @*Div oculto codigo anterior*@
-
     <div class="contenedor-tabla" style="width: 90%; margin: 2rem auto 0 auto">
         @if (TempData["mensaje"] != null)
         {
@@ -50,38 +20,6 @@
                 </button>
             </div>
         }
-        @*
-                <div class="cuerpo-tabla">
-                    <a href="/MantenimientoFabricante/agregaroeditar" class="btn btn-success mb-3">Nuevo Fabricante</a>
-                    @*<div class="encabezado-tabla p-0">
-                        <h3 class="text-black-50">Lista De Los Fabricantes</h3>
-                    </div>
-            <table class="table table-bordered table-hover mt-3">
-                <caption>Esta lista abarca todos los paises con sus respectivos códigos</caption>
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Código </th>
-                        <th>Pais</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (SistemaLavado.Models.pa_FabricanteRetorna_Result PosicionModelo in this.Model)
-                    {
-                        <tr>
-                            <td>@PosicionModelo.codigo</td>
-                            <td>@PosicionModelo.pais</td>
-                            <td>
-                                <div class="d-flex">
-                                    <a class="mr-3" href="/MantenimientoFabricante/agregaroeditar?id=@PosicionModelo.id_codfabricante">Modificar</a>
-                                    |
-                                    <a class="ml-3" href="/MantenimientoFabricante/EliminaFabricante?id=@PosicionModelo.id_codfabricante">Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>*@
+    </div>
+</body>
 
-
-</div>

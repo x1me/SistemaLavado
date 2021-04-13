@@ -65,15 +65,7 @@ function crearTabla(datos) {
                     url: "/MantenimientoFabricante/EliminaFabricante",
                     
                 },
-            },/*
-            parameterMap: function (options, operation) {
-                if (operation !== "read" && options.models) {
-                    return { models: kendo.stringify(options.models) };
-                }
-            },*/
-          //  batch: true,
-       //     pageSize: 10,
-           // change: onChange,
+            },
             schema: {
                 model: {
                     id: "id_codfabricante",
@@ -91,12 +83,3 @@ function crearTabla(datos) {
         }
     })
 }
-/*
-function onChange(e) {
-    if (e.action == "itemchange" && e.field == "codigo") {
-        alert("Editado");
-        var editItemModelId = e.items[0].ProductID;
-        var grid = $("#ListaFabricante").data("kendoGrid");
-        var dataItem = grid.dataSource.get(editItemModelId);
-    }
-}*/
