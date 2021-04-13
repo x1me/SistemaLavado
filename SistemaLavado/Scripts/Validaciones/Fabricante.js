@@ -29,6 +29,8 @@ function crearTabla(datos) {
         pageSize: 20,
         groupable: true,
         sortable: true,
+        editable: "inline",
+        toolbar: ["search"],
         pageable: {
             refresh: true,
             pageSizes: true,
@@ -36,35 +38,60 @@ function crearTabla(datos) {
         },
         columns: [
             {
+                field: "id_codfabricante",
+                title: " Fabricante ID"
+            },
+            {
                 field: "codigo",
-                title: "Codigo "
-                   
+                title: " Código"
             },
             {
                 field: "pais",
                 title: " País"
             },
-            {
-                field:"Editar",
-                title: "Editar",
-                template: "<button class='btn btn- lg btn - primary' <button onclick='modificar(codigo)'>Editar</button>"
-            },
-            {
-                field: "Eliminar",
-                title: "Eliminar", 
-                template: "<button class='btn btn- lg btn - primary' <button onclick='eliminar()'>Eliminar</button>"
-            },
-        ]
-        
-    });
+            { command:"edit", title: "Editar", width: "250px" }
+        ],
+        dataSource: {
+            transport: {
+                read: {
+                    url: "/MantenimientoFabricante/listar",
+                },
+                update: {
+                    url: "/MantenimientoFabricante/agregaroeditar",
+                    type: "POST",
+                },
+            },/*
+            parameterMap: function (options, operation) {
+                if (operation !== "read" && options.models) {
+                    return { models: kendo.stringify(options.models) };
+                }
+            },*/
+          //  batch: true,
+       //     pageSize: 10,
+           // change: onChange,
+            schema: {
+                model: {
+                    id: "id_codfabricante",
+                    fields: {
+                        id_codfabricante: { editable: false, nullable: true },
+                        codigo: { type: "number", validation: { required: true, min: 1, max: 1000 } },
+                        pais: { validation: { required: true, minlength: 1, maxlength: 30 } }
+                    }
+                }
+            }
+        },
+
+        save: function () {
+            this.refresh();
+        }
+    })
 }
-function modificar(codigo) {
-    var codigo = $(this).data('codigo');
-    if (codigo != undefined && codigo != null) {
-        window.location.href = "/MantenimientoFabricante/agregaroeditar?id=" + codigo;
-    }    
-    var grid = $("#ListaFabricante").data(datos);
-    var selectedItem = grid.dataItem(grid.select());
-    $("#codigo").val(selectedItem.codigo);
-    $("#pais").val(selectedItem.pais);
-}
+/*
+function onChange(e) {
+    if (e.action == "itemchange" && e.field == "codigo") {
+        alert("Editado");
+        var editItemModelId = e.items[0].ProductID;
+        var grid = $("#ListaFabricante").data("kendoGrid");
+        var dataItem = grid.dataSource.get(editItemModelId);
+    }
+}*/
