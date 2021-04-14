@@ -4,9 +4,16 @@
 }
 
 
-<body>
-    <h2>Lista De Los Fabricantes</h2>
+
+<div class="table-container">
+    <h2>
+        Lista De Los Fabricantes
+    </h2>
+    <br />
+    <div></div>
     <div id="ListaFabricante"></div>
+    <br />
+    <br />
     <div class="contenedor-tabla" style="width: 90%; margin: 2rem auto 0 auto">
         @if (TempData["mensaje"] != null)
         {
@@ -21,5 +28,9 @@
             </div>
         }
     </div>
-</body>
+</div>
+@section scripts{
+
+    <script src="~/Scripts/Validaciones/Fabricante.js"></script>
+}
 
