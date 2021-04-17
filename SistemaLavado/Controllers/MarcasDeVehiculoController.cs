@@ -35,7 +35,7 @@ namespace SistemaLavado.Controllers
                 List<pa_Marca_Vehiculo_Retorna_Result> ModeloVista = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
                 if (id != null)
                 {
-                    var fabricante = bd.pa(id, "").FirstOrDefault();
+                    var fabricante = bd.pa_fabricanteSelect(id, "").FirstOrDefault();
                     model.codigo = fabricante.codigo;
                     model.pais = fabricante.pais;
                     model.id_codfabricante = fabricante.id_codfabricante;

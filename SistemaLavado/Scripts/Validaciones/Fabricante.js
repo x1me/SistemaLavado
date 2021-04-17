@@ -1,5 +1,5 @@
 ﻿$(function () {
-    peticion("/MantenimientoFabricante/listar", crearTabla);
+    crearTabla();
 })
 
 function peticion(url, callback = null, metodo = "get", dataType = "json", datos = null) {
@@ -21,16 +21,20 @@ function peticion(url, callback = null, metodo = "get", dataType = "json", datos
 
 
 function crearTabla(datos) {
-    console.log($("ok"));
     $("#ListaFabricante").kendoGrid({
-        dataSource: datos,
         height: 500,
         filterable: true,
         pageSize: 20,
         groupable: true,
         sortable: true,
         editable: "inline",
-        toolbar: ["search"],
+        toolbar: [ "search","pdf", "excel"],
+        pdf: {
+            fileName: "Tabla.pdf"
+        },
+        excel: {
+            fileName: "Tabla.xlsx"
+        },
         pageable: {
             refresh: true,
             pageSizes: true,
@@ -49,37 +53,44 @@ function crearTabla(datos) {
                 field: "pais",
                 title: " País"
             },
-            { command: "edit", title: "Editar", width: "250px" },
-            { command: "destroy", title: "Eliminar", width: "250px" }
+            {
+                command: ["edit", "destroy"]
+            },
+
         ],
+
         dataSource: {
             transport: {
                 read: {
-                    url: "/MantenimientoFabricante/listar",
+                    url: "/MantenimientoFabricante/listar"
                 },
                 update: {
                     url: "/MantenimientoFabricante/agregaroeditar",
-                    type: "POST",
+                    type: "post",
+                    dataType: "json",
                 },
                 destroy: {
                     url: "/MantenimientoFabricante/EliminaFabricante",
-                    
+                    dataType: "json",
                 },
+            },
+            requestEnd: function (e) {
+                if ((e.type == "update" || e.type == "destroy") && e.response) {
+                    $("#ListaFabricante").data("kendoGrid").dataSource.read();
+                    $("#ListaFabricante").data("kendoGrid").refresh();
+                    alert(e.response);
+                }
             },
             schema: {
                 model: {
                     id: "id_codfabricante",
                     fields: {
                         id_codfabricante: { editable: false, nullable: true },
-                        codigo: { type: "number", validation: { required: true, min: 1, max: 1000 } },
+                        codigo: { type: "number", validation: { required: true, min: 1, max: 1000, } },
                         pais: { validation: { required: true, minlength: 1, maxlength: 30 } }
                     }
                 }
             }
         },
-
-        save: function () {
-            this.refresh();
-        }
     })
 }

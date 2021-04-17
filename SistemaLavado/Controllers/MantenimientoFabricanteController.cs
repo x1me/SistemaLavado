@@ -22,9 +22,7 @@ namespace SistemaLavado.Controllers
             List<pa_FabricanteRetorna_Result> ModeloVista = this.bd.pa_FabricanteRetorna().ToList();
             return Json(ModeloVista, JsonRequestBehavior.AllowGet);
         }
-
         [ActionName("agregaroeditar")]
-        [HttpGet]
         public ActionResult InsertarAgregarFabricante(int? id)
         {
             ViewBag.tipo = Session["role"] as string;
@@ -59,17 +57,29 @@ namespace SistemaLavado.Controllers
             string resultado = "";
             try
             {
+
                 if (fabricante.id_codfabricante > 0)
                 {
                     cantRegistrosAfectados = bd.pa_FabricanteModifica(fabricante.id_codfabricante,
                                                                         fabricante.codigo, fabricante.pais);
                     resultado = "Registro modificado correctamente";
+                    
                 }
                 else
                 {
-                    cantRegistrosAfectados = this.bd.pa_fabricanteInsert(fabricante.codigo, fabricante.pais);
-                    resultado = "Registro insertado correctamente";
+                    if (!bd.Fabricante.Any(e => e.codigo == fabricante.codigo))
+                    {
+
+                        cantRegistrosAfectados = this.bd.pa_fabricanteInsert(fabricante.codigo, fabricante.pais);
+                        resultado = "Registro insertado correctamente";
+                    }
+                    else
+                    {
+                        resultado = "El código ya existe";
+                    }
+                    return RedirectToAction("Index");
                 }
+
             }
             catch (Exception error)
             {
@@ -81,40 +91,38 @@ namespace SistemaLavado.Controllers
                 resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
                 TempData["mensaje"] = resultado;
                 TempData["estado"] = cantRegistrosAfectados > 0;
-
             }
-            return RedirectToAction("ListaFabricante");
+            return Json(resultado);
         }
 
+
         [HttpGet]
-        public ActionResult EliminaFabricante(int id)
+        public ActionResult EliminaFabricante(Fabricante fabricante)
         {
             ViewBag.tipo = Session["role"] as string;
-            string resultado = "Error al eliminar el registro!";
+            string resultado = "";
             int registroAfectado = 0;
-
             try
             {
-                registroAfectado = bd.pa_fabricanteDelete(id);
+                registroAfectado = bd.pa_fabricanteDelete(fabricante.id_codfabricante);
                 if (registroAfectado > 0)
                 {
                     resultado = "Registro eliminado correctamente.";
                 }
-                return RedirectToAction("ListaFabricante");
+                return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                throw;
+                resultado = "Ocurrió un error: " + error.Message;
             }
             finally
             {
+                resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
                 TempData["mensaje"] = resultado;
                 TempData["estado"] = registroAfectado > 0;
             }
+            return Json(resultado);
         }
-
-
-
 
     }
 }
