@@ -19,20 +19,39 @@ namespace SistemaLavado.Controllers
         public ActionResult ListaTipoVehiculo()
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(null, null).ToList();
-           ///var TipoVehiculo = bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();/*nuevo*/
+            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(null,null).ToList();
             return Json(ModeloVista, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult InsertarTipoVehiculo()
+
+        [ActionName("agregaroeditar")]
+        [HttpGet]
+        public ActionResult InsertarAgregarTipoVehiculo(int? id)
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(1,"nuevo").ToList();
-            return View();
+            try
+            {
+                TipoVehiculo model = new TipoVehiculo();
+                List<pa_TipoVehiculoRetorna_Result> ModeloVista = this.bd.pa_TipoVehiculoRetorna(null,null).ToList();
+                if (id != null)
+                {
+                    var TipoVehiculo = bd.pa_TipoVehiculoRetorna(id, "").FirstOrDefault();
+                    model.codigo = TipoVehiculo.codigo;
+                    model.tipo = TipoVehiculo.tipo;
+                    model.id_codigoTV = TipoVehiculo.id_codigoTV;
+                }
+                return View("InsertarAgregarTipoVehiculo", model);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
+        [ActionName("agregaroeditar")]
         [HttpPost]
-        public ActionResult InsertarTipoVehiculo(pa_TipoVehiculoRetorna_Result objModeloVista)
+        public ActionResult InsertarAgregarTipoVehiculo(TipoVehiculo TipoVehiculo)
         {
+            ViewBag.tipo = Session["role"] as string;
             ///Variable que registra la cantidad de registros afectados
             ///si un procedimiento que ejecuta insert, update o delete 
             ///no afecta registros implica que hubo un error
@@ -40,10 +59,17 @@ namespace SistemaLavado.Controllers
             string resultado = "";
             try
             {
-                cantRegistrosAfectados =
-                    this.bd.pa_TipoVehiculoInsert(
-                        objModeloVista.codigo,
-                        objModeloVista.tipo);
+                if (TipoVehiculo.id_codigoTV > 0)
+                {
+                    cantRegistrosAfectados = bd.pa_TipoVehiculoModifica(TipoVehiculo.id_codigoTV,
+                                                                        TipoVehiculo.codigo, TipoVehiculo.tipo);
+                    resultado = "Registro modificado correctamente";
+                }
+                else
+                {
+                    cantRegistrosAfectados = this.bd.pa_TipoVehiculoInsert(TipoVehiculo.codigo, TipoVehiculo.tipo);
+                    resultado = "Registro insertado correctamente";
+                }
             }
             catch (Exception error)
             {
@@ -52,106 +78,41 @@ namespace SistemaLavado.Controllers
 
             finally
             {
-                if (cantRegistrosAfectados > 0)
-                {
-                    resultado = "Registro insertado";
-                }
-                else
-                {
-                    resultado += ".No se pudo insertar";
-                }
+                resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = cantRegistrosAfectados > 0;
+
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View();
+            return RedirectToAction("ListaTipoVehiculo");
         }
 
-        /// revisar el modificar y eliminar no me funciona
 
-        public ActionResult ModificarTipoVehiculo(int id_codigoTV)
+        [HttpGet]
+        public ActionResult EliminaTipoVehiculo(int id)
         {
-            pa_TipoVehiculo_Retorna_ID_Result ModeloVista = new pa_TipoVehiculo_Retorna_ID_Result();
-            ModeloVista = this.bd.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
-            return View(ModeloVista);
-        }
+            ViewBag.tipo = Session["role"] as string;
+            string resultado = "Error al eliminar el registro!";
+            int registroAfectado = 0;
 
-        [HttpPost]
-        public ActionResult ModificarTipoVehiculo(pa_TipoVehiculo_Retorna_ID_Result objModeloVista)
-        {
-            ///Variable que registra la cantidad de registros afectados
-            ///si un procedimiento que ejecuta insert, update o delete 
-            ///no afecta registros implica que hubo un error
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
             try
             {
-                cantRegistrosAfectados =
-                    this.bd.pa_TipoVehiculoModifica(
-                        objModeloVista.id_codigoTV,
-                        objModeloVista.codigo,
-                        objModeloVista.tipo);
+                registroAfectado = bd.pa_TipoVehiculoDelete(id);
+                if (registroAfectado > 0)
+                {
+                    resultado = "Registro eliminado correctamente.";
+                }
+                return RedirectToAction("ListaTipoVehiculo");
             }
-            catch (Exception error)
+            catch (Exception e)
             {
-                resultado = "Ocurrió un error: " + error.Message;
+                throw;
             }
-
             finally
             {
-                if (cantRegistrosAfectados > 0)
-                {
-                    resultado = "Registro insertado";
-                }
-                else
-                {
-                    resultado += ".No se pudo insertar";
-                }
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = registroAfectado > 0;
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View();
-        }
-        public ActionResult EliminarTipoVehiculo(int id_codigoTV)
-        {
-            pa_TipoVehiculo_Retorna_ID_Result ModeloVista = new pa_TipoVehiculo_Retorna_ID_Result();
-            ModeloVista = this.bd.pa_TipoVehiculo_Retorna_ID(id_codigoTV).FirstOrDefault();
-            return View(ModeloVista);
         }
 
-        [HttpPost]
-        public ActionResult EliminarTipoVehiculo(pa_TipoVehiculo_Retorna_ID_Result objModeloVista)
-        {
-            ///Variable que registra la cantidad de registros afectados
-            ///si un procedimiento que ejecuta insert, update o delete 
-            ///no afecta registros implica que hubo un error
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
-            try
-            {
-                cantRegistrosAfectados =
-                    this.bd.pa_TipoVehiculoDelete(
-                        objModeloVista.id_codigoTV
-                                );
-            }
-            catch (Exception error)
-            {
-                resultado = "Ocurrió un error: " + error.Message;
-            }
-
-            finally
-            {
-                if (cantRegistrosAfectados > 0)
-                {
-                    resultado = "Registro insertado";
-                }
-                else
-                {
-                    resultado += ".No se pudo insertar";
-                }
-            }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            return View();
-        }
     }
 }

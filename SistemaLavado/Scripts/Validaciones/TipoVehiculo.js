@@ -57,14 +57,14 @@ function crearTabla(datos) {
                 read: {
                     url: "/MantenimientoTipoDeVehiculos/listar",
                 },
-                update: {
-                    url: "/MantenimientoTipoDeVehiculos/ModificarTipoVehiculo",
+               /* update: {
+                    url: "/MantenimientoTipoDeVehiculos/agregaroeditar",
                     type: "POST",
                 },
                 destroy: {
-                    url: "/MantenimientoTipoDeVehiculos/EliminarTipoVehiculo",
+                    url: "/MantenimientoTipoDeVehiculos/EliminaTipoVehiculo",
 
-                },
+                },*/
             },
             schema: {
                 model: {

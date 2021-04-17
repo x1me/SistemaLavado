@@ -92,7 +92,7 @@ namespace SistemaLavado.Controllers
                                                         model.nombre, model.correo,
                                                         model.provincia, model.canton,
                                                         model.distrito, model.fecha_nacimiento,
-                                                        model.apellido1, model.apellido2);
+                                                        model.apellido1, model.apellido2, model.estado);
                         if (resultado > 0)
                         {
                             new Correo(model.correo).EnviaCorreo(model.nombre, model.apellido1, model.apellido2);

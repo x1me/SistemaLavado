@@ -11,57 +11,82 @@ namespace SistemaLavado.Controllers
     {
         sistemacontrolEntities bd = new sistemacontrolEntities();
         // GET: MarcasDeVehiculo
-        public ActionResult ListaMarcas()
+        public ActionResult Index()
+        {
+            return View("ListaMarca");
+        }
+
+        [HttpGet, ActionName("listar")]
+        public ActionResult ListaMarca()
         {
             ViewBag.tipo = Session["role"] as string;
-            var MarcaVehiculo = bd.pa_Marca_Vehiculo_Retorna().ToList();
-            var modelo = (from i in MarcaVehiculo
-                          select new
-                          {
-                              id = i.id_codigoMarcaV,
-                              codigo = i.codigo,
-                              tipo = bd.pa_TipoVehiculoRetorna(i.tipo, "").FirstOrDefault().tipo,
-                              fabricante = bd.pa_fabricanteSelect(i.fabricante, "").FirstOrDefault().pais,
-                          }).ToList();
-            return View(modelo);
+            List<pa_Marca_Vehiculo_Retorna_Result> ModeloVista = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
+            return Json(ModeloVista, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet, ActionName("agregar")]
-        public ActionResult EditarAgregar(int? id)
+        [ActionName("agregaroeditar")]
+        [HttpGet]
+        public ActionResult InsertarAgregarMarca(int? id)
         {
-            // Esto no funciona
-            var modelo = new MarcaVehiculo();
-            if (id > 0)
-            {
-                var marca = bd.MarcaVehiculo.Where(e => e.id_codigoMarcaV == id).Select(e => e).FirstOrDefault();
-                modelo.codigo = marca.codigo;
-                modelo.fabricante = marca.fabricante;
-                modelo.tipo = marca.tipo;
-                modelo.id_codigoMarcaV = marca.id_codigoMarcaV;
-            }
-            return View(modelo);
-        }
-
-        [HttpPost, ActionName("agregar")]
-        public ActionResult EditarAgregar(MarcaVehiculo modelo)
-        {
+            ViewBag.tipo = Session["role"] as string;
             try
             {
-                string mensaje = "Registro {} correctamente";
-                // Aun sin modificar?
-                bd.MarcaVehiculo.Add(modelo);
-                int resultado = bd.SaveChanges();
-                if (resultado == 0) mensaje = mensaje.Replace("{}", "insertado");
+                Fabricante model = new Fabricante();
+                List<pa_Marca_Vehiculo_Retorna_Result> ModeloVista = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
+                if (id != null)
+                {
+                    var fabricante = bd.pa(id, "").FirstOrDefault();
+                    model.codigo = fabricante.codigo;
+                    model.pais = fabricante.pais;
+                    model.id_codfabricante = fabricante.id_codfabricante;
+                }
+                return View("InsertarFabricante", model);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
 
-                ViewData["estado"] = new Mensaje() { confirmacion = mensaje, estado = resultado > 0 };
-                return RedirectToAction("ListaMarcas");
+        [ActionName("agregaroeditar")]
+        [HttpPost]
+        public ActionResult InsertarAgregarFabricante(Fabricante fabricante)
+        {
+            ViewBag.tipo = Session["role"] as string;
+            ///Variable que registra la cantidad de registros afectados
+            ///si un procedimiento que ejecuta insert, update o delete 
+            ///no afecta registros implica que hubo un error
+            int cantRegistrosAfectados = 0;
+            string resultado = "";
+            try
+            {
+                if (fabricante.id_codfabricante > 0)
+                {
+                    cantRegistrosAfectados = bd.pa_FabricanteModifica(fabricante.id_codfabricante,
+                                                                        fabricante.codigo, fabricante.pais);
+                    resultado = "Registro modificado correctamente";
+                }
+                else
+                {
+                    cantRegistrosAfectados = this.bd.pa_fabricanteInsert(fabricante.codigo, fabricante.pais);
+                    resultado = "Registro insertado correctamente";
+                }
             }
             catch (Exception error)
             {
-                ViewData["error"] = error.Message;
-                return null;
+                resultado = "Ocurrió un error: " + error.Message;
             }
+
+            finally
+            {
+                resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = cantRegistrosAfectados > 0;
+
+            }
+            return RedirectToAction("ListaFabricante");
         }
+
 
     }
 }

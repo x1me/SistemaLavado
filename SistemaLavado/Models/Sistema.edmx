@@ -34,6 +34,7 @@
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="apellido1" Type="varchar" MaxLength="50" />
           <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Distrito">
           <Key>
@@ -127,6 +128,7 @@
           <Property Name="contrasena" Type="nvarchar" MaxLength="300" />
           <Property Name="tipo" Type="char" MaxLength="1" />
           <Property Name="UltimaFecha" Type="smalldatetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
@@ -291,6 +293,7 @@ advertencia 6035: La relación 'FK_Vehiculo_TipoVehiculo' tiene columnas que no 
         <!--Errores durante la generación:
 advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_VehiculoCliente_Vehiculo" />-->
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="pa_CantonDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Canton" Type="int" Mode="In" />
         </Function>
@@ -326,6 +329,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
           <Parameter Name="apellido1" Type="varchar" Mode="In" />
           <Parameter Name="apellido2" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pa_ClienteSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_cliente" Type="int" Mode="In" />
@@ -477,6 +481,14 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
         <Function Name="pa_UsuariosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuarios" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_UsuarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario" Type="int" Mode="In" />
+          <Parameter Name="correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena" Type="int" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="ultimafecha" Type="date" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="id_Provincia" Type="int" Mode="In" />
@@ -487,8 +499,36 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
         <Function Name="RetornaProvincias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_ActualizaEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_EliminaCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Canton" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_InsertaCanton" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Provincia" Type="int" Mode="In" />
@@ -501,6 +541,12 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="id_CantonInec" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="sistemacontrolModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
@@ -601,6 +647,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Distrito">
           <Key>
@@ -707,6 +754,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="UltimaFecha" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_usuarios_Cliente" FromRole="usuarios" ToRole="Cliente" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Vehiculo">
           <Key>
@@ -953,6 +1001,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
             <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
             <Parameter Name="apellido1" Mode="In" Type="String" />
             <Parameter Name="apellido2" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_ClienteUpdate">
             <Parameter Name="id_cliente" Mode="In" Type="Int32" />
@@ -1128,6 +1177,48 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
             <Parameter Name="tipo" Mode="In" Type="String" />
             <Parameter Name="ultimaFecha" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pa_UsuarioUpdate">
+            <Parameter Name="id_usuario" Mode="In" Type="Int32" />
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="ultimafecha" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ActualizaEstado">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(sistemacontrolModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(sistemacontrolModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <ComplexType Name="pa_CantonSelect_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1260,6 +1351,17 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Property Type="String" Name="apellido1" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="apellido2" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1284,6 +1386,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="sistemacontrolModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="apellido2" ColumnName="apellido2" />
                 <ScalarProperty Name="apellido1" ColumnName="apellido1" />
                 <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
@@ -1391,6 +1494,7 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="sistemacontrolModel.usuarios">
               <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -1641,6 +1745,32 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_UsuarioInsert" FunctionName="sistemacontrolModel.Store.pa_UsuarioInsert" />
+          <FunctionImportMapping FunctionImportName="pa_UsuarioUpdate" FunctionName="sistemacontrolModel.Store.pa_UsuarioUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_ActualizaEstado" FunctionName="sistemacontrolModel.Store.sp_ActualizaEstado" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="sistemacontrolModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="sistemacontrolModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="sistemacontrolModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="sistemacontrolModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="sistemacontrolModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sistemacontrolModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sistemacontrolModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

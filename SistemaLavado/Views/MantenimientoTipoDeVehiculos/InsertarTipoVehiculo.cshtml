@@ -1,36 +1,31 @@
 ﻿
+@model SistemaLavado.Models.TipoVehiculo
 @{
-    ViewBag.Title = "InsertarTipoVehiculo";
+    ViewBag.Title = "ModeloVista";
 }
-
-
-<h2>Inserta Un Nuevo Tipo De Vehículo</h2>
-<form id="frmTipoVehiculo" method="post">
-    <label class="control-label col-md-2">Código:</label>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="text" name="codigo" id="codigo" class="form-control" value="" />
-        </div>
-    </div>
+<form id="frmTipoInserta" method="post" action="@Url.Action("agregaroeditar")">
+    <input type="hidden" value="@Model.id_codigoTV" name="id_codigoTV" />
+    <h1 class="font-weight-bolder">Inserta Un Nuevo Tipo De Vehículo</h1>
     <br />
+    <p class="text-muted">Agrega un pais con su respectivo código</p>
     <br />
     <div class="form-group">
-        <label class="control-label col-md-2">Tipo:</label>
-        <div class="col-md-10">
-            <input type="text" name="tipo" id="tipo" class="form-control" value="" />
-        </div>
+        <label>Código</label>
+        <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Pais</label>
+        <input type="text" value="@Model.tipo" name="tipo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Agregar</button>
     </div>
     <br />
-    <div class="form-group">
-        <input type="submit" value="Guardar" id="btnAceptar" />
-    </div>
-    <a href="~/MantenimientoTipoDeVehiculos/ListaTipoVehiculo">Regresar a la lista</a>
-
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
 </form>
 
 @section scripts
     {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/scripts/Validaciones/TipoVehiculo.js")
+    @Scripts.Render("~/Scripts/ValidacionesInsertar/InsertaTipoVehiculo.js")
     @Scripts.Render("~/scripts/ValidacionesGenericas.js")
 }

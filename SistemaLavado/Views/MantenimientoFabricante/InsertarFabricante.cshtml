@@ -1,52 +1,13 @@
-﻿<div>
-@*
-    @{
-            ViewBag.Title = "InsertarFabricante";
-        }
-
-        <h2>Inserta Un Nuevo Fabricante</h2>
-        <form id="frmFabricante" method="post">
-            <label class="control-label col-md-2">Código:</label>
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="text" name="codigo" id="codigo" class="form-control" value="" />
-                </div>
-            </div>
-            <br />
-            <br />
-            <div class="form-group">
-                <label class="control-label col-md-2">País:</label>
-                <div class="col-md-10">
-                    <input type="text" name="pais" id="pais" class="form-control" value="" />
-                </div>
-            </div>
-            <br />
-            <div class="form-group">
-                <input type="submit" value="Guardar" id="btnAceptar" />
-            </div>
-            <a href="~/MantenimientoFabricante/ListaFabricante">Regresar a la lista</a>
-
-        </form>
-
-        @section scripts
-            {
-            @Scripts.Render("~/bundles/jqueryval")
-            @Scripts.Render("~/scripts/Validaciones/Fabricante.js")
-            @Scripts.Render("~/scripts/ValidacionesGenericas.js")
-        }
-    *@
-</div>@*Codigo viejo*@
-
-
+﻿
 @model SistemaLavado.Models.Fabricante
 @{
     ViewBag.Title = "ModeloVista";
 }
-<form method="post" action="@Url.Action("agregaroeditar")">
+<form id="frmInserta" method="post" action="@Url.Action("agregaroeditar")">
     <input type="hidden" value="@Model.id_codfabricante" name="id_codfabricante" />
-    <h2>Agregar Pais Fabricante</h2>
+    <h1 class="font-weight-bolder">Agregar País Fabricante</h1>
     <br />
-    <p>Agrega un pais con su respectivo código</p>
+    <p class="text-muted">Agrega un país con su respectivo código</p>
     <br />
     <div class="form-group">
         <label>Código</label>
@@ -57,7 +18,12 @@
         <input type="text" value="@Model.pais" name="pais" class="form-control" />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success">Agregar</button>
-    </div>
+        <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
+    </div> 
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
 </form>
-    
+@section scripts
+    {
+    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+    @Scripts.Render("~/Scripts/ValidacionesInsertar/InsertaFabricante.js")
+}
