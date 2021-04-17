@@ -94,22 +94,19 @@ namespace SistemaLavado.Controllers
             }
             return Json(resultado);
         }
-
-
         [HttpGet]
         public ActionResult EliminaFabricante(Fabricante fabricante)
         {
             ViewBag.tipo = Session["role"] as string;
-            string resultado = "";
-            int registroAfectado = 0;
+             int registroAfectado = 0;
+            string resultado = "";         
             try
             {
-                registroAfectado = bd.pa_fabricanteDelete(fabricante.id_codfabricante);
-                if (registroAfectado > 0)
+                if (fabricante.id_codfabricante > 0)
                 {
+                    registroAfectado = bd.pa_fabricanteDelete(fabricante.id_codfabricante);
                     resultado = "Registro eliminado correctamente.";
                 }
-                return RedirectToAction("Index");
             }
             catch (Exception error)
             {

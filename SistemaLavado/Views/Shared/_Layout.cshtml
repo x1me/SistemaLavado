@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema de Lavado</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("css", required: false)
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
@@ -85,9 +86,14 @@
     <div class="container-fluid body-content d-flex bg-light">
         @RenderBody()
     </div>
-    <footer class="" style="height: 120px">
-        <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+    <footer class="bg-dark text-center text-white">
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <p>&copy; @DateTime.Now.Year - Proyecto Final Programacion VI Castro Carazo ASP.NET</p>
+        </div>
+        <!-- Copyright -->
     </footer>
+    <!-- Footer -->
 
     @Scripts.Render("~/bundles/jquery")
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>

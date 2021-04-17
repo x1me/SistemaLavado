@@ -1,0 +1,59 @@
+﻿div .carousel-inner {
+    width: 100%;
+}
+
+
+
+div .carousel-item {
+    text-align: center;
+}
+
+
+
+
+.sprite {
+    display: inline-block;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-image: url(../Img-Video/Sprites.png);
+}
+
+
+
+.Asientos {
+    width: 606px;
+    height: 400px;
+    background-position: -0px -0px
+}
+
+
+
+.L200 {
+    width: 400px;
+    height: 400px;
+    background-position: -606px -0px
+}
+
+
+
+.Llanta {
+    width: 480px;
+    height: 400px;
+    background-position: -0px -400px
+}
+
+
+
+.Motor {
+    width: 521px;
+    height: 400px;
+    background-position: -480px -400px
+}
+
+
+
+.Puerta {
+    width: 570px;
+    height: 400px;
+    background-position: -0px -800px
+}

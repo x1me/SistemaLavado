@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BienvenidaInfo.cs" />
     <Compile Include="Models\Canton.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
@@ -255,9 +256,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\carouselSprite.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img-Video\Asientos.png" />
+    <Content Include="Img-Video\Auto lavado.mp4" />
+    <Content Include="Img-Video\L200.png" />
+    <Content Include="Img-Video\Llanta.png" />
+    <Content Include="Img-Video\Motor.png" />
+    <Content Include="Img-Video\Puerta.png" />
+    <Content Include="Img-Video\Sprites.png" />
+    <Content Include="Img-Video\Star Wars.m4a" />
     <Content Include="Models\Sistema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Sistema.edmx</DependentUpon>

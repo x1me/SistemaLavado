@@ -1,24 +1,68 @@
-﻿@model List<SistemaLavado.Models.ClientePersonalizado>
+﻿@model  SistemaLavado.Models.BienvenidaInfo
+
 @{
     ViewBag.Title = "PaginaPrincipal";
 }
 
+@section css{
 
-<div class="table-container">
-    <h2>Pagina Principal</h2>
-
-
-
-
-    @foreach (var cl in Model)
-    {
-        <tr>
-
-            <td><p>Bienvenido @cl.nombre &nbsp; @cl.apellido1 &nbsp; @cl.apellido2</p></td>
-            <td><p>Usted ingresó por última vez @cl.fecha_nacimiento</p></td>
+    <link href="~/Content/carouselSprite.css" rel="stylesheet" />
+}
 
 
-        </tr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="table-container">
+            <h2>Pagina Principal</h2>
+        </div>
+    </div>
+    <div class="row bg-dark">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 100%">
+            <div class="carousel-inner">
 
-    }
+                <div class="carousel-item">
+                    <span class="sprite Asientos"></span>
+                </div>
+                <div class="carousel-item">
+                    <span class="sprite L200"></span>
+                </div>
+                <div class="carousel-item">
+                    <span class="sprite Llanta"></span>
+                </div>
+                <div class="carousel-item">
+                    <span class="sprite Motor"></span>
+                </div>
+                <div class="carousel-item active">
+                    <span class="sprite Puerta"></span>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="ros">
+            <div class="col">
+
+                <h3>Bienvenido @Model.nombre @Model.apellidos</h3>
+                <h3>Usted ingresó por última vez @Model.ultimaFecha</h3>
+            </div>
+
+            <div class=" col">
+                <video width="320" height="240" controls>
+                    <source src="~/Img-Video/Auto lavado.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <audio controls autoplay>
+                    <source src="~/Img-Video/Star Wars.m4a" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
 </div>
