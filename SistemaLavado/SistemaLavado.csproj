@@ -58,6 +58,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -155,6 +158,7 @@
     <Compile Include="Models\Fabricante.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListaTipoV.cs" />
     <Compile Include="Models\MarcaVehiculo.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
@@ -180,6 +184,9 @@
     <Compile Include="Models\pa_FacturaEncabezadoSelect_Result.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pa_Marca_VehiculoSelect_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\pa_Marca_Vehiculo_Retorna_Result.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
@@ -192,7 +199,13 @@
     <Compile Include="Models\pa_TipoVehiculoRetorna_Result.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pa_TipoVehiculoSelect_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\pa_TipoVehiculo_Retorna_ID_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_TTipo_VehiculoRetorna_Result.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
@@ -296,6 +309,9 @@
     <Content Include="Models\Sistema.edmx.diagram">
       <DependentUpon>Sistema.edmx</DependentUpon>
     </Content>
+    <Content Include="Geografia\Canton.cshtml" />
+    <Content Include="Geografia\Distrito.cshtml" />
+    <Content Include="Geografia\Provincia.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -386,6 +402,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Scripts\Validaciones\Marca.js" />
     <Content Include="Scripts\Validaciones\TipoVehiculo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -427,6 +444,7 @@
     <Content Include="Views\MarcasDeVehiculo\ListaMarcas.cshtml" />
     <Content Include="Views\MarcasDeVehiculo\EditarAgregar.cshtml" />
     <Content Include="Views\Login\AgregarNuevoUsuario.cshtml" />
+    <Content Include="Views\MarcasDeVehiculo\InsertaMarca.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

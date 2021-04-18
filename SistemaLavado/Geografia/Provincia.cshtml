@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Provincia";
+}
+
+
+<div class="container-fluid">
+    <div class="table-container mb-2">
+        <br />
+        <h1 class="font-weight-bolder">Lista de Provincias</h1>
+        <br />
+        <p class="text-muted">Esta lista abarca todos las provincias.</p>
+        <br />
+        <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+        <br />
+    </div>
+
+    <div class="kendo-grid-provincia"></div>
+</div>
+
+@section scripts{
+    <script>
+        (function peticion() {
+            $.get({
+                url: "/Geografia/RetornaProvincia",
+                dataType: "json"
+            }).done(function (res) {
+                console.table(res);
+                $(".kendo-grid-provincia").kendoGrid({
+                    dataSource: { data: res },
+                    height: 500,
+                    filterable: true,
+                    pageSize: 20,
+                    groupable: true,
+                    sortable: true,
+                    editable: "inline",
+                    toolbar: ["search", "pdf", "excel"],
+                    pdf: {
+                        fileName: "Tabla.pdf"
+                    },
+                    excel: {
+                        fileName: "Tabla.xlsx"
+                    },
+                    pageable: {
+                        refresh: true,
+                        pageSizes: true,
+                        buttonCount: 5,
+                    },
+                    columns: [
+                        {
+                            field: "nombre",
+                            title: "Provincia"
+                        },
+                        {
+                            field: "usuarioCrea",
+                            title: "Usuario Crea"
+                        },
+                        {
+                            field: "fechaCrea",
+                            title: "Fcha Ceacion"
+                        },
+                        {
+                            field: "usuarioModifica",
+                            title: "Usuario Modifica"
+                        },
+                        {
+                            field: "vc_Estado",
+                            title: "Estado"
+                        },
+                    ],
+                });
+            });
+        })();
+    </script>
+}
+

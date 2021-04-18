@@ -13,34 +13,50 @@ namespace SistemaLavado.Controllers
         // GET: MarcasDeVehiculo
         public ActionResult Index()
         {
-            return View("ListaMarca");
+            string tipoUsuario = Session["role"] as string;
+            int? idCliente = Session["idCliente"] as Nullable<int>;
+            return View("ListaMarcas");
         }
 
         [HttpGet, ActionName("listar")]
         public ActionResult ListaMarca()
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_Marca_Vehiculo_Retorna_Result> ModeloVista = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
-            return Json(ModeloVista, JsonRequestBehavior.AllowGet);
+            List<pa_Marca_Vehiculo_Retorna_Result> Marca = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
+            return Json(Marca, JsonRequestBehavior.AllowGet);
         }
 
         [ActionName("agregaroeditar")]
-        [HttpGet]
         public ActionResult InsertarAgregarMarca(int? id)
         {
+    
             ViewBag.tipo = Session["role"] as string;
+            var reg = bd.pa_Marca_VehiculoSelect(null).ToList();
+            ViewBag.lista_tipos = (from i in bd.TipoVehiculo
+                                   select new ListaTipoV()
+                                   {
+                                       id_tipo = i.id_codigoTV,
+                                       tipo_nombre = i.tipo
+                                   }).ToList();
+            ViewBag.lista_fabricantes = (from i in bd.Fabricante
+                                         select new ListaFabricante()
+                                         {
+                                             id__fabricante = i.id_codfabricante,
+                                             fabricante_nombre = i.pais
+                                         }).ToList();
             try
             {
-                Fabricante model = new Fabricante();
+                MarcaVehiculo model = new MarcaVehiculo();
                 List<pa_Marca_Vehiculo_Retorna_Result> ModeloVista = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
                 if (id != null)
                 {
-                    var fabricante = bd.pa_fabricanteSelect(id, "").FirstOrDefault();
-                    model.codigo = fabricante.codigo;
-                    model.pais = fabricante.pais;
-                    model.id_codfabricante = fabricante.id_codfabricante;
+                    var marcaVehiculo = bd.pa_Marca_VehiculoSelect(id).FirstOrDefault();
+                    model.id_codigoMarcaV = marcaVehiculo.id_codigoMarcaV;
+                    model.codigo = marcaVehiculo.codigo;
+                    model.tipo = marcaVehiculo.tipo;
+                    model.fabricante = marcaVehiculo.fabricante;
                 }
-                return View("InsertarFabricante", model);
+                return View("InsertaMarca", model);
             }
             catch (Exception e)
             {
@@ -50,7 +66,7 @@ namespace SistemaLavado.Controllers
 
         [ActionName("agregaroeditar")]
         [HttpPost]
-        public ActionResult InsertarAgregarFabricante(Fabricante fabricante)
+        public ActionResult InsertarAgregarMarca(MarcaVehiculo MarcaVehiculo)
         {
             ViewBag.tipo = Session["role"] as string;
             ///Variable que registra la cantidad de registros afectados
@@ -60,16 +76,25 @@ namespace SistemaLavado.Controllers
             string resultado = "";
             try
             {
-                if (fabricante.id_codfabricante > 0)
+                if (MarcaVehiculo.id_codigoMarcaV > 0)
                 {
-                    cantRegistrosAfectados = bd.pa_FabricanteModifica(fabricante.id_codfabricante,
-                                                                        fabricante.codigo, fabricante.pais);
+                    cantRegistrosAfectados = bd.pa_Marca_VehiculoUpdate(MarcaVehiculo.id_codigoMarcaV,
+                                                                        MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo );
                     resultado = "Registro modificado correctamente";
                 }
                 else
                 {
-                    cantRegistrosAfectados = this.bd.pa_fabricanteInsert(fabricante.codigo, fabricante.pais);
-                    resultado = "Registro insertado correctamente";
+                    if (!bd.MarcaVehiculo.Any(e => e.codigo == MarcaVehiculo.codigo))
+                    {
+
+                        cantRegistrosAfectados = this.bd.pa_Marca_VehiculoInsert(MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo );
+                        resultado = "Registro insertado correctamente";
+                    }
+                    else
+                    {
+                        resultado = "El código ya existe";
+                    }
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception error)
@@ -84,9 +109,34 @@ namespace SistemaLavado.Controllers
                 TempData["estado"] = cantRegistrosAfectados > 0;
 
             }
-            return RedirectToAction("ListaFabricante");
+            return Json(resultado);
         }
-
+        [HttpGet]
+        public ActionResult Elimina(MarcaVehiculo MarcaVehiculo)
+        {
+            ViewBag.tipo = Session["role"] as string;
+            int registroAfectado = 0;
+            string resultado = "";
+            try
+            {
+                if (MarcaVehiculo.id_codigoMarcaV > 0)
+                {
+                    registroAfectado = bd.pa_Marca_VehiculoDelete(MarcaVehiculo.id_codigoMarcaV);
+                    resultado = "Registro eliminado correctamente.";
+                }
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrió un error: " + error.Message;
+            }
+            finally
+            {
+                resultado = (resultado.Length == 0) ? "Error al realizar la operación!" : resultado;
+                TempData["mensaje"] = resultado;
+                TempData["estado"] = registroAfectado > 0;
+            }
+            return Json(resultado);
+        }
 
     }
 }

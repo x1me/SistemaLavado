@@ -413,6 +413,23 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="estado" Type="char" Mode="In" />
         </Function>
         <Function Name="pa_Marca_Vehiculo_Retorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_Marca_VehiculoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codigoMarcaV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Marca_VehiculoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="fabricante" Type="int" Mode="In" />
+          <Parameter Name="tipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Marca_VehiculoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codigoMarcaV" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Marca_VehiculoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codigoMarcaV" Type="int" Mode="In" />
+          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="fabricante" Type="int" Mode="In" />
+          <Parameter Name="tipo" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_ProvinciaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idProvincia" Type="int" Mode="In" />
         </Function>
@@ -467,10 +484,11 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="codigo" Type="int" Mode="In" />
           <Parameter Name="tipo" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="pa_TipoVehiculoRetorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="pa_TipoVehiculoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="tipo" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_TTipo_VehiculoRetorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_UsuarioInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_usuario" Type="int" Mode="In" />
           <Parameter Name="correo" Type="varchar" Mode="In" />
@@ -1219,6 +1237,28 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="pa_Marca_VehiculoInsert">
+            <Parameter Name="codigo" Mode="In" Type="Int32" />
+            <Parameter Name="fabricante" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Marca_VehiculoSelect" ReturnType="Collection(sistemacontrolModel.pa_Marca_VehiculoSelect_Result)">
+          <Parameter Name="id_codigoMarcaV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Marca_VehiculoUpdate">
+            <Parameter Name="id_codigoMarcaV" Mode="In" Type="Int32" />
+            <Parameter Name="codigo" Mode="In" Type="Int32" />
+            <Parameter Name="fabricante" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_TipoVehiculoSelect" ReturnType="Collection(sistemacontrolModel.pa_TipoVehiculoSelect_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_TTipo_VehiculoRetorna" ReturnType="Collection(sistemacontrolModel.pa_TTipo_VehiculoRetorna_Result)" />
+          <FunctionImport Name="pa_Marca_VehiculoDelete">
+            <Parameter Name="id_codigoMarcaV" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="pa_CantonSelect_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1361,6 +1401,22 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_Marca_VehiculoSelect_Result">
+          <Property Type="Int32" Name="id_codigoMarcaV" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
+          <Property Type="Int32" Name="fabricante" Nullable="true" />
+          <Property Type="Int32" Name="tipo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_TipoVehiculoSelect_Result">
+          <Property Type="Int32" Name="id_codigoTV" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="pa_TTipo_VehiculoRetorna_Result">
+          <Property Type="Int32" Name="id_codigoTV" Nullable="false" />
+          <Property Type="Int16" Name="codigo" Nullable="true" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="60" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1659,15 +1715,6 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <FunctionImportMapping FunctionImportName="pa_TipoVehiculoDelete" FunctionName="sistemacontrolModel.Store.pa_TipoVehiculoDelete" />
           <FunctionImportMapping FunctionImportName="pa_TipoVehiculoInsert" FunctionName="sistemacontrolModel.Store.pa_TipoVehiculoInsert" />
           <FunctionImportMapping FunctionImportName="pa_TipoVehiculoModifica" FunctionName="sistemacontrolModel.Store.pa_TipoVehiculoModifica" />
-          <FunctionImportMapping FunctionImportName="pa_TipoVehiculoRetorna" FunctionName="sistemacontrolModel.Store.pa_TipoVehiculoRetorna">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_TipoVehiculoRetorna_Result">
-                <ScalarProperty Name="id_codigoTV" ColumnName="id_codigoTV" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_UsuariosSelect" FunctionName="sistemacontrolModel.Store.pa_UsuariosSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="sistemacontrolModel.pa_UsuariosSelect_Result">
@@ -1771,6 +1818,37 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="sistemacontrolModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="sistemacontrolModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="pa_Marca_VehiculoInsert" FunctionName="sistemacontrolModel.Store.pa_Marca_VehiculoInsert" />
+          <FunctionImportMapping FunctionImportName="pa_Marca_VehiculoSelect" FunctionName="sistemacontrolModel.Store.pa_Marca_VehiculoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_Marca_VehiculoSelect_Result">
+                <ScalarProperty Name="id_codigoMarcaV" ColumnName="id_codigoMarcaV" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fabricante" ColumnName="fabricante" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Marca_VehiculoUpdate" FunctionName="sistemacontrolModel.Store.pa_Marca_VehiculoUpdate" />
+          <FunctionImportMapping FunctionImportName="pa_TipoVehiculoSelect" FunctionName="sistemacontrolModel.Store.pa_TipoVehiculoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_TipoVehiculoSelect_Result">
+                <ScalarProperty Name="id_codigoTV" ColumnName="id_codigoTV" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_TTipo_VehiculoRetorna" FunctionName="sistemacontrolModel.Store.pa_TTipo_VehiculoRetorna">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_TTipo_VehiculoRetorna_Result">
+                <ScalarProperty Name="id_codigoTV" ColumnName="id_codigoTV" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Marca_VehiculoDelete" FunctionName="sistemacontrolModel.Store.pa_Marca_VehiculoDelete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

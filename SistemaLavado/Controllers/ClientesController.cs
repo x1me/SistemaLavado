@@ -14,6 +14,8 @@ namespace SistemaLavado.Controllers
         sistemacontrolEntities db = new sistemacontrolEntities();
         public ActionResult Index()
         {
+            string tipoUsuario = Session["role"] as string;
+            int? idCliente = Session["idCliente"] as Nullable<int>;
             return View("ListaClientes");
         }
 

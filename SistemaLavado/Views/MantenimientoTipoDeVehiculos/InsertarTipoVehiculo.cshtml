@@ -1,20 +1,19 @@
-﻿
-@model SistemaLavado.Models.TipoVehiculo
+﻿@model SistemaLavado.Models.TipoVehiculo
 @{
     ViewBag.Title = "ModeloVista";
 }
 <form id="frmTipoInserta" method="post" action="@Url.Action("agregaroeditar")">
     <input type="hidden" value="@Model.id_codigoTV" name="id_codigoTV" />
-    <h1 class="font-weight-bolder">Inserta Un Nuevo Tipo De Vehículo</h1>
+    <h1 class="font-weight-bolder">Inserta un nuevo tipo de vehículo</h1>
     <br />
-    <p class="text-muted">Agrega un pais con su respectivo código</p>
+    <p class="text-muted">Agrega el tipo de vehículo con su respectivo código</p>
     <br />
     <div class="form-group">
         <label>Código</label>
         <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Pais</label>
+        <label>Tipo</label>
         <input type="text" value="@Model.tipo" name="tipo" class="form-control" />
     </div>
     <div class="form-group">

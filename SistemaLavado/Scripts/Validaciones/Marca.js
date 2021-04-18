@@ -38,7 +38,7 @@ function crearTabla(datos) {
         },
         columns: [
             {
-                field: "id_codigoTV",
+                field: "id_codigoMarcaV",
                 title: " ID Producto"
             },
             {
@@ -50,21 +50,25 @@ function crearTabla(datos) {
                 title: "Tipo"
             },
             {
-            command: ["edit", "destroy"]
+                field: "pais",
+                title: "Fabricante"
+            },
+            {
+                command: ["edit", "destroy"]
             },
         ],
         dataSource: {
             transport: {
                 read: {
-                    url: "/MantenimientoTipoDeVehiculos/listar",
+                    url: "/MarcasDeVehiculo/listar",
                 },
                 update: {
-                    url: "/MantenimientoTipoDeVehiculos/agregaroeditar",
+                    url: "/MarcasDeVehiculo/agregaroeditar",
                     type: "post",
                     dataType: "json",
                 },
                 destroy: {
-                    url: "/MantenimientoTipoDeVehiculos/EliminaTipoVehiculo",
+                    url: "/MarcasDeVehiculo/Elimina",
 
                 },
             },
@@ -81,7 +85,8 @@ function crearTabla(datos) {
                     fields: {
                         id_codigoTV: { editable: false, nullable: true },
                         codigo: { type: "number", validation: { required: true, min: 1, max: 1000 } },
-                        tipo: { validation: { required: true, minlength: 1, maxlength: 30 } }
+                        tipo: { validation: { required: true, minlength: 1, maxlength: 30 } },
+                        fabricante: { validation: { required: true, minlength: 1, maxlength: 30 } }
                     }
                 }
             }

@@ -909,5 +909,79 @@ namespace SistemaLavado.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int pa_Marca_VehiculoInsert(Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
+        {
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            var fabricanteParameter = fabricante.HasValue ?
+                new ObjectParameter("fabricante", fabricante) :
+                new ObjectParameter("fabricante", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoInsert", codigoParameter, fabricanteParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_Marca_VehiculoSelect_Result> pa_Marca_VehiculoSelect(Nullable<int> id_codigoMarcaV)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Marca_VehiculoSelect_Result>("pa_Marca_VehiculoSelect", id_codigoMarcaVParameter);
+        }
+    
+        public virtual int pa_Marca_VehiculoUpdate(Nullable<int> id_codigoMarcaV, Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            var fabricanteParameter = fabricante.HasValue ?
+                new ObjectParameter("fabricante", fabricante) :
+                new ObjectParameter("fabricante", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoUpdate", id_codigoMarcaVParameter, codigoParameter, fabricanteParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_TipoVehiculoSelect_Result> pa_TipoVehiculoSelect(Nullable<int> id, string tipo)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoSelect_Result>("pa_TipoVehiculoSelect", idParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_TTipo_VehiculoRetorna_Result> pa_TTipo_VehiculoRetorna()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TTipo_VehiculoRetorna_Result>("pa_TTipo_VehiculoRetorna");
+        }
+    
+        public virtual int pa_Marca_VehiculoDelete(Nullable<int> id_codigoMarcaV)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoDelete", id_codigoMarcaVParameter);
+        }
     }
 }

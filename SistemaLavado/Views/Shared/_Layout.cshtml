@@ -23,59 +23,70 @@
                 if (ViewBag.tipo != null)
 
                 {
-                    <ul class="navbar-nav">
-                        @{
-                            if (ViewBag.tipo == "a")
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Clientes
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="@Url.Action("Index", "Clientes")">Listar Clientes</a>
-                                        <a class="dropdown-item" href="/Clientes/agregar">Nuevo Cliente</a>
-                                    </div>
-                                </li>
+                        <ul class="navbar-nav">
+                            @{
+                                if (ViewBag.tipo == "a")
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Clientes
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="@Url.Action("Index", "Clientes")">Listar Clientes</a>
+                                            <a class="dropdown-item" href="/Clientes/agregar">Nuevo Cliente</a>
+                                        </div>
+                                    </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pais Fabricante
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="@Url.Action("Index", "MantenimientoFabricante")">Listar Fabricantes</a>
-                                        <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoFabricante")">Nuevo Fabricante</a>
-                                    </div>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Pais Fabricante
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="@Url.Action("Index", "MantenimientoFabricante")">Listar Fabricantes</a>
+                                            <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoFabricante")">Nuevo Fabricante</a>
+                                        </div>
+                                    </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Tipo de Vehiculo
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="@Url.Action("Index", "MantenimientoTipoDeVehiculos")">Listar Vehiculos</a>
-                                        <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoTipoDeVehiculos")">Nuevo Vehiculo</a>
-                                    </div>
-                                </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Tipo de Vehiculo
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="@Url.Action("Index", "MantenimientoTipoDeVehiculos")">Listar Vehiculos</a>
+                                            <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MantenimientoTipoDeVehiculos")">Nuevo Vehiculo</a>
+                                        </div>
+                                    </li>
 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Marcas de vehiculo
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href='@Url.Action("ListaMarcas", "MarcasDeVehiculo")'>ListarMarcas</a>
-                                        <a class="dropdown-item" href='@Url.Action("agregar", "MarcasDeVehiculo")'>Nueva Marca</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Marcas de vehiculo
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="@Url.Action("Index", "MarcasDeVehiculo")">Lista Marcas</a>
+                                            <a class="dropdown-item" href="@Url.Action("agregaroeditar", "MarcasDeVehiculo")">Nueva Marca</a>
 
-                                    </div>
-                                </li>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Geografia
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="@Url.Action("Provincia", "Geografia")">Provincia</a>
+                                            <a class="dropdown-item" href="@Url.Action("Canton", "Geografia")">Canton</a>
+                                            <a class="dropdown-item" href="@Url.Action("Distrito", "Geografia")">Distrito</a>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <a class="navbar-brand" href="/Clientes/index">Datos Personales</a>
+
+
+                                }
                             }
-                            else
-                            {
-                                <a class="navbar-brand" href="/Clientes/index">Datos Personales</a>
-
-
-                            }
-                        }
-                    </ul>
+                        </ul>
                 }
             }
             <a href='@Url.Action("Login", "Login")' class="ml-auto">Cerrar Sesión</a>

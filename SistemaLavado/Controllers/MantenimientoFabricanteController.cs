@@ -12,6 +12,8 @@ namespace SistemaLavado.Controllers
         sistemacontrolEntities bd = new sistemacontrolEntities();
         public ActionResult Index()
         {
+            string tipoUsuario = Session["role"] as string;
+            int? idCliente = Session["idCliente"] as Nullable<int>;
             return View("ListaFabricante");
         }
 

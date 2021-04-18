@@ -1,0 +1,49 @@
+﻿@model SistemaLavado.Models.MarcaVehiculo
+@{
+    ViewBag.Title = "InsertaMarca";
+}
+
+<form id="frmInserta" method="post" action="@Url.Action("agregaroeditar")">
+    <input type="hidden" value="@Model.id_codigoMarcaV" name="id_codigoMarcaV" />
+    <h1 class="font-weight-bolder">Agregar marca vehículo</h1>
+    <br />
+    <p class="text-muted">Agrega los datos requeridos</p>
+    <br />
+    <div class="form-group">
+        <label>Código</label>
+        <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Tipo</label>
+        <select name="tipo" id="tipo" class="form-control">
+            <option value="">Seleccione el tipo</option>
+            @{
+                foreach (var tipo in this.ViewBag.lista_tipos)
+                {
+                    <option value="@tipo.id_tipo">@tipo.tipo_nombre.ToUpper() </option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Fabricante</label>
+        <select name="fabricante" id="id__fabricante" class="form-control">
+            <option value="">Seleccione el fabricante</option>
+            @{
+                foreach (var tipo in this.ViewBag.lista_fabricantes)
+                {
+                    <option value="@tipo.id__fabricante">@tipo.fabricante_nombre.ToUpper() </option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
+    </div>
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+</form>
+@section scripts
+    {
+    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+    @Scripts.Render("~/Scripts/ValidacionesInsertar/InsertaFabricante.js")
+}

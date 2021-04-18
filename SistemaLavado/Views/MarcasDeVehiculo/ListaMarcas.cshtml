@@ -3,42 +3,37 @@
     ViewBag.Title = "ListaMarcas";
 }
 
-<h2>ListaMarcas</h2>
-
 <div class="table-container">
-    <h2>Lista De Los Fabricantes</h2>
     <br />
-    <p>Esta lista abarca las marcas de los vehiculos</p>
+    <h1 class="font-weight-bolder">Lista Marcas</h1>
     <br />
-    @{
-        if (ViewData["mensaje"] != null)
-        {
-            var mensaje = (SistemaLavado.Models.Mensaje)ViewData["mensaje"];
+    <p class="text-muted">Esta lista abarca todas las listas de marcas.</p>
+    <br />
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+    <br />
 
-            <div class="alert @(mensaje.estado?"alert-success":"alert-danger")">
-                @(mensaje.estado?mensaje.confirmacion:mensaje.error)
+    <div class="contenedor-tabla" style="width: 90%; margin: 2rem auto 0 auto">
+        @if (TempData["mensaje"] != null)
+        {
+            string mensaje = (string)TempData["mensaje"];
+            bool estado = (bool)TempData["estado"];
+
+            <div class="alert  @(estado?"alert-success":"alert-danger") alert-dismissible fade show">
+                <strong>@mensaje</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         }
-    }
-    <div class="table">
-        <div class="container-header">
-            <a href="~/MarcasDeVehiculo/ListaMarcas" class="btn btn-success">Marca de Vehiculo</a>
-        </div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Código </th>
-                    <th>Tipo </th>
-                    <th>Pais</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var MarcaVehiculo in this.Model)
-                {
-
-                }
-            </tbody>
-        </table>
     </div>
+    <br />
+    <div id="Lista"></div>
+    <br />
+    <br />
+
+
 </div>
+
+@section scripts{
+    <script src="~/Scripts/Validaciones/Marca.js"></script>
+}
