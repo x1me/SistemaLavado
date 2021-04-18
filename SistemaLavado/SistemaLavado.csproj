@@ -213,6 +213,12 @@
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pa_VehiculoRetorna_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_VehiculoSelect_Result.cs">
+      <DependentUpon>Sistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Provincia.cs">
       <DependentUpon>Sistema.tt</DependentUpon>
     </Compile>
@@ -448,12 +454,12 @@
     <Content Include="Views\Geografia\Canton.cshtml" />
     <Content Include="Views\Geografia\Provincia.cshtml" />
     <Content Include="Views\Geografia\Distrito.cshtml" />
+    <Content Include="Views\Vehiculos\ListaVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faltante\" />
     <Folder Include="Views\Servicios_Productos\" />
-    <Folder Include="Views\Vehiculos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

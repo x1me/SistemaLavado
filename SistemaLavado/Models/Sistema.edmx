@@ -412,6 +412,9 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="monto_total" Type="decimal" Mode="In" />
           <Parameter Name="estado" Type="char" Mode="In" />
         </Function>
+        <Function Name="pa_Marca_Vehiculo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_codigoMarcaV" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Marca_Vehiculo_Retorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Marca_VehiculoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_codigoMarcaV" Type="int" Mode="In" />
@@ -506,6 +509,28 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Parameter Name="tipo" Type="varchar" Mode="In" />
           <Parameter Name="ultimafecha" Type="date" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_Vehiculo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_vehiculo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_VehiculoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="placa" Type="nvarchar" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="marca" Type="smallint" Mode="In" />
+          <Parameter Name="numeroPuertas" Type="tinyint" Mode="In" />
+          <Parameter Name="numeroRuedas" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="pa_VehiculoModifica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_vehiculo" Type="int" Mode="In" />
+          <Parameter Name="placa" Type="nvarchar" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="marca" Type="smallint" Mode="In" />
+          <Parameter Name="numeroPuertas" Type="tinyint" Mode="In" />
+          <Parameter Name="numeroRuedas" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="pa_VehiculoRetorna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_VehiculoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_vehiculo" Type="int" Mode="In" />
         </Function>
         <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -1257,7 +1282,32 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           </FunctionImport>
           <FunctionImport Name="pa_TTipo_VehiculoRetorna" ReturnType="Collection(sistemacontrolModel.pa_TTipo_VehiculoRetorna_Result)" />
           <FunctionImport Name="pa_Marca_VehiculoDelete">
+          <Parameter Name="id_codigoMarcaV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Marca_Vehiculo_Delete">
             <Parameter Name="id_codigoMarcaV" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Vehiculo_Delete">
+            <Parameter Name="id_vehiculo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_VehiculoInsert">
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="Int16" />
+            <Parameter Name="numeroPuertas" Mode="In" Type="Byte" />
+            <Parameter Name="numeroRuedas" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="pa_VehiculoModifica">
+            <Parameter Name="id_vehiculo" Mode="In" Type="Int32" />
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="Int16" />
+            <Parameter Name="numeroPuertas" Mode="In" Type="Byte" />
+            <Parameter Name="numeroRuedas" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="pa_VehiculoRetorna" ReturnType="Collection(sistemacontrolModel.pa_VehiculoRetorna_Result)" />
+          <FunctionImport Name="pa_VehiculoSelect" ReturnType="Collection(sistemacontrolModel.pa_VehiculoSelect_Result)">
+            <Parameter Name="id_vehiculo" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="pa_CantonSelect_Result">
@@ -1417,6 +1467,22 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
           <Property Type="Int32" Name="id_codigoTV" Nullable="false" />
           <Property Type="Int16" Name="codigo" Nullable="true" />
           <Property Type="String" Name="tipo" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="pa_VehiculoRetorna_Result">
+          <Property Type="Int32" Name="id_vehiculo" Nullable="false" />
+          <Property Type="String" Name="placa" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="60" />
+          <Property Type="Int16" Name="marca" Nullable="true" />
+          <Property Type="Byte" Name="numeroPuertas" Nullable="true" />
+          <Property Type="Byte" Name="numeroRuedas" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_VehiculoSelect_Result">
+          <Property Type="Int32" Name="id_vehiculo" Nullable="false" />
+          <Property Type="String" Name="placa" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="60" />
+          <Property Type="Int16" Name="marca" Nullable="true" />
+          <Property Type="Byte" Name="numeroPuertas" Nullable="true" />
+          <Property Type="Byte" Name="numeroRuedas" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1849,6 +1915,34 @@ advertencia 6035: La relación 'FK_VehiculoCliente_Vehiculo' tiene columnas que 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Marca_VehiculoDelete" FunctionName="sistemacontrolModel.Store.pa_Marca_VehiculoDelete" />
+          <FunctionImportMapping FunctionImportName="pa_Marca_Vehiculo_Delete" FunctionName="sistemacontrolModel.Store.pa_Marca_Vehiculo_Delete" />
+          <FunctionImportMapping FunctionImportName="pa_Vehiculo_Delete" FunctionName="sistemacontrolModel.Store.pa_Vehiculo_Delete" />
+          <FunctionImportMapping FunctionImportName="pa_VehiculoInsert" FunctionName="sistemacontrolModel.Store.pa_VehiculoInsert" />
+          <FunctionImportMapping FunctionImportName="pa_VehiculoModifica" FunctionName="sistemacontrolModel.Store.pa_VehiculoModifica" />
+          <FunctionImportMapping FunctionImportName="pa_VehiculoRetorna" FunctionName="sistemacontrolModel.Store.pa_VehiculoRetorna">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_VehiculoRetorna_Result">
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="numeroPuertas" ColumnName="numeroPuertas" />
+                <ScalarProperty Name="numeroRuedas" ColumnName="numeroRuedas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_VehiculoSelect" FunctionName="sistemacontrolModel.Store.pa_VehiculoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="sistemacontrolModel.pa_VehiculoSelect_Result">
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="numeroPuertas" ColumnName="numeroPuertas" />
+                <ScalarProperty Name="numeroRuedas" ColumnName="numeroRuedas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

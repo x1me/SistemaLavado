@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "ListaVehiculo";
+}
+
+<div class="table-container">
+    <br />
+    <h1 class="font-weight-bolder">Lista Vehiculos</h1>
+    <br />
+    <p class="text-muted">Esta lista abarca todas las listas de vehiculos.</p>
+    <br />
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+    <br />
+
+    <div class="contenedor-tabla" style="width: 90%; margin: 2rem auto 0 auto">
+        @if (TempData["mensaje"] != null)
+        {
+            string mensaje = (string)TempData["mensaje"];
+            bool estado = (bool)TempData["estado"];
+
+            <div class="alert  @(estado?"alert-success":"alert-danger") alert-dismissible fade show">
+                <strong>@mensaje</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </div>
+    <br />
+    <div id="Lista"></div>
+    <br />
+    <br />
+
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Validaciones/Vehiculo.js"></script>
+}

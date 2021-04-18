@@ -19,15 +19,14 @@ namespace SistemaLavado.Controllers
         }
         [HttpGet, ActionName("listar")]
         public ActionResult ListaVehiculo()
-        { // crear pa vehiculo y cambiar id por nombres
-            var Vehiculos = bd.pa_v().ToList();
-            var datos = (from i in Marca
+        {  
+            var Vehiculos = bd.pa_VehiculoRetorna().ToList();
+            var datos = (from i in Vehiculos
                          select new
                          {
-                             tipo = bd.TipoVehiculo.Where(e => e.id_codigoTV == i.tipo).Select(e => e.tipo).First(),
-                             id_codigoMarcaV = i.id_codigoMarcaV,
-                             codigo = i.codigo,
-                             fabricante = bd.Fabricante.Where(e => e.id_codfabricante == i.fabricante).Select(e => e.pais).First(),
+                             //tipo = bd.TipoVehiculo.Where(e => e. == i.tipo).Select(e => e.tipo).First(),
+                             
+                             marca = bd.MarcaVehiculo.Where(e => e.id_codigoMarcaV == i.marca).Select(e => e.tipo).First(),
                          }
                         ).ToList();
             return Json(datos, JsonRequestBehavior.AllowGet);

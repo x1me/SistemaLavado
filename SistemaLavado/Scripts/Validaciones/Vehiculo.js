@@ -68,15 +68,15 @@ function crearTabla(datos) {
         dataSource: {
             transport: {
                 read: {
-                    url: "/Vehiculo/listar",
+                    url: "/Vehiculos/listar",
                 },
                 update: {
-                    url: "/Vehiculo/agregaroeditar",
+                    url: "/Vehiculos/agregaroeditar",
                     type: "post",
                     dataType: "json",
                 },
                 destroy: {
-                    url: "/Vehiculo/Elimina",
+                    url: "/Vehiculos/Elimina",
 
                 },
             },
