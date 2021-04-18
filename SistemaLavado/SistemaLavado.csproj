@@ -142,6 +142,7 @@
     <Compile Include="Controllers\MarcasDeVehiculoController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\Servicios_ProductosController.cs" />
+    <Compile Include="Controllers\VehiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -402,6 +403,7 @@
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Scripts\Validaciones\Marca.js" />
     <Content Include="Scripts\Validaciones\TipoVehiculo.js" />
+    <Content Include="Scripts\Validaciones\Vehiculo.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -451,6 +453,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faltante\" />
     <Folder Include="Views\Servicios_Productos\" />
+    <Folder Include="Views\Vehiculos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
