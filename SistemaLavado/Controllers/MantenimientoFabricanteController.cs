@@ -14,6 +14,7 @@ namespace SistemaLavado.Controllers
         {
             string tipoUsuario = Session["role"] as string;
             int? idCliente = Session["idCliente"] as Nullable<int>;
+            ViewBag.tipo = Session["role"] as string;
             return View("ListaFabricante");
         }
 

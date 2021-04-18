@@ -56,7 +56,8 @@ namespace SistemaLavado.Controllers
                              fechaModifica = i.fechaModifica,
                              vc_Estado = i.vc_Estado
                          }
-                         ).ToList();
+                        ).ToList();
+
             return Json(datos, JsonRequestBehavior.AllowGet);
 
         }

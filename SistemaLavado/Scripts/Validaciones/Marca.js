@@ -50,7 +50,7 @@ function crearTabla(datos) {
                 title: "Tipo"
             },
             {
-                field: "pais",
+                field: "fabricante",
                 title: "Fabricante"
             },
             {

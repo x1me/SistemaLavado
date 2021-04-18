@@ -15,6 +15,7 @@ namespace SistemaLavado.Controllers
         {
             string tipoUsuario = Session["role"] as string;
             int? idCliente = Session["idCliente"] as Nullable<int>;
+            ViewBag.tipo = Session["role"] as string;
             return View("ListaMarcas");
         }
 
@@ -22,8 +23,18 @@ namespace SistemaLavado.Controllers
         public ActionResult ListaMarca()
         {
             ViewBag.tipo = Session["role"] as string;
-            List<pa_Marca_Vehiculo_Retorna_Result> Marca = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
-            return Json(Marca, JsonRequestBehavior.AllowGet);
+            //List<pa_Marca_Vehiculo_Retorna_Result> Marca = this.bd.pa_Marca_Vehiculo_Retorna().ToList();
+            var Marca = bd.pa_Marca_Vehiculo_Retorna().ToList();
+            var datos = (from i in Marca
+                         select new
+                         {                             
+                             tipo = bd.TipoVehiculo.Where(e => e.id_codigoTV == i.tipo).Select(e => e.tipo).First(),
+                             id_codigoMarcaV = i.id_codigoMarcaV,
+                             codigo = i.codigo,
+                             fabricante = bd.Fabricante.Where(e => e.id_codfabricante == i.fabricante).Select(e => e.pais).First(),
+                         }
+                        ).ToList();
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
         [ActionName("agregaroeditar")]

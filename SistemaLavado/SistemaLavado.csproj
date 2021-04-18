@@ -310,9 +310,6 @@
     <Content Include="Models\Sistema.edmx.diagram">
       <DependentUpon>Sistema.edmx</DependentUpon>
     </Content>
-    <Content Include="Geografia\Canton.cshtml" />
-    <Content Include="Geografia\Distrito.cshtml" />
-    <Content Include="Geografia\Provincia.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -446,11 +443,13 @@
     <Content Include="Views\MarcasDeVehiculo\EditarAgregar.cshtml" />
     <Content Include="Views\Login\AgregarNuevoUsuario.cshtml" />
     <Content Include="Views\MarcasDeVehiculo\InsertaMarca.cshtml" />
+    <Content Include="Views\Geografia\Canton.cshtml" />
+    <Content Include="Views\Geografia\Provincia.cshtml" />
+    <Content Include="Views\Geografia\Distrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faltante\" />
-    <Folder Include="Views\Geografia\" />
     <Folder Include="Views\Servicios_Productos\" />
   </ItemGroup>
   <ItemGroup>
