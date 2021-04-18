@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\Correo.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\GeografiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MantenimientoFabricanteController.cs" />
@@ -449,6 +450,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faltante\" />
+    <Folder Include="Views\Geografia\" />
     <Folder Include="Views\Servicios_Productos\" />
   </ItemGroup>
   <ItemGroup>

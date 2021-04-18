@@ -11,58 +11,87 @@
 
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="table-container">
-            <h2>Pagina Principal</h2>
-        </div>
-    </div>
-    <div class="row bg-dark">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 100%">
-            <div class="carousel-inner">
+    <br />
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenido @Model.nombre @Model.apellidos</h1>
+        <br />
+        <p class="lead">Usted ingresó por última vez @Model.ultimaFecha</p>
+        <hr class="my-4">
+        <p class="text-justify">
+            Somos una aplicación  que te permite solicitar el lavado de tu auto estés dónde estés.
 
-                <div class="carousel-item">
-                    <span class="sprite Asientos"></span>
-                </div>
-                <div class="carousel-item">
-                    <span class="sprite L200"></span>
-                </div>
-                <div class="carousel-item">
-                    <span class="sprite Llanta"></span>
-                </div>
-                <div class="carousel-item">
-                    <span class="sprite Motor"></span>
-                </div>
-                <div class="carousel-item active">
-                    <span class="sprite Puerta"></span>
+            Conectamos a especialistas en lavado de vehículos con personas que necesitan que les laven su auto en la comodidad de su hogar u oficina.
+
+            ¡Ya no tendrás que perder tu tiempo llevando el auto a un autolavado!
+
+            Con productos de vanguardia debidamente certificados, FastWash® le da a su automóvil un hermoso acabado sin dañar el medio ambiente.
+
+            Con FastWash® lavar tu auto nunca fue más fácil.
+        </p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <div class="row bg-dark">
+
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 100%">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <span class="sprite Asientos"></span>
+                            </div>
+                            <div class="carousel-item">
+                                <span class="sprite L200"></span>
+                            </div>
+                            <div class="carousel-item">
+                                <span class="sprite Llanta"></span>
+                            </div>
+                            <div class="carousel-item">
+                                <span class="sprite Motor"></span>
+                            </div>
+                            <div class="carousel-item active">
+                                <span class="sprite Puerta"></span>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div class="col-sm">
+            </div>
         </div>
     </div>
     <div class="container">
-        <div class="ros">
-            <div class="col">
-
-                <h3>Bienvenido @Model.nombre @Model.apellidos</h3>
-                <h3>Usted ingresó por última vez @Model.ultimaFecha</h3>
+        <div class="row">
+            <div class="col-sm">              
             </div>
-
-            <div class=" col">
-                <video width="320" height="240" controls>
-                    <source src="~/Img-Video/Auto lavado.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <audio controls autoplay>
-                    <source src="~/Img-Video/Star Wars.m4a" type="audio/mpeg">
-                </audio>
+            <div class="col-sm">
+                <div class="col-sm">
+                    <video width="320" height="240" controls>
+                        <source src="~/Img-Video/Auto lavado.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <audio controls autoplay>
+                        <source src="~/Img-Video/Star Wars.m4a" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-sm">
             </div>
         </div>
     </div>
 </div>
+<style>
+    .jumbotron {
+        background: rgb(157,240,218);
+        background: radial-gradient(circle, rgba(157,240,218,0.5889706224286589) 64%, rgba(23,144,223,0.6197829473586309) 83%);
+    }
+</style>
