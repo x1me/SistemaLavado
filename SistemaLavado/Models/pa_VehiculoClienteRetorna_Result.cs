@@ -11,10 +11,9 @@ namespace SistemaLavado.Models
 {
     using System;
     
-    public partial class pa_TipoVehiculoRetorna_Result
+    public partial class pa_VehiculoClienteRetorna_Result
     {
-        public int id_codigoTV { get; set; }
-        public Nullable<short> codigo { get; set; }
-        public string tipo { get; set; }
+        public int codigoCliente { get; set; }
+        public string codigoVehiculo { get; set; }
     }
 }

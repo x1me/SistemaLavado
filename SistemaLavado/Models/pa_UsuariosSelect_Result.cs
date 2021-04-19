@@ -18,5 +18,6 @@ namespace SistemaLavado.Models
         public string contrasena { get; set; }
         public string tipo { get; set; }
         public Nullable<System.DateTime> UltimaFecha { get; set; }
+        public string estado { get; set; }
     }
 }

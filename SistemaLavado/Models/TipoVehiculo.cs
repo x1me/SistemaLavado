@@ -17,6 +17,7 @@ namespace SistemaLavado.Models
         public TipoVehiculo()
         {
             this.MarcaVehiculo = new HashSet<MarcaVehiculo>();
+            this.Vehiculo = new HashSet<Vehiculo>();
         }
     
         public int id_codigoTV { get; set; }
@@ -24,5 +25,6 @@ namespace SistemaLavado.Models
         public string tipo { get; set; }
     
         public virtual ICollection<MarcaVehiculo> MarcaVehiculo { get; set; }
+        public virtual ICollection<Vehiculo> Vehiculo { get; set; }
     }
 }

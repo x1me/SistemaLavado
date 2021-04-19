@@ -17,5 +17,6 @@ namespace SistemaLavado.Models
         public Nullable<short> codigo { get; set; }
         public Nullable<int> fabricante { get; set; }
         public Nullable<int> tipo { get; set; }
+        public string nombre_marca { get; set; }
     }
 }

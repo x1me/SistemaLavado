@@ -15,8 +15,8 @@ namespace SistemaLavado.Models
     {
         public int id_vehiculo { get; set; }
         public string placa { get; set; }
-        public string tipo { get; set; }
-        public Nullable<short> marca { get; set; }
+        public Nullable<int> tipo { get; set; }
+        public Nullable<int> marca { get; set; }
         public Nullable<byte> numeroPuertas { get; set; }
         public Nullable<byte> numeroRuedas { get; set; }
     }

@@ -20,10 +20,8 @@ function peticion(url, callback = null, metodo = "get", dataType = "json", datos
 }
 
 
-function crearTabla(datos) {
-    console.log($("ok"));
+function crearTabla() {
     $("#Lista").kendoGrid({
-        dataSource: datos,
         height: 500,
         filterable: true,
         pageSize: 20,
@@ -38,27 +36,27 @@ function crearTabla(datos) {
         },
         columns: [
             {
-                field: "id_vehiculo",
-                title: " ID Vehículo"
+                field: "id",
+                title: "Id vehiculo"
             },
             {
                 field: "placa",
                 title: "Placa"
             },
             {
-                field: "tipo",
+                field: "tipo_nombre",
                 title: "Tipo"
             },
             {
-                field: "marca",
+                field: "marca_nombre",
                 title: "Marca"
             },
             {
-                field: "numeroPuertas",
+                field: "numero_puertas",
                 title: "Cantidad Puertas"
             },
             {
-                field: "numeroRuedas",
+                field: "numero_ruedas",
                 title: "Cantidad Ruedas"
             },
             {
@@ -89,7 +87,7 @@ function crearTabla(datos) {
             },
             schema: {
                 model: {
-                    id: "id_vehiculo",
+                    id: "id",
                     fields: {
                         id_vehiculo: { editable: false, nullable: true },
                         placa: { validation: { required: true, minlength: 1, maxlength: 30 } },

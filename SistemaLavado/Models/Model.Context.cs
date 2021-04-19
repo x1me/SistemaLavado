@@ -172,6 +172,15 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_ClienteInsert", cedulaParameter, generoParameter, nombreParameter, correoParameter, provinciaParameter, cantonParameter, distritoParameter, fecha_nacimientoParameter, apellido1Parameter, apellido2Parameter, estadoParameter);
         }
     
+        public virtual ObjectResult<pa_ClienteSelect_Result> pa_ClienteSelect(Nullable<int> id_cliente)
+        {
+            var id_clienteParameter = id_cliente.HasValue ?
+                new ObjectParameter("id_cliente", id_cliente) :
+                new ObjectParameter("id_cliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ClienteSelect_Result>("pa_ClienteSelect", id_clienteParameter);
+        }
+    
         public virtual int pa_ClienteUpdate(Nullable<int> id_cliente, Nullable<int> cedula, string genero, Nullable<System.DateTime> fecha_nacimiento, string nombre, string apellido1, string apellido2, string correo, Nullable<int> provincia, Nullable<int> canton, Nullable<int> distrito)
         {
             var id_clienteParameter = id_cliente.HasValue ?
@@ -446,9 +455,74 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_FacturaEncabezadoUpdate", id_SerFac_EncaParameter, cedulaParameter, placaParameter, fechaParameter, monto_totalParameter, estadoParameter);
         }
     
+        public virtual int pa_Marca_Vehiculo_Delete(Nullable<int> id_codigoMarcaV)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_Vehiculo_Delete", id_codigoMarcaVParameter);
+        }
+    
         public virtual ObjectResult<pa_Marca_Vehiculo_Retorna_Result> pa_Marca_Vehiculo_Retorna()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Marca_Vehiculo_Retorna_Result>("pa_Marca_Vehiculo_Retorna");
+        }
+    
+        public virtual int pa_Marca_VehiculoDelete(Nullable<int> id_codigoMarcaV)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoDelete", id_codigoMarcaVParameter);
+        }
+    
+        public virtual int pa_Marca_VehiculoInsert(Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
+        {
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            var fabricanteParameter = fabricante.HasValue ?
+                new ObjectParameter("fabricante", fabricante) :
+                new ObjectParameter("fabricante", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoInsert", codigoParameter, fabricanteParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_Marca_VehiculoSelect_Result> pa_Marca_VehiculoSelect(Nullable<int> id_codigoMarcaV)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Marca_VehiculoSelect_Result>("pa_Marca_VehiculoSelect", id_codigoMarcaVParameter);
+        }
+    
+        public virtual int pa_Marca_VehiculoUpdate(Nullable<int> id_codigoMarcaV, Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
+        {
+            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
+                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
+                new ObjectParameter("id_codigoMarcaV", typeof(int));
+    
+            var codigoParameter = codigo.HasValue ?
+                new ObjectParameter("codigo", codigo) :
+                new ObjectParameter("codigo", typeof(int));
+    
+            var fabricanteParameter = fabricante.HasValue ?
+                new ObjectParameter("fabricante", fabricante) :
+                new ObjectParameter("fabricante", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoUpdate", id_codigoMarcaVParameter, codigoParameter, fabricanteParameter, tipoParameter);
         }
     
         public virtual int pa_ProvinciaDelete(Nullable<int> idProvincia)
@@ -631,7 +705,7 @@ namespace SistemaLavado.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_TipoVehiculoModifica", id_codigoTVParameter, codigoParameter, tipoParameter);
         }
     
-        public virtual ObjectResult<pa_TipoVehiculoRetorna_Result> pa_TipoVehiculoRetorna(Nullable<int> id, string tipo)
+        public virtual ObjectResult<pa_TipoVehiculoSelect_Result> pa_TipoVehiculoSelect(Nullable<int> id, string tipo)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -641,7 +715,37 @@ namespace SistemaLavado.Models
                 new ObjectParameter("tipo", tipo) :
                 new ObjectParameter("tipo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoRetorna_Result>("pa_TipoVehiculoRetorna", idParameter, tipoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoSelect_Result>("pa_TipoVehiculoSelect", idParameter, tipoParameter);
+        }
+    
+        public virtual ObjectResult<pa_TTipo_VehiculoRetorna_Result> pa_TTipo_VehiculoRetorna()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TTipo_VehiculoRetorna_Result>("pa_TTipo_VehiculoRetorna");
+        }
+    
+        public virtual int pa_UsuarioInsert(Nullable<int> id_usuario, string correo, string contrasena, string tipo, Nullable<System.DateTime> ultimaFecha)
+        {
+            var id_usuarioParameter = id_usuario.HasValue ?
+                new ObjectParameter("id_usuario", id_usuario) :
+                new ObjectParameter("id_usuario", typeof(int));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("correo", correo) :
+                new ObjectParameter("correo", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(string));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(string));
+    
+            var ultimaFechaParameter = ultimaFecha.HasValue ?
+                new ObjectParameter("ultimaFecha", ultimaFecha) :
+                new ObjectParameter("ultimaFecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_UsuarioInsert", id_usuarioParameter, correoParameter, contrasenaParameter, tipoParameter, ultimaFechaParameter);
         }
     
         public virtual ObjectResult<pa_UsuariosSelect_Result> pa_UsuariosSelect(Nullable<int> idUsuarios)
@@ -651,6 +755,169 @@ namespace SistemaLavado.Models
                 new ObjectParameter("idUsuarios", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_UsuariosSelect_Result>("pa_UsuariosSelect", idUsuariosParameter);
+        }
+    
+        public virtual int pa_UsuarioUpdate(Nullable<int> id_usuario, string correo, Nullable<int> contrasena, string tipo, Nullable<System.DateTime> ultimafecha, string estado)
+        {
+            var id_usuarioParameter = id_usuario.HasValue ?
+                new ObjectParameter("id_usuario", id_usuario) :
+                new ObjectParameter("id_usuario", typeof(int));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("correo", correo) :
+                new ObjectParameter("correo", typeof(string));
+    
+            var contrasenaParameter = contrasena.HasValue ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(int));
+    
+            var tipoParameter = tipo != null ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(string));
+    
+            var ultimafechaParameter = ultimafecha.HasValue ?
+                new ObjectParameter("ultimafecha", ultimafecha) :
+                new ObjectParameter("ultimafecha", typeof(System.DateTime));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_UsuarioUpdate", id_usuarioParameter, correoParameter, contrasenaParameter, tipoParameter, ultimafechaParameter, estadoParameter);
+        }
+    
+        public virtual int pa_Vehiculo_Delete(Nullable<int> id_vehiculo)
+        {
+            var id_vehiculoParameter = id_vehiculo.HasValue ?
+                new ObjectParameter("id_vehiculo", id_vehiculo) :
+                new ObjectParameter("id_vehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Vehiculo_Delete", id_vehiculoParameter);
+        }
+    
+        public virtual int pa_VehiculoclienteDelete(Nullable<int> codigoCliente, string codigoVehiculo)
+        {
+            var codigoClienteParameter = codigoCliente.HasValue ?
+                new ObjectParameter("codigoCliente", codigoCliente) :
+                new ObjectParameter("codigoCliente", typeof(int));
+    
+            var codigoVehiculoParameter = codigoVehiculo != null ?
+                new ObjectParameter("codigoVehiculo", codigoVehiculo) :
+                new ObjectParameter("codigoVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoclienteDelete", codigoClienteParameter, codigoVehiculoParameter);
+        }
+    
+        public virtual int pa_VehiculoClienteInsert(Nullable<int> codigoCliente, string vehiculoCliente)
+        {
+            var codigoClienteParameter = codigoCliente.HasValue ?
+                new ObjectParameter("codigoCliente", codigoCliente) :
+                new ObjectParameter("codigoCliente", typeof(int));
+    
+            var vehiculoClienteParameter = vehiculoCliente != null ?
+                new ObjectParameter("VehiculoCliente", vehiculoCliente) :
+                new ObjectParameter("VehiculoCliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoClienteInsert", codigoClienteParameter, vehiculoClienteParameter);
+        }
+    
+        public virtual int pa_VehiculoclienteModifica(Nullable<int> codigoCliente, string codigoVehiculo)
+        {
+            var codigoClienteParameter = codigoCliente.HasValue ?
+                new ObjectParameter("codigoCliente", codigoCliente) :
+                new ObjectParameter("codigoCliente", typeof(int));
+    
+            var codigoVehiculoParameter = codigoVehiculo != null ?
+                new ObjectParameter("codigoVehiculo", codigoVehiculo) :
+                new ObjectParameter("codigoVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoclienteModifica", codigoClienteParameter, codigoVehiculoParameter);
+        }
+    
+        public virtual ObjectResult<pa_VehiculoClienteRetorna_Result> pa_VehiculoClienteRetorna()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoClienteRetorna_Result>("pa_VehiculoClienteRetorna");
+        }
+    
+        public virtual ObjectResult<pa_VehiculoclienteSelect_Result> pa_VehiculoclienteSelect(Nullable<int> codigoCliente, string codigoVehiculo)
+        {
+            var codigoClienteParameter = codigoCliente.HasValue ?
+                new ObjectParameter("codigoCliente", codigoCliente) :
+                new ObjectParameter("codigoCliente", typeof(int));
+    
+            var codigoVehiculoParameter = codigoVehiculo != null ?
+                new ObjectParameter("codigoVehiculo", codigoVehiculo) :
+                new ObjectParameter("codigoVehiculo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoclienteSelect_Result>("pa_VehiculoclienteSelect", codigoClienteParameter, codigoVehiculoParameter);
+        }
+    
+        public virtual int pa_VehiculoInsert(string placa, Nullable<int> tipo, Nullable<int> marca, Nullable<byte> numeroPuertas, Nullable<byte> numeroRuedas)
+        {
+            var placaParameter = placa != null ?
+                new ObjectParameter("placa", placa) :
+                new ObjectParameter("placa", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            var marcaParameter = marca.HasValue ?
+                new ObjectParameter("marca", marca) :
+                new ObjectParameter("marca", typeof(int));
+    
+            var numeroPuertasParameter = numeroPuertas.HasValue ?
+                new ObjectParameter("numeroPuertas", numeroPuertas) :
+                new ObjectParameter("numeroPuertas", typeof(byte));
+    
+            var numeroRuedasParameter = numeroRuedas.HasValue ?
+                new ObjectParameter("numeroRuedas", numeroRuedas) :
+                new ObjectParameter("numeroRuedas", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoInsert", placaParameter, tipoParameter, marcaParameter, numeroPuertasParameter, numeroRuedasParameter);
+        }
+    
+        public virtual int pa_VehiculoModifica(Nullable<int> id_vehiculo, string placa, Nullable<int> tipo, Nullable<int> marca, Nullable<byte> numeroPuertas, Nullable<byte> numeroRuedas)
+        {
+            var id_vehiculoParameter = id_vehiculo.HasValue ?
+                new ObjectParameter("id_vehiculo", id_vehiculo) :
+                new ObjectParameter("id_vehiculo", typeof(int));
+    
+            var placaParameter = placa != null ?
+                new ObjectParameter("placa", placa) :
+                new ObjectParameter("placa", typeof(string));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            var marcaParameter = marca.HasValue ?
+                new ObjectParameter("marca", marca) :
+                new ObjectParameter("marca", typeof(int));
+    
+            var numeroPuertasParameter = numeroPuertas.HasValue ?
+                new ObjectParameter("numeroPuertas", numeroPuertas) :
+                new ObjectParameter("numeroPuertas", typeof(byte));
+    
+            var numeroRuedasParameter = numeroRuedas.HasValue ?
+                new ObjectParameter("numeroRuedas", numeroRuedas) :
+                new ObjectParameter("numeroRuedas", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoModifica", id_vehiculoParameter, placaParameter, tipoParameter, marcaParameter, numeroPuertasParameter, numeroRuedasParameter);
+        }
+    
+        public virtual ObjectResult<pa_VehiculoRetorna_Result> pa_VehiculoRetorna()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoRetorna_Result>("pa_VehiculoRetorna");
+        }
+    
+        public virtual ObjectResult<pa_VehiculoSelect_Result> pa_VehiculoSelect(Nullable<int> id_vehiculo)
+        {
+            var id_vehiculoParameter = id_vehiculo.HasValue ?
+                new ObjectParameter("id_vehiculo", id_vehiculo) :
+                new ObjectParameter("id_vehiculo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoSelect_Result>("pa_VehiculoSelect", id_vehiculoParameter);
         }
     
         public virtual ObjectResult<RetornaCantones_Result> RetornaCantones(string nombre, Nullable<int> id_Provincia)
@@ -682,6 +949,19 @@ namespace SistemaLavado.Models
                 new ObjectParameter("nombre", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaProvincias_Result>("RetornaProvincias", nombreParameter);
+        }
+    
+        public virtual int sp_ActualizaEstado(Nullable<int> id, string estado)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaEstado", idParameter, estadoParameter);
         }
     
         public virtual int sp_EliminaCanton(Nullable<int> id_Canton)
@@ -729,345 +1009,6 @@ namespace SistemaLavado.Models
                 new ObjectParameter("id_CantonInec", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCanton", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
-        }
-    
-        public virtual ObjectResult<pa_ClienteSelect_Result> pa_ClienteSelect(Nullable<int> id_cliente)
-        {
-            var id_clienteParameter = id_cliente.HasValue ?
-                new ObjectParameter("id_cliente", id_cliente) :
-                new ObjectParameter("id_cliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ClienteSelect_Result>("pa_ClienteSelect", id_clienteParameter);
-        }
-    
-        public virtual int pa_UsuarioInsert(Nullable<int> id_usuario, string correo, string contrasena, string tipo, Nullable<System.DateTime> ultimaFecha)
-        {
-            var id_usuarioParameter = id_usuario.HasValue ?
-                new ObjectParameter("id_usuario", id_usuario) :
-                new ObjectParameter("id_usuario", typeof(int));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("correo", correo) :
-                new ObjectParameter("correo", typeof(string));
-    
-            var contrasenaParameter = contrasena != null ?
-                new ObjectParameter("contrasena", contrasena) :
-                new ObjectParameter("contrasena", typeof(string));
-    
-            var tipoParameter = tipo != null ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(string));
-    
-            var ultimaFechaParameter = ultimaFecha.HasValue ?
-                new ObjectParameter("ultimaFecha", ultimaFecha) :
-                new ObjectParameter("ultimaFecha", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_UsuarioInsert", id_usuarioParameter, correoParameter, contrasenaParameter, tipoParameter, ultimaFechaParameter);
-        }
-    
-        public virtual int pa_UsuarioUpdate(Nullable<int> id_usuario, string correo, Nullable<int> contrasena, string tipo, Nullable<System.DateTime> ultimafecha, string estado)
-        {
-            var id_usuarioParameter = id_usuario.HasValue ?
-                new ObjectParameter("id_usuario", id_usuario) :
-                new ObjectParameter("id_usuario", typeof(int));
-    
-            var correoParameter = correo != null ?
-                new ObjectParameter("correo", correo) :
-                new ObjectParameter("correo", typeof(string));
-    
-            var contrasenaParameter = contrasena.HasValue ?
-                new ObjectParameter("contrasena", contrasena) :
-                new ObjectParameter("contrasena", typeof(int));
-    
-            var tipoParameter = tipo != null ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(string));
-    
-            var ultimafechaParameter = ultimafecha.HasValue ?
-                new ObjectParameter("ultimafecha", ultimafecha) :
-                new ObjectParameter("ultimafecha", typeof(System.DateTime));
-    
-            var estadoParameter = estado != null ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_UsuarioUpdate", id_usuarioParameter, correoParameter, contrasenaParameter, tipoParameter, ultimafechaParameter, estadoParameter);
-        }
-    
-        public virtual int sp_ActualizaEstado(Nullable<int> id, string estado)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var estadoParameter = estado != null ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ActualizaEstado", idParameter, estadoParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual int pa_Marca_VehiculoInsert(Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
-        {
-            var codigoParameter = codigo.HasValue ?
-                new ObjectParameter("codigo", codigo) :
-                new ObjectParameter("codigo", typeof(int));
-    
-            var fabricanteParameter = fabricante.HasValue ?
-                new ObjectParameter("fabricante", fabricante) :
-                new ObjectParameter("fabricante", typeof(int));
-    
-            var tipoParameter = tipo.HasValue ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoInsert", codigoParameter, fabricanteParameter, tipoParameter);
-        }
-    
-        public virtual ObjectResult<pa_Marca_VehiculoSelect_Result> pa_Marca_VehiculoSelect(Nullable<int> id_codigoMarcaV)
-        {
-            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
-                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
-                new ObjectParameter("id_codigoMarcaV", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Marca_VehiculoSelect_Result>("pa_Marca_VehiculoSelect", id_codigoMarcaVParameter);
-        }
-    
-        public virtual int pa_Marca_VehiculoUpdate(Nullable<int> id_codigoMarcaV, Nullable<int> codigo, Nullable<int> fabricante, Nullable<int> tipo)
-        {
-            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
-                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
-                new ObjectParameter("id_codigoMarcaV", typeof(int));
-    
-            var codigoParameter = codigo.HasValue ?
-                new ObjectParameter("codigo", codigo) :
-                new ObjectParameter("codigo", typeof(int));
-    
-            var fabricanteParameter = fabricante.HasValue ?
-                new ObjectParameter("fabricante", fabricante) :
-                new ObjectParameter("fabricante", typeof(int));
-    
-            var tipoParameter = tipo.HasValue ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoUpdate", id_codigoMarcaVParameter, codigoParameter, fabricanteParameter, tipoParameter);
-        }
-    
-        public virtual ObjectResult<pa_TipoVehiculoSelect_Result> pa_TipoVehiculoSelect(Nullable<int> id, string tipo)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var tipoParameter = tipo != null ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TipoVehiculoSelect_Result>("pa_TipoVehiculoSelect", idParameter, tipoParameter);
-        }
-    
-        public virtual ObjectResult<pa_TTipo_VehiculoRetorna_Result> pa_TTipo_VehiculoRetorna()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_TTipo_VehiculoRetorna_Result>("pa_TTipo_VehiculoRetorna");
-        }
-    
-        public virtual int pa_Marca_VehiculoDelete(Nullable<int> id_codigoMarcaV)
-        {
-            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
-                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
-                new ObjectParameter("id_codigoMarcaV", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_VehiculoDelete", id_codigoMarcaVParameter);
-        }
-    
-        public virtual int pa_Marca_Vehiculo_Delete(Nullable<int> id_codigoMarcaV)
-        {
-            var id_codigoMarcaVParameter = id_codigoMarcaV.HasValue ?
-                new ObjectParameter("id_codigoMarcaV", id_codigoMarcaV) :
-                new ObjectParameter("id_codigoMarcaV", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Marca_Vehiculo_Delete", id_codigoMarcaVParameter);
-        }
-    
-        public virtual int pa_Vehiculo_Delete(Nullable<int> id_vehiculo)
-        {
-            var id_vehiculoParameter = id_vehiculo.HasValue ?
-                new ObjectParameter("id_vehiculo", id_vehiculo) :
-                new ObjectParameter("id_vehiculo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Vehiculo_Delete", id_vehiculoParameter);
-        }
-    
-        public virtual int pa_VehiculoInsert(string placa, string tipo, Nullable<short> marca, Nullable<byte> numeroPuertas, Nullable<byte> numeroRuedas)
-        {
-            var placaParameter = placa != null ?
-                new ObjectParameter("placa", placa) :
-                new ObjectParameter("placa", typeof(string));
-    
-            var tipoParameter = tipo != null ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(string));
-    
-            var marcaParameter = marca.HasValue ?
-                new ObjectParameter("marca", marca) :
-                new ObjectParameter("marca", typeof(short));
-    
-            var numeroPuertasParameter = numeroPuertas.HasValue ?
-                new ObjectParameter("numeroPuertas", numeroPuertas) :
-                new ObjectParameter("numeroPuertas", typeof(byte));
-    
-            var numeroRuedasParameter = numeroRuedas.HasValue ?
-                new ObjectParameter("numeroRuedas", numeroRuedas) :
-                new ObjectParameter("numeroRuedas", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoInsert", placaParameter, tipoParameter, marcaParameter, numeroPuertasParameter, numeroRuedasParameter);
-        }
-    
-        public virtual int pa_VehiculoModifica(Nullable<int> id_vehiculo, string placa, string tipo, Nullable<short> marca, Nullable<byte> numeroPuertas, Nullable<byte> numeroRuedas)
-        {
-            var id_vehiculoParameter = id_vehiculo.HasValue ?
-                new ObjectParameter("id_vehiculo", id_vehiculo) :
-                new ObjectParameter("id_vehiculo", typeof(int));
-    
-            var placaParameter = placa != null ?
-                new ObjectParameter("placa", placa) :
-                new ObjectParameter("placa", typeof(string));
-    
-            var tipoParameter = tipo != null ?
-                new ObjectParameter("tipo", tipo) :
-                new ObjectParameter("tipo", typeof(string));
-    
-            var marcaParameter = marca.HasValue ?
-                new ObjectParameter("marca", marca) :
-                new ObjectParameter("marca", typeof(short));
-    
-            var numeroPuertasParameter = numeroPuertas.HasValue ?
-                new ObjectParameter("numeroPuertas", numeroPuertas) :
-                new ObjectParameter("numeroPuertas", typeof(byte));
-    
-            var numeroRuedasParameter = numeroRuedas.HasValue ?
-                new ObjectParameter("numeroRuedas", numeroRuedas) :
-                new ObjectParameter("numeroRuedas", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_VehiculoModifica", id_vehiculoParameter, placaParameter, tipoParameter, marcaParameter, numeroPuertasParameter, numeroRuedasParameter);
-        }
-    
-        public virtual ObjectResult<pa_VehiculoRetorna_Result> pa_VehiculoRetorna()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoRetorna_Result>("pa_VehiculoRetorna");
-        }
-    
-        public virtual ObjectResult<pa_VehiculoSelect_Result> pa_VehiculoSelect(Nullable<int> id_vehiculo)
-        {
-            var id_vehiculoParameter = id_vehiculo.HasValue ?
-                new ObjectParameter("id_vehiculo", id_vehiculo) :
-                new ObjectParameter("id_vehiculo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_VehiculoSelect_Result>("pa_VehiculoSelect", id_vehiculoParameter);
         }
     }
 }

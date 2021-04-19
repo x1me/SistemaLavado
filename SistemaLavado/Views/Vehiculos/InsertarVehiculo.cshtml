@@ -1,0 +1,60 @@
+﻿@model SistemaLavado.Models.Vehiculo
+@{
+    ViewBag.Title = "InsertaVehiculo";
+}
+
+<form id="frmInserta" method="post" action="@Url.Action("agregaroeditar")">
+
+    <input type="hidden" value="@Model.id_vehiculo" name="id_vehiculo" />
+    
+    <h1 class="font-weight-bolder">Agregar vehículo</h1>
+
+    <p class="text-muted">Agrega los datos requeridos</p>
+
+    <div class="form-group">
+        <label>Placa</label>
+        <input type="text" name="placa" value="@Model.placa " class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Cantidad de Ruedas</label>
+        <input type="number" value="@Model.numeroRuedas" name="numeroRuedas" />
+    </div>
+
+    <div class="form-group">
+        <label>Cantidad de Puertas</label>
+        <input type="number" value="@Model.numeroPuertas" name="numeroPuertas" />
+    </div>
+
+    <div class="form-group">
+        <label>Tipo</label>
+        <select name="tipo" id="tipo" class="form-control">
+            <option value="">Seleccione el tipo</option>
+            @{
+                foreach (var tipo in this.ViewBag.tipos)
+                {
+                    <option value="@tipo.id_codigoTV">@tipo.tipo</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Marca de Vehiculo</label>
+        <select name="marca" class="form-control">
+            <option value="">Seleccione la marca</option>
+            @foreach (var i in ViewBag.marcas)
+            {
+                <option value="@i.id_codigoMarcaV">@i.nombre_marca</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
+    </div>
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+</form>
+@section scripts
+    {
+    <script src="~/Scripts/ValidacionesGenericas.js"></script>
+    <script src="~/Scripts/Validaciones/Vehiculo.js"></script>
+}

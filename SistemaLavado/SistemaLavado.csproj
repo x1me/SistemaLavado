@@ -148,130 +148,127 @@
     </Compile>
     <Compile Include="Models\BienvenidaInfo.cs" />
     <Compile Include="Models\Canton.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClientePersonalizado.cs" />
     <Compile Include="Models\Distrito.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fabricante.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ListaTipoV.cs" />
     <Compile Include="Models\MarcaVehiculo.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Mensaje.cs" />
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\pa_CantonSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ClienteSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_DistritoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_FabricanteRetorna_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_fabricanteSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_Fabricante_Retorna_ID_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_FacturaEncabezadoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_Marca_VehiculoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_Marca_Vehiculo_Retorna_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ProvinciaSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_ServicioProductoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\pa_TipoVehiculoRetorna_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_TipoVehiculoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_TipoVehiculo_Retorna_ID_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_TTipo_VehiculoRetorna_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_UsuariosSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_VehiculoClienteRetorna_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pa_VehiculoclienteSelect_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_VehiculoRetorna_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pa_VehiculoSelect_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Provincia.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaCantonesID_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaCantones_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RetornaProvincias_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicioProducto.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Detalle.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Servicios_Facturados_Encabezado.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sistema.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sistema.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sistema.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sistema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sistema.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Sistema.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoVehiculo.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuarios.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vehiculo.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VehiculoCliente.cs">
-      <DependentUpon>Sistema.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -289,15 +286,15 @@
     <Content Include="Img-Video\Puerta.png" />
     <Content Include="Img-Video\Sprites.png" />
     <Content Include="Img-Video\Star Wars.m4a" />
-    <Content Include="Models\Sistema.Context.tt">
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Sistema.edmx</DependentUpon>
-      <LastGenOutput>Sistema.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Sistema.tt">
+    <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Sistema.edmx</DependentUpon>
-      <LastGenOutput>Sistema.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -310,12 +307,12 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="FaltantesMantenimiento.docx" />
-    <EntityDeploy Include="Models\Sistema.edmx">
+    <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Sistema.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Sistema.edmx.diagram">
-      <DependentUpon>Sistema.edmx</DependentUpon>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -455,6 +452,7 @@
     <Content Include="Views\Geografia\Provincia.cshtml" />
     <Content Include="Views\Geografia\Distrito.cshtml" />
     <Content Include="Views\Vehiculos\ListaVehiculo.cshtml" />
+    <Content Include="Views\Vehiculos\InsertarVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
