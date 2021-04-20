@@ -10,21 +10,20 @@
     <br />
     <div class="form-group">
         <label>Código</label>
-        <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
+        <input type="text" value="@Model.codigo" name="codigo" id="codigo" class="form-control" />
     </div>
     <div class="form-group">
         <label>Tipo</label>
-        <input type="text" value="@Model.tipo" name="tipo" class="form-control" />
+        <input type="text" value="@Model.tipo" name="tipo" id="tipo" class="form-control" />
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success">Agregar</button>
+        <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
     </div>
-    <br />
     <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
 </form>
 
 @section scripts
     {
-    @Scripts.Render("~/Scripts/ValidacionesInsertar/InsertaTipoVehiculo.js")
-    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
+    <script src="~/Scripts/ValidacionesGenericas.js"></script>
+    <script src="~/Scripts/ValidacionesInsertar/InsertaTipoVehiculo.js"></script>
 }

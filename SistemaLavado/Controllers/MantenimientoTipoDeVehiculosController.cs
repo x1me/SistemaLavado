@@ -21,6 +21,8 @@ namespace SistemaLavado.Controllers
         [HttpGet, ActionName("listar")]
         public ActionResult ListaTipoVehiculo()
         {
+            string tipoUsuario = Session["role"] as string;
+            int? idCliente = Session["idCliente"] as Nullable<int>;
             ViewBag.tipo = Session["role"] as string;
             List<pa_TTipo_VehiculoRetorna_Result> ModeloVista = this.bd.pa_TTipo_VehiculoRetorna().ToList();
             return Json(ModeloVista, JsonRequestBehavior.AllowGet);

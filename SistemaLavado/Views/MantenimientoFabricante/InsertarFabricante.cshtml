@@ -11,11 +11,11 @@
     <br />
     <div class="form-group">
         <label>Código</label>
-        <input type="text" value="@Model.codigo" name="codigo" class="form-control" />
+        <input type="text" value="@Model.codigo" name="codigo" id="codigo" class="form-control" />
     </div>
     <div class="form-group">
         <label>Pais</label>
-        <input type="text" value="@Model.pais" name="pais" class="form-control" />
+        <input type="text" value="@Model.pais" name="pais" id="id" class="form-control" />
     </div>
     <div class="form-group">
         <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
@@ -24,6 +24,6 @@
 </form>
 @section scripts
     {
-    @Scripts.Render("~/scripts/ValidacionesGenericas.js")
-    @Scripts.Render("~/Scripts/ValidacionesInsertar/InsertaFabricante.js")
+    <script src="~/Scripts/ValidacionesGenericas.js"></script>
+<script src="~/Scripts/ValidacionesInsertar/InsertaFabricante.js"></script>
 }
