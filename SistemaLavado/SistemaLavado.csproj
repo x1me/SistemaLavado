@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Clases\Correo.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ClienteVEController.cs" />
     <Compile Include="Controllers\GeografiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -407,6 +408,7 @@
     <Content Include="Scripts\Validaciones\Marca.js" />
     <Content Include="Scripts\Validaciones\TipoVehiculo.js" />
     <Content Include="Scripts\Validaciones\Vehiculo.js" />
+    <Content Include="Scripts\Validaciones\VehiculoCliente.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -453,6 +455,8 @@
     <Content Include="Views\Geografia\Distrito.cshtml" />
     <Content Include="Views\Vehiculos\ListaVehiculo.cshtml" />
     <Content Include="Views\Vehiculos\InsertarVehiculo.cshtml" />
+    <Content Include="Views\ClienteVE\ListaClienteVehiculo.cshtml" />
+    <Content Include="Views\ClienteVE\InsertaClienteVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,41 @@
+﻿@model SistemaLavado.Models.VehiculoCliente
+@{
+    ViewBag.Title = "InsertaClienteVehiculo";
+}
+
+
+<form id="frmInserta" method="post" action="@Url.Action("agregaroeditar")">
+    <input type="hidden" value="@Model.codigoCliente" name="codigoCliente" />
+    <h1 class="font-weight-bolder">Agregar cliente con el vehículo</h1>
+    <br />
+    <p class="text-muted">Agrega los datos requeridos</p>
+    <br />
+    <div class="form-group">
+        <label>Tipo</label>
+        <select name="codigoCliente" id="codigoCliente" class="form-control">
+            <option value="">Seleccione el cliente</option>
+            @{
+                foreach (var tipo in this.ViewBag.listacodigoCliente)
+                {
+                    <option value="@tipo.codigoCliente">@tipo.nombre.ToUpper() </option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Fabricante</label>
+        <select name="codigoVehiculo" id="codigoVehiculo" class="form-control">
+            <option value="">Seleccione la placa</option>
+            @{
+                foreach (var tipo in this.ViewBag.listacodigovehiculo)
+                {
+                    <option value="@tipo.codigoVehiculo">@tipo.placa.ToUpper() </option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
+    </div>
+    <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>
+</form>

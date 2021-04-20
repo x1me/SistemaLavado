@@ -16,4 +16,15 @@ namespace SistemaLavado.Models
         public Nullable<int> id__fabricante { get; set; }
         public string fabricante_nombre { get; set; }
     }
+    public class ListaClienteVe
+    {
+        public Nullable<int> codigoCliente { get; set; }
+        public string nombrecliente { get; set; }
+
+    }
+    public class ListaVehiculoCl
+    {
+        public string codigoVehiculo { get; set; }
+    }
+
 }
