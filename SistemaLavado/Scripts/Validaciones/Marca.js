@@ -47,7 +47,7 @@ function crearTabla(datos) {
             },
             {
                 field: "tipo",
-                title: "Tipo"
+                title: "tipo",
             },
             {
                 field: "fabricante",
@@ -89,7 +89,7 @@ function crearTabla(datos) {
                         fabricante: { validation: { required: true, minlength: 1, maxlength: 30 } }
                     }
                 }
-            }
-        },
+            },
+        }
     })
 }
