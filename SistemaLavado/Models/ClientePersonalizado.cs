@@ -7,7 +7,7 @@ namespace SistemaLavado.Models
 {
     public class ClientePersonalizado
     {
-        public int id { get; set; }
+        public int id_cliente { get; set; }
         public int cedula { get; set; }
         public string genero { get; set; }
         public string correo { get; set; }
@@ -18,7 +18,7 @@ namespace SistemaLavado.Models
         public string distrito { get; set; }
         public string apellido1 { get; set; }
         public string apellido2 { get; set; }
-
+        public string estado { get; set; }
 
     }
 }

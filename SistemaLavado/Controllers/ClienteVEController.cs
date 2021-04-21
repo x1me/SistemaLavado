@@ -44,6 +44,7 @@ namespace SistemaLavado.Controllers
                                    {
                                        codigoCliente = i.id_cliente,
                                        nombrecliente = i.nombre
+                                       
                                    }).ToList();
             ViewBag.listacodigovehiculo = (from i in bd.Vehiculo
                                          select new ListaVehiculoCl()

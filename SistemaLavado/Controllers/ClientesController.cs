@@ -35,7 +35,7 @@ namespace SistemaLavado.Controllers
             var modelo = (from i in cliente
                           select new ClientePersonalizado()
                           {
-                              id = i.id_cliente,
+                              id_cliente = i.id_cliente,
                               cedula = i.cedula,
                               nombre = i.nombre,
                               apellido1 = i.apellido1,
@@ -46,6 +46,7 @@ namespace SistemaLavado.Controllers
                               provincia = (from pt in db.Provincia where pt.id_Provincia == i.provincia select pt.nombre).FirstOrDefault(),
                               canton = (from ct in db.Canton where ct.id_Canton == i.canton select ct.nombre).FirstOrDefault(),
                               distrito = (from ds in db.Distrito where ds.id_Distrito == i.distrito select ds.nombre).FirstOrDefault(),
+                              estado = i.estado,
                           }
                           ).ToList();
 
@@ -83,7 +84,7 @@ namespace SistemaLavado.Controllers
                                                         model.genero, model.fecha_nacimiento,
                                                         model.nombre, model.apellido1, model.apellido2,
                                                         model.correo, model.provincia, model.canton,
-                                                        model.distrito,model.estado);
+                                                        model.distrito, model.estado);
                     mensaje = "Registro modificado";
                 }
                 else
@@ -101,7 +102,7 @@ namespace SistemaLavado.Controllers
                         {
                             new Correo(model.correo).EnviaCorreo(model.nombre, model.apellido1, model.apellido2);
                             var idCliente = db.Cliente.Where(e => e.cedula == model.cedula).Select(e => e.id_cliente).FirstOrDefault();
-                            db.pa_UsuarioInsert(idCliente, model.correo, model.cedula.ToString(), "u", DateTime.Now,model.estado);
+                            db.pa_UsuarioInsert(idCliente, model.correo, model.cedula.ToString(), "u", DateTime.Now, model.estado);
                         }
                     }
                     mensaje = "El registro ya existe!";
