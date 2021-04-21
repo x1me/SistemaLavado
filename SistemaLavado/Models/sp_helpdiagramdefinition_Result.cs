@@ -11,12 +11,9 @@ namespace SistemaLavado.Models
 {
     using System;
     
-    public partial class pa_Marca_Vehiculo_Retorna_Result
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id_codigoMarcaV { get; set; }
-        public Nullable<short> codigo { get; set; }
-        public Nullable<int> tipo { get; set; }
-        public Nullable<int> fabricante { get; set; }
-        public string nombre_marca { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

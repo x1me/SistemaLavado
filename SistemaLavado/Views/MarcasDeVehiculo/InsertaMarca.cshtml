@@ -38,6 +38,18 @@
         </select>
     </div>
     <div class="form-group">
+        <label>Fabricante</label>
+        <select name="nombre_marca" id="nombre_marca" class="form-control">
+            <option value="">Seleccione el fabricante</option>
+            @{
+                    foreach (var marca  in this.Model.TipoVehiculo.MarcaVehiculo )
+                {
+                    <option value="@marca.nombre_marca">@marca.nombre_marca.ToUpper() </option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
         <input class="btn btn-success" type="submit" value="Guardar" id="btnAceptar" />
     </div>
     <a href="~/Principal/PaginaPrincipal" type="button" class="btn btn-primary">Regresar Página Principal</a>

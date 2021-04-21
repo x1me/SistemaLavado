@@ -21,9 +21,8 @@ function peticion(url, callback = null, metodo = "get", dataType = "json", datos
 
 
 function crearTabla(datos) {
-    console.log($("ok"));
+
     $("#Lista").kendoGrid({
-        dataSource: datos,
         height: 500,
         filterable: true,
         pageSize: 20,
@@ -47,11 +46,17 @@ function crearTabla(datos) {
             },
             {
                 field: "tipo",
-                title: "tipo",
+                title: "tipo",  
+                editor: tipos, 
+                template: "#=tipo#"
             },
             {
                 field: "fabricante",
                 title: "Fabricante"
+            },
+            {
+                field: "nombre_marca",
+                title: "Nombre marca"
             },
             {
                 command: ["edit", "destroy"]
@@ -81,15 +86,30 @@ function crearTabla(datos) {
             },
             schema: {
                 model: {
-                    id: "id_codigoTV",
+                    id: "id_codigoMarcaV",
                     fields: {
-                        id_codigoTV: { editable: false, nullable: true },
+                        id_codigoMarcaV: { editable: false, nullable: true },
                         codigo: { type: "number", validation: { required: true, min: 1, max: 1000 } },
-                        tipo: { validation: { required: true, minlength: 1, maxlength: 30 } },
                         fabricante: { validation: { required: true, minlength: 1, maxlength: 30 } }
                     }
                 }
             },
         }
     })
+}
+
+function tipos(container, op) {
+    console.table(op);
+    $(`<input required name='${op.field}' />`)
+        .appendTo(container)
+        .kendoDropDownList({
+            dataTextField: "tipo",
+            dataValueField: "id_codigoTV",
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: "/MarcasDeVehiculo/RetornaTipos",
+                }
+            }
+        });
 }

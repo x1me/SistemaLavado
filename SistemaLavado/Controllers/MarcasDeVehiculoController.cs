@@ -27,11 +27,12 @@ namespace SistemaLavado.Controllers
             var Marca = bd.pa_Marca_Vehiculo_Retorna().ToList();
             var datos = (from i in Marca
                          select new
-                         {                             
+                         {
                              tipo = bd.TipoVehiculo.Where(e => e.id_codigoTV == i.tipo).Select(e => e.tipo).First(),
                              id_codigoMarcaV = i.id_codigoMarcaV,
                              codigo = i.codigo,
                              fabricante = bd.Fabricante.Where(e => e.id_codfabricante == i.fabricante).Select(e => e.pais).First(),
+                             nombre_marca = i.nombre_marca,
                          }
                         ).ToList();
             return Json(datos, JsonRequestBehavior.AllowGet);
@@ -40,21 +41,23 @@ namespace SistemaLavado.Controllers
         [ActionName("agregaroeditar")]
         public ActionResult InsertarAgregarMarca(int? id)
         {
-    
+
             ViewBag.tipo = Session["role"] as string;
             var reg = bd.pa_Marca_VehiculoSelect(null).ToList();
             ViewBag.lista_tipos = (from i in bd.TipoVehiculo
                                    select new ListaTipoV()
                                    {
                                        id_tipo = i.id_codigoTV,
-                                       tipo_nombre = i.tipo
+                                       tipo_nombre = i.tipo,
+                                       
                                    }).ToList();
             ViewBag.lista_fabricantes = (from i in bd.Fabricante
                                          select new ListaFabricante()
                                          {
                                              id__fabricante = i.id_codfabricante,
-                                             fabricante_nombre = i.pais
+                                             fabricante_nombre = i.pais,
                                          }).ToList();
+           
             try
             {
                 MarcaVehiculo model = new MarcaVehiculo();
@@ -66,6 +69,7 @@ namespace SistemaLavado.Controllers
                     model.codigo = marcaVehiculo.codigo;
                     model.tipo = marcaVehiculo.tipo;
                     model.fabricante = marcaVehiculo.fabricante;
+                    model.nombre_marca = marcaVehiculo.nombre_marca;
                 }
                 return View("InsertaMarca", model);
             }
@@ -90,7 +94,7 @@ namespace SistemaLavado.Controllers
                 if (MarcaVehiculo.id_codigoMarcaV > 0)
                 {
                     cantRegistrosAfectados = bd.pa_Marca_VehiculoUpdate(MarcaVehiculo.id_codigoMarcaV,
-                                                                        MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo );
+                                                                        MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo, MarcaVehiculo.nombre_marca);
                     resultado = "Registro modificado correctamente";
                 }
                 else
@@ -98,7 +102,7 @@ namespace SistemaLavado.Controllers
                     if (!bd.MarcaVehiculo.Any(e => e.codigo == MarcaVehiculo.codigo))
                     {
 
-                        cantRegistrosAfectados = this.bd.pa_Marca_VehiculoInsert(MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo );
+                        cantRegistrosAfectados = this.bd.pa_Marca_VehiculoInsert(MarcaVehiculo.codigo, MarcaVehiculo.fabricante, MarcaVehiculo.tipo, MarcaVehiculo.nombre_marca);
                         resultado = "Registro insertado correctamente";
                     }
                     else
@@ -147,6 +151,13 @@ namespace SistemaLavado.Controllers
                 TempData["estado"] = registroAfectado > 0;
             }
             return Json(resultado);
+        }
+
+        [HttpGet]
+        public JsonResult RetornaTipos()
+        {
+            var tipos = bd.pa_TipoVehiculoSelect(null,"").ToList();
+            return Json(tipos, JsonRequestBehavior.AllowGet);
         }
 
     }

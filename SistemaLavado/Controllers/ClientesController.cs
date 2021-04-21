@@ -83,7 +83,7 @@ namespace SistemaLavado.Controllers
                                                         model.genero, model.fecha_nacimiento,
                                                         model.nombre, model.apellido1, model.apellido2,
                                                         model.correo, model.provincia, model.canton,
-                                                        model.distrito);
+                                                        model.distrito,model.estado);
                     mensaje = "Registro modificado";
                 }
                 else
@@ -101,7 +101,7 @@ namespace SistemaLavado.Controllers
                         {
                             new Correo(model.correo).EnviaCorreo(model.nombre, model.apellido1, model.apellido2);
                             var idCliente = db.Cliente.Where(e => e.cedula == model.cedula).Select(e => e.id_cliente).FirstOrDefault();
-                            db.pa_UsuarioInsert(idCliente, model.correo, model.cedula.ToString(), "u", DateTime.Now);
+                            db.pa_UsuarioInsert(idCliente, model.correo, model.cedula.ToString(), "u", DateTime.Now,model.estado);
                         }
                     }
                     mensaje = "El registro ya existe!";
